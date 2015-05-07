@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Categoryexp */
 
@@ -13,16 +12,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menuItems'] = [
     ['label' => 'Назад', 'url' => ['/categoryexp']],
-
 ];
-
 ?>
 <div class="categoryexp-create">
 
-   
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+
+<?=
+$this->render('_form', [
+    'model' => $model,
+])
+?>
 
 </div>
