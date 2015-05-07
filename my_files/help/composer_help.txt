@@ -1,0 +1,7 @@
+Установка
+php ~/composer.phar create-project --prefer-dist yiisoft/yii2-app-basic /var/www/html/yii2basic
+
+Обновление. Выполнить в папке приложения
+php ~/composer.phar update
+
+
