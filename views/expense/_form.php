@@ -8,6 +8,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $model app\models\Expense */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<h1>erretreyrtyrtyrt</h1>
 
 <div class="expense-form">
 
