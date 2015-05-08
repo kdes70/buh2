@@ -9,8 +9,9 @@
 <div class="row">
     <div class="col-lg-2">
         <?php
-        
-        echo app\widgets\PanelMenu::widget(['items' => isset($this->params['menuItems']) ? $this->params['menuItems'] : [],
+    
+    
+        echo timurmelnikov\widgets\PanelMenu::widget(['items' => isset($this->params['menuItems']) ? $this->params['menuItems'] : [],
             'heading' => 'Действия раздела',
                 //'type' => 'panel-danger'
         ]);

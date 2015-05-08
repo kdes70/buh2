@@ -50,6 +50,9 @@ $this->params['menuItems'] = [
                             'update' => function ($url, $model, $key) {
                                 return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key, 'parent_id' => $model->parent_id], ['title' => 'Изменить']);
                             },
+                                    'delete' => function ($url, $model, $key) {
+                                return Html::a('<span class="glyphicon glyphicon-trash"/>', ['delete', 'id' => $key, 'parent_id' => $model->parent_id], ['title' => 'Удалить', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?']);
+                            },
                                 ],
                                 'template' => '{update}  {delete}'
                             ],

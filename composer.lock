@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "54670e5ebea32e2c3ce7577c0cbc1d79",
+    "hash": "d9e01d7f14974c4f48c4f2328155b966",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -1651,6 +1651,48 @@
             "time": "2015-03-14 06:06:39"
         },
         {
+            "name": "timurmelnikov/yii2-panel-menu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TimurMelnikov/yii2-panel-menu.git",
+                "reference": "7d7d3601cc441f01f5cdf260b56df13fe8750c2b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-panel-menu/zipball/7d7d3601cc441f01f5cdf260b56df13fe8750c2b",
+                "reference": "7d7d3601cc441f01f5cdf260b56df13fe8750c2b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "timurmelnikov\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Timur Melnikov",
+                    "email": "melnikovt@gmail.com"
+                }
+            ],
+            "description": "Вертикальное меню bootstrap",
+            "keywords": [
+                "bootstrap",
+                "menu",
+                "yii2"
+            ],
+            "time": "2015-05-08 08:41:00"
+        },
+        {
             "name": "yiisoft/yii2",
             "version": "2.0.3",
             "source": {
@@ -2132,20 +2174,20 @@
         },
         {
             "name": "yiisoft/yii2-faker",
-            "version": "2.0.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-faker.git",
-                "reference": "b88ca69ee226a3610b2c26c026c3203d7ac50f6c"
+                "reference": "59565b0a5a3dc542ee8c969adb551dc9602db701"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
-                "reference": "b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
+                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/59565b0a5a3dc542ee8c969adb551dc9602db701",
+                "reference": "59565b0a5a3dc542ee8c969adb551dc9602db701",
                 "shasum": ""
             },
             "require": {
-                "fzaninotto/faker": "*",
+                "fzaninotto/faker": "~1.4",
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
@@ -2175,7 +2217,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2015-03-01 06:22:44"
+            "time": "2015-05-06 14:22:42"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -2229,7 +2271,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "timurmelnikov/yii2-panel-menu": 20,
+        "yiisoft/yii2-faker": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

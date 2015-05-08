@@ -101,10 +101,11 @@ class CategoryexpController extends Controller {
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id) {
+    public function actionDelete($id, $parent_id = 0) {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'parent_id' => $parent_id
+        ]);
     }
 
     /**
