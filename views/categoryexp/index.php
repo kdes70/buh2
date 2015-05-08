@@ -12,9 +12,6 @@ $this->title = 'Категории расходов';
 $this->params['breadcrumbs'][] = $this->title;
 
 
-Pjax::begin(['timeout' => 3000]);
-
-
 $this->params['menuItems'] = [
 
     ['label' => 'Создать', 'url' => ['create', 'parent_id' => $searchModel->parent_id]],
@@ -22,7 +19,7 @@ $this->params['menuItems'] = [
 ?>
 <div class="categoryexp-index">
 
-<?php  ?>
+<?php Pjax::begin(['timeout' => 3000]); ?>
 
     <?=
     GridView::widget([
