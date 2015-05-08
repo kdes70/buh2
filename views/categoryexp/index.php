@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CategoryexpSearch */
@@ -10,6 +11,10 @@ use yii\grid\GridView;
 $this->title = 'Категории расходов';
 $this->params['breadcrumbs'][] = $this->title;
 
+
+Pjax::begin(['timeout' => 3000]);
+
+
 $this->params['menuItems'] = [
 
     ['label' => 'Создать', 'url' => ['create', 'parent_id' => $searchModel->parent_id]],
@@ -17,7 +22,7 @@ $this->params['menuItems'] = [
 ?>
 <div class="categoryexp-index">
 
-
+<?php  ?>
 
     <?=
     GridView::widget([
@@ -59,5 +64,7 @@ $this->params['menuItems'] = [
                         ],
                     ]);
                     ?>
+    
+    <?php Pjax::end(); ?>
 
 </div>
