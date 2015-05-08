@@ -1,11 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 4.1.12
+-- phpMyAdmin SQL Dump RBAC
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Янв 23 2015 г., 15:08
--- Версия сервера: 5.5.36
--- Версия PHP: 5.4.27
+-- Хост: localhost
+-- Время создания: Май 09 2015 г., 00:55
+-- Версия сервера: 5.5.43-0ubuntu0.14.04.1
+-- Версия PHP: 5.5.9-1ubuntu4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,65 @@ SET time_zone = "+00:00";
 --
 -- База данных: `buh2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_auth_assignment`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_auth_assignment` (
+  `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  PRIMARY KEY (`item_name`,`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_auth_item`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_auth_item` (
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `rule_name` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `data` text COLLATE utf8_unicode_ci,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  PRIMARY KEY (`name`),
+  KEY `rule_name` (`rule_name`),
+  KEY `idx-auth_item-type` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_auth_item_child`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_auth_item_child` (
+  `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`parent`,`child`),
+  KEY `child` (`child`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_auth_rule`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_auth_rule` (
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `data` text COLLATE utf8_unicode_ci,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -137,28 +196,48 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
 --
 
 INSERT INTO `db1_expense` (`id`, `cost`, `amount`, `unit_id`, `categoryexp_id`, `name`, `date_oper`, `user_id`, `operwallet_id`) VALUES
-(12, '40.00', '1.00', 5, 61, 'Лопата', '2013-10-17', 1, 0),
-(13, '150.00', '1.00', 5, 61, 'Дрель', '2013-10-16', 1, 0),
-(14, '78.13', '1.00', 2, 60, 'Печение', '2013-12-31', 1, 0),
-(16, '120.00', '1.00', 5, 61, 'Топор', '2013-12-10', 1, 0),
-(17, '14.75', '3000.00', 2, 60, 'Картошка', '2013-12-11', 1, 0),
-(18, '39.58', '400.00', 2, 98, 'Школьная', '2013-12-09', 1, 0),
-(19, '39.00', '1.00', 4, 72, 'Зубная паста', '2013-12-10', 1, 0),
-(20, '30.38', '1.00', 6, 95, 'Сити Такси', '2013-12-10', 1, 0),
-(21, '15.60', '1.00', 4, 77, 'Презервативы', '2013-12-10', 1, 0),
-(22, '74.00', '1.00', 5, 61, 'Лопата', '2013-12-12', 1, 0),
-(23, '120.59', '2000.00', 2, 60, 'Рыба', '2013-12-12', 1, 0),
-(26, '45.00', '700.00', 2, 99, 'Форель', '2014-07-31', 1, 0),
-(27, '19.27', '1.00', 4, 60, 'Сыр "Янтарь"', '2014-07-15', 1, 0),
-(30, '35.00', '1.00', 6, 95, 'Сити Такси', '2014-07-15', 1, 0),
-(31, '30.00', '900.00', 2, 84, 'Картошка', '2014-07-15', 1, 0),
-(32, '105.00', '1.00', 5, 83, 'Закарпатский', '2014-07-15', 1, 0),
-(33, '142.00', '2.00', 4, 60, 'Вафли "Артек"', '2014-07-15', 1, 0),
-(34, '40.00', '1.00', 5, 89, 'ТрансКом', '2014-07-17', 2, 0),
-(35, '40.00', '550.00', 2, 98, 'Московская', '2014-07-17', 1, 0),
-(36, '10.39', '1.00', 5, 61, 'Изолента', '2014-06-30', 3, 0),
-(37, '56.00', '1.00', 5, 72, 'Шампунь', '2014-07-17', 3, 0),
-(38, '11.00', '1.00', 4, 63, 'Мороженое', '2014-07-09', 3, 0);
+(12, 40.00, 1.00, 5, 61, 'Лопата', '2013-10-17', 1, 0),
+(13, 150.00, 1.00, 5, 61, 'Дрель', '2013-10-16', 1, 0),
+(14, 78.13, 1.00, 2, 60, 'Печение', '2013-12-31', 1, 0),
+(16, 120.00, 1.00, 5, 61, 'Топор', '2013-12-10', 1, 0),
+(17, 14.75, 3000.00, 2, 60, 'Картошка', '2013-12-11', 1, 0),
+(18, 39.58, 400.00, 2, 98, 'Школьная', '2013-12-09', 1, 0),
+(19, 39.00, 1.00, 4, 72, 'Зубная паста', '2013-12-10', 1, 0),
+(20, 30.38, 1.00, 6, 95, 'Сити Такси', '2013-12-10', 1, 0),
+(21, 15.60, 1.00, 4, 77, 'Презервативы', '2013-12-10', 1, 0),
+(22, 74.00, 1.00, 5, 61, 'Лопата', '2013-12-12', 1, 0),
+(23, 120.59, 2000.00, 2, 60, 'Рыба', '2013-12-12', 1, 0),
+(26, 45.00, 700.00, 2, 99, 'Форель', '2014-07-31', 1, 0),
+(27, 19.27, 1.00, 4, 60, 'Сыр "Янтарь"', '2014-07-15', 1, 0),
+(30, 35.00, 1.00, 6, 95, 'Сити Такси', '2014-07-15', 1, 0),
+(31, 30.00, 900.00, 2, 84, 'Картошка', '2014-07-15', 1, 0),
+(32, 105.00, 1.00, 5, 83, 'Закарпатский', '2014-07-15', 1, 0),
+(33, 142.00, 2.00, 4, 60, 'Вафли "Артек"', '2014-07-15', 1, 0),
+(34, 40.00, 1.00, 5, 89, 'ТрансКом', '2014-07-17', 2, 0),
+(35, 40.00, 550.00, 2, 98, 'Московская', '2014-07-17', 1, 0),
+(36, 10.39, 1.00, 5, 61, 'Изолента', '2014-06-30', 3, 0),
+(37, 56.00, 1.00, 5, 72, 'Шампунь', '2014-07-17', 3, 0),
+(38, 11.00, 1.00, 4, 63, 'Мороженое', '2014-07-09', 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_migration`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `db1_migration`
+--
+
+INSERT INTO `db1_migration` (`version`, `apply_time`) VALUES
+('m000000_000000_base', 1431122131),
+('m140506_102106_rbac_init', 1431122134);
 
 -- --------------------------------------------------------
 
@@ -216,6 +295,25 @@ INSERT INTO `db1_unit` (`id`, `name`, `fullname`) VALUES
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `db1_auth_assignment`
+--
+ALTER TABLE `db1_auth_assignment`
+  ADD CONSTRAINT `db1_auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `db1_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `db1_auth_item`
+--
+ALTER TABLE `db1_auth_item`
+  ADD CONSTRAINT `db1_auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `db1_auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `db1_auth_item_child`
+--
+ALTER TABLE `db1_auth_item_child`
+  ADD CONSTRAINT `db1_auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `db1_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `db1_auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `db1_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `db1_categoryexp`
