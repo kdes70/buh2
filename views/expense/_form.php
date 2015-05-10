@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
+use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Expense */
@@ -17,12 +19,30 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'amount')->textInput(['maxlength' => 10]) ?>
 
-    <?= $form->field($model, 'unit_id')->textInput() ?>
+    <?=
+    $form->field($model, 'unit_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(app\models\Unit::find()->all(), 'id', 'fullname'),
+        'language' => 'ru',
+        'options' => ['placeholder' => 'Выберите...'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ])
+    ?>
 
-    <?= $form->field($model, 'categoryexp_id')->textInput() ?>
+    <?=
+    $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
+        'language' => 'ru',
+        //'theme' => Select2::THEME_BOOTSTRAP,
+        'options' => ['placeholder' => 'Выберите...'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ])
+    ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 50]) ?>
-
 
     <?=
     $form->field($model, 'date_oper')->widget(
@@ -38,7 +58,6 @@ use dosamigos\datepicker\DatePicker;
         ]
     ]);
     ?>
-
 
 
 
