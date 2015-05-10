@@ -6,6 +6,7 @@ use app\widgets\ShowHide;
 ?>
 
 
+
 <div class="row">
     <div class="col-md-3 col-lg-3">
         <div class="panel panel-default">
@@ -27,16 +28,47 @@ use app\widgets\ShowHide;
 
     </div>
     <div class="col-md-6 col-lg-6">
-
-
+        
+        
+        
+        
+            
+        
+        
+        
 
         <?php
+        
+           
+        
+        
+        
+        
+        
+        
+        
+        
+//        $exp = Html::beginForm()
+//                . Html::dropDownList('parent', 1, [1 => 'rrr', 2 => 'eee']) . '<br/>'
+//                . Html::input('text', 'val')
+//                . Html::endForm()
+//                . Html::a('Создать новую ', '#', array('class' => 'search-button'))
+//                . ShowHide::widget(['button' => '.search-button', 'selector' => '#test'])
+//                . '<div id="test" style="display:none">'
+//                . $this->render('_categoryexp')
+//                . '</div>';
+        
+        
+        
+        
+        
+        
         echo yii\bootstrap\Tabs::widget([
             'items' => [
                 [
                     'label' => 'Расходы',
                     //'content' => $exp,
-                    'content' => $this->render('_expense', []),
+                    'content' => $this->render('_expense', [  ]),
                     'options' => ['id' => 'myveryownID'],
                     'active' => true
                 ],
@@ -62,7 +94,53 @@ use app\widgets\ShowHide;
         ]);
         ?>
 
+
+
+        <?php
+//        echo kartik\select2\Select2::widget([
+//            'name' => 'test',
+//            'pluginLoading' => FALSE,
+//            'data' => array_merge(['' => ''], app\models\Categoryexp::getAllForSelect()),
+//            'pluginOptions' => [
+//                'allowClear' => true,
+//            ],
+//        ]);
+        ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
+    
+    
+    <!--        <p>Из дерева</p>-->
+
+        <?php
+//        echo kartik\select2\Select2::widget([
+//            'name' => 'test',
+//            //'id'=>'test555',
+//            'pluginLoading' => FALSE,
+//            'data' => array_merge(['' => ''], app\models\Catexp::getAllForSelect()),
+//            'pluginOptions' => [
+//                'allowClear' => true,
+//            ],
+//        ]);
+        ?>
+    
+    
+    
+    
 
     <div class="col-md-3 col-lg-3">
 
