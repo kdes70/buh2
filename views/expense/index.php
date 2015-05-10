@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExpenseSearch */
@@ -18,7 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Expense', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?php yii\widgets\Pjax::begin(); ?>
+    <?php Pjax::begin(['timeout' => 3000]); ?>
+
+
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
@@ -38,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]);
     ?>
-    <?php yii\widgets\Pjax::end(); ?>
+    <?php Pjax::end(); ?>
 
 
 </div>
