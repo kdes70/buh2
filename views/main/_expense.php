@@ -10,6 +10,7 @@ echo DatePicker::widget([
 ]);
 
 echo Html::input('text', 'val');
+/*------------------------------------------*/
 echo kartik\select2\Select2::widget([
     'name' => 'test',
     'language' => 'ru',
