@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Unit;
 
 /**
  * This is the model class for table "db1_expense".
@@ -17,21 +18,19 @@ use Yii;
  * @property integer $user_id
  * @property integer $operwallet_id
  */
-class Expense extends \yii\db\ActiveRecord
-{
+class Expense extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%expense}}';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['cost', 'amount', 'unit_id', 'categoryexp_id', 'name', 'date_oper', 'user_id', 'operwallet_id'], 'required'],
             [['cost', 'amount'], 'number'],
@@ -44,8 +43,7 @@ class Expense extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'cost' => 'Цена',
@@ -58,4 +56,23 @@ class Expense extends \yii\db\ActiveRecord
             'operwallet_id' => 'Операции с кошельками',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnit()
+    {
+        return $this->hasOne(Unit::className(), ['id' => 'unit_id']);
+    }
+    
+    
+        /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoryexp()
+    {
+        return $this->hasOne(Categoryexp::className(), ['id' => 'categoryexp_id']);
+    }
+    
+
 }

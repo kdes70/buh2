@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 10 2015 г., 22:58
+-- Время создания: Май 11 2015 г., 19:35
 -- Версия сервера: 5.5.43-0ubuntu0.14.04.1
 -- Версия PHP: 5.5.9-1ubuntu4.9
 
@@ -320,6 +320,13 @@ ALTER TABLE `db1_auth_item_child`
 --
 ALTER TABLE `db1_categoryexp`
   ADD CONSTRAINT `db1_categoryexp_ibfk_2` FOREIGN KEY (`parent_id`) REFERENCES `db1_categoryexp` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `db1_expense`
+--
+ALTER TABLE `db1_expense`
+  ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
+  ADD CONSTRAINT `db1_expense_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
