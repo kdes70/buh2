@@ -10,7 +10,17 @@ use yii\widgets\Pjax;
 
 $this->title = 'Expenses';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->params['menuItems'] = [
+
+    ['label' => 'XXXXXX', 'url' => ['#', 'parent_id' => 0]],
+    ['label' => 'XXXXXX 1', 'url' => ['#', 'parent_id' => 1]],
+    ['label' => 'XXXXXX 2', 'url' => ['#', 'parent_id' => 2]],
+];
 ?>
+
+
+
 <div class="expense-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -35,11 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'unit_id',
                 'value' => 'unit.name'
             ],
-
             [
                 'attribute' => 'categoryexp_id',
                 'value' => 'categoryexp.name'
-            ],            
+            ],
             // 'name',
             // 'date_oper',
             // 'user_id',

@@ -10,6 +10,12 @@ use yii\widgets\Pjax;
 
 $this->title = 'Units';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['menuItems'] = [
+
+    ['label' => 'XXXXXX', 'url' => ['#', 'parent_id' => 0]],
+    ['label' => 'XXXXXX 1', 'url' => ['#', 'parent_id' => 1]],
+    ['label' => 'XXXXXX 2', 'url' => ['#', 'parent_id' => 2]],
+];
 ?>
 <div class="unit-index">
 

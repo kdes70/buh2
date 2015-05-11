@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
  * ExpenseController implements the CRUD actions for Expense model.
  */
 class ExpenseController extends Controller {
+    public $layout = 'column2.php';
 
     public function behaviors() {
         return [

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\jui\DatePicker;
+use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 echo Html::beginForm();
 echo DatePicker::widget([
