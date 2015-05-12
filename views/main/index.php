@@ -3,6 +3,20 @@
 
 use yii\helpers\Html;
 use app\widgets\ShowHide;
+
+
+
+
+use kartik\growl\Growl;
+
+echo Growl::widget([
+    'type' => Growl::TYPE_SUCCESS,
+    'icon' => 'glyphicon glyphicon-ok-sign',
+    'title' => 'Готово!',
+    'showSeparator' => true,
+    'body' => 'Тестовое сообщение...',
+    'pluginOptions' => ['delay' => 3000]
+]);
 ?>
 
 
