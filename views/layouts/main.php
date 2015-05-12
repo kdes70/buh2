@@ -51,7 +51,7 @@ AppAsset::register($this);
                             ['label' => 'Категории доходов', 'url' => ['/categoryinc']],
                             ['label' => 'Категории расходов', 'url' => ['/categoryexp']],
                             '<li class="divider"></li>',
-                            ['label' => 'Кошельки', 'url' => '#'],
+                            ['label' => 'Кошельки (счета)', 'url' => ['/wallet']],
                             '<li class="divider"></li>',
                             ['label' => 'Единицы измерения', 'url' => ['/unit']],
                         ],

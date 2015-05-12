@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 12 2015 г., 11:00
+-- Время создания: Май 12 2015 г., 11:26
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `db1_auth_assignment` (
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`item_name`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `db1_auth_item` (
   PRIMARY KEY (`name`),
   KEY `rule_name` (`rule_name`),
   KEY `idx-auth_item-type` (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 -- --------------------------------------------------------
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `db1_auth_item_child` (
   `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`parent`,`child`),
   KEY `child` (`child`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `db1_auth_rule` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 -- --------------------------------------------------------
 
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `db1_migration` (
   `version` varchar(180) NOT NULL,
   `apply_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица для Migration';
 
 --
 -- Дамп данных таблицы `db1_migration`
@@ -260,7 +260,8 @@ CREATE TABLE IF NOT EXISTS `db1_setting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `_idx` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Настройки' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -319,6 +320,21 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
 INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
 (3, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 10);
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_wallet`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_wallet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT 'Наименование',
+  `state` tinyint(1) NOT NULL COMMENT 'Состояние (0-действуюший, 1-Закрытый)',
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=5 ;
+
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -354,6 +370,31 @@ ALTER TABLE `db1_categoryexp`
 ALTER TABLE `db1_expense`
   ADD CONSTRAINT `db1_expense_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `db1_income`
+--
+ALTER TABLE `db1_income`
+  ADD CONSTRAINT `db1_income_ibfk_2` FOREIGN KEY (`categoryinc_id`) REFERENCES `db1_categoryinc` (`id`),
+  ADD CONSTRAINT `db1_income_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `db1_setting`
+--
+ALTER TABLE `db1_setting`
+  ADD CONSTRAINT `` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `db1_user`
+--
+ALTER TABLE `db1_user`
+  ADD CONSTRAINT `db1_user_ibfk_1` FOREIGN KEY (`id`) REFERENCES `db1_expense` (`user_id`);
+
+--
+-- Ограничения внешнего ключа таблицы `db1_wallet`
+--
+ALTER TABLE `db1_wallet`
+  ADD CONSTRAINT `db1_wallet_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
