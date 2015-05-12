@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 12 2015 г., 09:55
+-- Время создания: Май 12 2015 г., 11:00
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -134,6 +134,36 @@ INSERT INTO `db1_categoryexp` (`id`, `parent_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `db1_categoryinc`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL COMMENT 'Родительская категория',
+  `user_id` int(11) DEFAULT NULL COMMENT 'Пользователь',
+  `name` varchar(50) NOT NULL COMMENT 'Наименование',
+  `wallet_default` int(11) NOT NULL COMMENT 'Кошелек по умолчанию',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`,`user_id`),
+  KEY `wallet_default` (`wallet_default`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
+
+--
+-- Дамп данных таблицы `db1_categoryinc`
+--
+
+INSERT INTO `db1_categoryinc` (`id`, `parent_id`, `user_id`, `name`, `wallet_default`) VALUES
+(3, 1, 1, 'Зарплата', 1),
+(4, NULL, 1, 'Аванс', 1),
+(5, NULL, 1, 'Конверт', 2),
+(6, NULL, 1, 'Калым', 2),
+(7, NULL, 3, 'Аванс', 4),
+(12, NULL, 3, 'Зарплата', 4);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `db1_expense`
 --
 
@@ -185,6 +215,23 @@ INSERT INTO `db1_expense` (`id`, `cost`, `amount`, `unit_id`, `categoryexp_id`, 
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `db1_income`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_income` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` decimal(10,2) NOT NULL COMMENT 'Сумма дохода',
+  `categoryinc_id` int(11) NOT NULL COMMENT 'Категория доходов',
+  `date_oper` date NOT NULL COMMENT 'Дата операции',
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_id` (`categoryinc_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=19 ;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `db1_migration`
 --
 
@@ -202,6 +249,19 @@ INSERT INTO `db1_migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1431122131),
 ('m140506_102106_rbac_init', 1431122134),
 ('m150512_065014_create_user_table', 1431413623);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_setting`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_setting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  `name` varchar(50) NOT NULL COMMENT 'Наименование',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Настройки' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -292,8 +352,8 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_expense`
 --
 ALTER TABLE `db1_expense`
-  ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
-  ADD CONSTRAINT `db1_expense_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`);
+  ADD CONSTRAINT `db1_expense_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`),
+  ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

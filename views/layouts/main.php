@@ -42,7 +42,7 @@ AppAsset::register($this);
                 'items' => [
                     // ['label' => 'Главная', 'url' => ['/main']],
                     ['label' => 'Операции',
-                        'items' => [ ['label' => 'Доходы', 'url' => '#'],
+                        'items' => [ ['label' => 'Доходы', 'url' => ['/income']],
                             ['label' => 'Расходы', 'url' => ['/expense']],
                             ['label' => 'Переводы', 'url' => '#'],],
                     ],
@@ -60,7 +60,7 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'Пользователи', 'url' => ['/user']],
                             '<li class="divider"></li>',
-                            ['label' => 'Настройки', 'url' => '#'],
+                            ['label' => 'Настройки', 'url' => ['/setting']],
                             '<li class="divider"></li>',
                             ['label' => 'Прототип1', 'url' => 'http://www.drebedengi.ru/?module=v2_homeBuhPrivate'],
                             ['label' => 'Прототип2', 'url' => 'http://finance.uramaks.com/'],
