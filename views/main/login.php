@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     ?>
 
-    <?= $form->field($model, 'username') ?>
-    <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'username')->textInput(['value'=>'timur']) ?>
+    <?= $form->field($model, 'password')->passwordInput(['value'=>'111111'])?>
     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
     <div class="form-group">

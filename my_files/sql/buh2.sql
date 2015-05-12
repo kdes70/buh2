@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 12 2015 г., 08:42
+-- Время создания: Май 12 2015 г., 09:55
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -200,7 +200,8 @@ CREATE TABLE IF NOT EXISTS `db1_migration` (
 
 INSERT INTO `db1_migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1431122131),
-('m140506_102106_rbac_init', 1431122134);
+('m140506_102106_rbac_init', 1431122134),
+('m150512_065014_create_user_table', 1431413623);
 
 -- --------------------------------------------------------
 
@@ -227,6 +228,36 @@ INSERT INTO `db1_unit` (`id`, `name`, `fullname`) VALUES
 (5, 'шт', 'Штука'),
 (6, 'опер', 'Операция'),
 (9, 'кг', 'Килограмм');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_user`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `auth_key` varchar(32) DEFAULT NULL,
+  `email_confirm_token` varchar(255) DEFAULT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `password_reset_token` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_user_username` (`username`),
+  KEY `idx_user_email` (`email`),
+  KEY `idx_user_status` (`status`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп данных таблицы `db1_user`
+--
+
+INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
+(3, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 10);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
