@@ -28,7 +28,7 @@ echo Growl::widget([
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="panel-title">Информация</div>
+                <div class="panel-title">Контроль расходов</div>
             </div>     
             <div class="panel-body">
             </div>                     
@@ -46,13 +46,13 @@ echo Growl::widget([
                 [
                     'label' => 'Расходы',
                     //'content' => $exp,
-                    'content' => $this->render('_expense', ['dataProvider' => $dataProviderExpense, 'searchModel' => $searchModelExpense]),
+                    'content' => $this->render('_expense', ['dataProvider' => $dataProviderExpense, 'searchModel' => $searchModelExpense, 'model' => $modelExpense]),
                     'options' => ['id' => 'myveryownID'],
                     'active' => true
                 ],
                 [
                     'label' => 'Доходы',
-                    'content' => $this->render('_income', ['dataProvider' => $dataProviderIncome, 'searchModel' => $searchModelIncome]),
+                    'content' => $this->render('_income', ['dataProvider' => $dataProviderIncome, 'searchModel' => $searchModelIncome, 'model' => $modelIncome]),
                     //'headerOptions' => [...],
                     'options' => ['id' => 'myveryownID1'],
                 ],

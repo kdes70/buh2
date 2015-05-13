@@ -4,30 +4,30 @@ use yii\helpers\Html;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 ?>
-<div> <p>Форма...</p>
-    <?php
-    echo Html::beginForm();
-    echo DatePicker::widget([
-        'name' => 'test',
-        'attribute' => 'from_date',
-    ]);
 
-    /* ------------------------------------------ */
-    echo kartik\select2\Select2::widget([
-        'name' => 'test',
-        'language' => 'ru',
-        'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
-        'options' => ['placeholder' => 'Выберите...'],
-        'pluginOptions' => [
-            'allowClear' => true,
-        ],
-    ]);
-    echo Html::endForm();
-    ?>
-    <p>Форма(конец)...</p>
+<div class="income-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'categoryinc_id')->textInput() ?>
+
+    <?= $form->field($model, 'date_oper')->textInput() ?>
+
+    <?= $form->field($model, 'user_id')->textInput() ?>
+
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
 </div>
+
 <?php Pjax::begin(['timeout' => 3000]); ?>
 
 <?=

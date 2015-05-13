@@ -12,13 +12,9 @@ use kartik\select2\Select2;
 ?>
 
 <div class="expense-form">
-
     <?php $form = ActiveForm::begin(); ?>
-
     <?= $form->field($model, 'cost')->textInput(['maxlength' => 10]) ?>
-
     <?= $form->field($model, 'amount')->textInput(['maxlength' => 10]) ?>
-
     <?=
     $form->field($model, 'unit_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(app\models\Unit::find()->all(), 'id', 'fullname'),
@@ -29,7 +25,6 @@ use kartik\select2\Select2;
         ],
     ])
     ?>
-
     <?=
     $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
@@ -41,9 +36,7 @@ use kartik\select2\Select2;
         ],
     ])
     ?>
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => 50]) ?>
-
     <?=
     $form->field($model, 'date_oper')->widget(
             DatePicker::className(), [
@@ -58,17 +51,10 @@ use kartik\select2\Select2;
         ]
     ]);
     ?>
-
-
-
     <?= $form->field($model, 'user_id')->textInput() ?>
-
     <?= $form->field($model, 'operwallet_id')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

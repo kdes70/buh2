@@ -2,98 +2,41 @@
 
 namespace app\models;
 
+use yii\base\NotSupportedException;
 use Yii;
 
-/**
- * This is the model class for table "{{%user}}".
- *
- * @property integer $id
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $username
- * @property string $auth_key
- * @property string $email_confirm_token
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property integer $status
- *
- * @property Income[] $incomes
- * @property Setting[] $settings
- * @property Expense $id0
- * @property Wallet[] $wallets
- */
-class User extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
+
+    public static function tableName() {
         return '{{%user}}';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['created_at', 'updated_at', 'username', 'password_hash', 'email'], 'required'],
-            [['created_at', 'updated_at', 'status'], 'integer'],
-            [['username', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32]
-        ];
+    public static function findIdentity($id) {
+        return static::findOne(['id' => $id]);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'username' => 'Имя пользователя',
-            'auth_key' => 'Auth Key',
-            'email_confirm_token' => 'Email Confirm Token',
-            'password_hash' => 'Пароль',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'E-mail',
-            'status' => 'Состояние',
-        ];
+    public static function findIdentityByAccessToken($token, $type = null) {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIncomes()
-    {
-        return $this->hasMany(Income::className(), ['user_id' => 'id']);
+    public static function findByUsername($username) {
+        return static::findOne(['username' => $username]);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSettings()
-    {
-        return $this->hasMany(Setting::className(), ['user_id' => 'id']);
+    public function getId() {
+        return $this->getPrimaryKey();
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getId0()
-    {
-        return $this->hasOne(Expense::className(), ['user_id' => 'id']);
+    public function getAuthKey() {
+        return $this->authKey;
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getWallets()
-    {
-        return $this->hasMany(Wallet::className(), ['user_id' => 'id']);
+    public function validateAuthKey($authKey) {
+        return $this->getAuthKey() === $authKey;
     }
+
+    public function validatePassword($password) {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    }
+
 }
