@@ -10,6 +10,8 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property string $name
+ *
+ * @property User $user
  */
 class Setting extends \yii\db\ActiveRecord
 {
@@ -40,8 +42,16 @@ class Setting extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'name' => 'Name',
+            'user_id' => 'Пользователь',
+            'name' => 'Наименование',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

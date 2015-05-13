@@ -12,6 +12,9 @@ use Yii;
  * @property integer $categoryinc_id
  * @property string $date_oper
  * @property integer $user_id
+ *
+ * @property User $user
+ * @property Categoryinc $categoryinc
  */
 class Income extends \yii\db\ActiveRecord
 {
@@ -43,10 +46,26 @@ class Income extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'amount' => 'Amount',
-            'categoryinc_id' => 'Categoryinc ID',
-            'date_oper' => 'Date Oper',
+            'amount' => 'Сумма дохода',
+            'categoryinc_id' => 'Категория доходов',
+            'date_oper' => 'Дата операции',
             'user_id' => 'User ID',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoryinc()
+    {
+        return $this->hasOne(Categoryinc::className(), ['id' => 'categoryinc_id']);
     }
 }

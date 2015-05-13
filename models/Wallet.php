@@ -11,6 +11,8 @@ use Yii;
  * @property string $name
  * @property integer $state
  * @property integer $user_id
+ *
+ * @property User $user
  */
 class Wallet extends \yii\db\ActiveRecord
 {
@@ -41,9 +43,17 @@ class Wallet extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'state' => 'State',
-            'user_id' => 'User ID',
+            'name' => 'Наименование',
+            'state' => 'Состояние (0-действуюший, 1-Закрытый)',
+            'user_id' => 'Пользователь',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 13 2015 г., 10:07
+-- Время создания: Май 13 2015 г., 10:19
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -308,13 +308,13 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL COMMENT 'Имя пользователя',
   `auth_key` varchar(32) DEFAULT NULL,
   `email_confirm_token` varchar(255) DEFAULT NULL,
-  `password_hash` varchar(255) NOT NULL,
+  `password_hash` varchar(255) NOT NULL COMMENT 'Пароль',
   `password_reset_token` varchar(255) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
-  `status` smallint(6) NOT NULL DEFAULT '0',
+  `email` varchar(255) NOT NULL COMMENT 'E-mail',
+  `status` smallint(6) NOT NULL DEFAULT '0' COMMENT 'Состояние',
   PRIMARY KEY (`id`),
   KEY `idx_user_username` (`username`),
   KEY `idx_user_email` (`email`),
