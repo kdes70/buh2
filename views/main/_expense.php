@@ -11,13 +11,14 @@ use yii\widgets\Pjax;
 
 
 <?=
+
 GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
         //   'id',
-         'date_oper',
+        'date_oper',
         'cost',
         //'amount',
 //        [
@@ -32,31 +33,44 @@ GridView::widget([
         // 'date_oper',
         // 'user_id',
         // 'operwallet_id',
-        ['class' => 'yii\grid\ActionColumn'],
-    ],
-]);
-?>
-<?php Pjax::end(); ?>
+        ['class' => \yii\grid\ActionColumn::className(),
+            'header' => 'Действия',
+            'options' => ['width' => '70px'],
+            'buttons' => [
+                'undo' => function ($url, $model, $key) {
+                    return Html::a('<span class="glyphicon glyphicon-backward"/>', ['undo', 'id' => $key], ['title' => 'Откатить']);
+                },
+                        'update' => function ($url, $model, $key) {
+                    return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?']);
+                },
+                    ],
+                    'template' => '{update}  {undo}'
+                ],
+            ],
+        ]);
+        ?>
+        <?php Pjax::end(); ?>
 
 
 
-<?php
+        <?php
 
-echo Html::beginForm();
-echo DatePicker::widget([
-    'name' => 'test',
-    'attribute' => 'from_date',
-]);
+        echo Html::beginForm();
+        echo DatePicker::widget([
+            'name' => 'test',
+            'attribute' => 'from_date',
+        ]);
 
-echo Html::input('text', 'val');
-/* ------------------------------------------ */
-echo kartik\select2\Select2::widget([
-    'name' => 'test',
-    'language' => 'ru',
-    'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
-    'options' => ['placeholder' => 'Выберите...'],
-    'pluginOptions' => [
-        'allowClear' => true,
-    ],
-]);
-echo Html::endForm();
+        echo Html::input('text', 'val');
+        /* ------------------------------------------ */
+        echo kartik\select2\Select2::widget([
+            'name' => 'test',
+            'language' => 'ru',
+            'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
+            'options' => ['placeholder' => 'Выберите...'],
+            'pluginOptions' => [
+                'allowClear' => true,
+            ],
+        ]);
+        echo Html::endForm();
+        
