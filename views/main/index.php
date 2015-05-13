@@ -3,10 +3,6 @@
 
 use yii\helpers\Html;
 use app\widgets\ShowHide;
-
-
-
-
 use kartik\growl\Growl;
 
 echo Growl::widget([
@@ -44,37 +40,37 @@ echo Growl::widget([
 
 
 
-        <?php
-        echo yii\bootstrap\Tabs::widget([
-            'items' => [
-                [
-                    'label' => 'Расходы',
-                    //'content' => $exp,
-                    'content' => $this->render('_expense', ['dataProvider'=>$dataProvider, 'searchModel'=>$searchModel]),
-                    'options' => ['id' => 'myveryownID'],
-                    'active' => true
-                ],
-                [
-                    'label' => 'Доходы',
-                    'content' => '353535345345',
-                    //'headerOptions' => [...],
-                    'options' => ['id' => 'myveryownID1'],
-                ],
-                [
-                    'label' => 'Перемешения',
-                    'content' => '1111111111',
-                    //'headerOptions' => [...],
-                    'options' => ['id' => 'myveryownID2'],
-                ],
-                [
-                    'label' => 'Обмен валют',
-                    'content' => '4444444444444444444',
-                    //'headerOptions' => [...],
-                    'options' => ['id' => 'myveryownID3'],
-                ],
-            ],
-        ]);
-        ?>
+<?php
+echo yii\bootstrap\Tabs::widget([
+    'items' => [
+        [
+            'label' => 'Расходы',
+            //'content' => $exp,
+            'content' => $this->render('_expense', ['dataProvider' => $dataProviderExpense, 'searchModel' => $searchModelExpense]),
+            'options' => ['id' => 'myveryownID'],
+            'active' => true
+        ],
+        [
+            'label' => 'Доходы',
+            'content' => $this->render('_income', ['dataProvider' => $dataProviderIncome, 'searchModel' => $searchModelIncome]),
+            //'headerOptions' => [...],
+            'options' => ['id' => 'myveryownID1'],
+        ],
+        [
+            'label' => 'Перемешения',
+            'content' => '1111111111',
+            //'headerOptions' => [...],
+            'options' => ['id' => 'myveryownID2'],
+        ],
+        [
+            'label' => 'Обмен валют',
+            'content' => '4444444444444444444',
+            //'headerOptions' => [...],
+            'options' => ['id' => 'myveryownID3'],
+        ],
+    ],
+]);
+?>
 
     </div>
 

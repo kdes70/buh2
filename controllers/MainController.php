@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ExpenseSearch;
+use app\models\IncomeSearch;
 
 class MainController extends Controller {
 
@@ -46,20 +47,30 @@ class MainController extends Controller {
     }
 
     public function actionIndex() {
-        
-        
-        
-        $searchModel = new ExpenseSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+
+
+        $searchModelExpense = new ExpenseSearch();
+        $dataProviderExpense = $searchModelExpense->search(Yii::$app->request->queryParams);
+
+
+        $searchModelIncome = new IncomeSearch();
+        $dataProviderIncome = $searchModelIncome->search(Yii::$app->request->queryParams);
+
+
+
+
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+                    'searchModelExpense' => $searchModelExpense,
+                    'dataProviderExpense' => $dataProviderExpense,
+                    'searchModelIncome' => $searchModelIncome,
+                    'dataProviderIncome' => $dataProviderIncome,
         ]);
-        
-        
-        
-        
+
+
+
+
         //return $this->render('index');
     }
 

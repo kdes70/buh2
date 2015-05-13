@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 12 2015 г., 11:45
+-- Время создания: Май 13 2015 г., 10:07
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -227,7 +227,15 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`categoryinc_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=5 ;
+
+--
+-- Дамп данных таблицы `db1_income`
+--
+
+INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`) VALUES
+(3, '100.00', 3, '2015-01-01', 3),
+(4, '2200.00', 3, '2015-05-01', 3);
 
 -- --------------------------------------------------------
 
@@ -333,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=1 ;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -375,8 +383,8 @@ ALTER TABLE `db1_expense`
 -- Ограничения внешнего ключа таблицы `db1_income`
 --
 ALTER TABLE `db1_income`
-  ADD CONSTRAINT `db1_income_ibfk_2` FOREIGN KEY (`categoryinc_id`) REFERENCES `db1_categoryinc` (`id`),
-  ADD CONSTRAINT `db1_income_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
+  ADD CONSTRAINT `db1_income_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
+  ADD CONSTRAINT `db1_income_ibfk_2` FOREIGN KEY (`categoryinc_id`) REFERENCES `db1_categoryinc` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_setting`
