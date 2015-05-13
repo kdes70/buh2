@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\ExpenseSearch;
 
 class MainController extends Controller {
 
@@ -45,7 +46,21 @@ class MainController extends Controller {
     }
 
     public function actionIndex() {
-        return $this->render('index');
+        
+        
+        
+        $searchModel = new ExpenseSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+        
+        
+        
+        
+        //return $this->render('index');
     }
 
     public function actionLogin() {

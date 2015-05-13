@@ -50,7 +50,7 @@ echo Growl::widget([
                 [
                     'label' => 'Расходы',
                     //'content' => $exp,
-                    'content' => $this->render('_expense', []),
+                    'content' => $this->render('_expense', ['dataProvider'=>$dataProvider, 'searchModel'=>$searchModel]),
                     'options' => ['id' => 'myveryownID'],
                     'active' => true
                 ],
