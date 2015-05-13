@@ -5,51 +5,43 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-
-
-
-
-
-
-
-
 ?>
-
-
 
 <?php Pjax::begin(['timeout' => 3000]); ?>
 
 
-    <?=
-    GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            //   'id',
-            'cost',
-            'amount',
-            [
-                'attribute' => 'unit_id',
-                'value' => 'unit.name'
-            ],
-            [
-                'attribute' => 'categoryexp_id',
-                'value' => 'categoryexp.name'
-            ],
-            // 'name',
-            // 'date_oper',
-            // 'user_id',
-            // 'operwallet_id',
-            ['class' => 'yii\grid\ActionColumn'],
+<?=
+GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+        //   'id',
+         'date_oper',
+        'cost',
+        //'amount',
+//        [
+//            'attribute' => 'unit_id',
+//            'value' => 'unit.name'
+//        ],
+        [
+            'attribute' => 'categoryexp_id',
+            'value' => 'categoryexp.name'
         ],
-    ]);
-    ?>
-    <?php Pjax::end(); ?>
+        // 'name',
+        // 'date_oper',
+        // 'user_id',
+        // 'operwallet_id',
+        ['class' => 'yii\grid\ActionColumn'],
+    ],
+]);
+?>
+<?php Pjax::end(); ?>
 
 
 
 <?php
+
 echo Html::beginForm();
 echo DatePicker::widget([
     'name' => 'test',
@@ -57,7 +49,7 @@ echo DatePicker::widget([
 ]);
 
 echo Html::input('text', 'val');
-/*------------------------------------------*/
+/* ------------------------------------------ */
 echo kartik\select2\Select2::widget([
     'name' => 'test',
     'language' => 'ru',
