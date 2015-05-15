@@ -21,7 +21,7 @@
        
         "kartik-v/yii2-widgets": "*",
         "2amigos/yii2-date-picker-widget": "~1.0",
-        "timurmelnikov/yii2-panel-menu": "dev-master"
+        "timurmelnikov/yii2-panel-menu": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
