@@ -5,6 +5,8 @@ use yii\helpers\Url;
 use kartik\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 
+use nirvana\showloading\ShowLoadingAsset;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Exchange */
 /* @var $form yii\widgets\ActiveForm */
@@ -60,31 +62,24 @@ use dosamigos\datepicker\DatePicker;
 
 
 <?php
+
+ShowLoadingAsset::register($this);
 $url = Url::toRoute('/exchange/get-exchange');
 
 $script = <<<JS
-$('#get-exchange').click(function(){
-    //var zipId = $(this).val();
-     var zipId = 3;
-      
-     $.get('$url', {zipId : zipId}, function(data){
-	
-
-     var currency_code =  $('#exchange-currency_code').val();  
-        
-     var data = $.parseJSON(data);     
-        
-          $.each(data, function(idx, obj) {
-            if (obj.ccy == currency_code) $('#exchange-official_exchange').attr('value', obj.buy);
-          });
-        
-        
-    // $('#exchange-official_exchange').attr('value', data.baseCurrency);
-        
-   });
-
+$('#get-exchange').click(function () {
+    $('#w0').showLoading();
+    var zipId = 3; //Формирование параметра - var zipId = $(this).val();
+    $.get('$url', {zipId: zipId}, function (data) {
+        var currency_code = $('#exchange-currency_code').val();
+        var data = $.parseJSON(data);
+        $.each(data, function (idx, obj) {
+            if (obj.ccy == currency_code)
+                $('#exchange-official_exchange').attr('value', obj.buy);
+        });
+        $('#w0').hideLoading();
+    });
 });
-        
 JS;
 
 $this->registerJs($script);
