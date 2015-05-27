@@ -54,6 +54,8 @@ AppAsset::register($this);
                             ['label' => 'Кошельки (счета)', 'url' => ['/wallet']],
                             '<li class="divider"></li>',
                             ['label' => 'Единицы измерения', 'url' => ['/unit']],
+                            '<li class="divider"></li>',
+                            ['label' => 'Курсы валют', 'url' => ['/exchange']],
                         ],
                     ],
                     ['label' => 'Управление',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ba8c825dcf11251cbd7474445afd71cf",
+    "hash": "4a3558625bd4b8b0196ede1fe117d838",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -502,16 +502,16 @@
         },
         {
             "name": "kartik-v/dependent-dropdown",
-            "version": "v1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/dependent-dropdown.git",
-                "reference": "cbab8a3487cfc2a2fd6a2d63812915523f648a80"
+                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/cbab8a3487cfc2a2fd6a2d63812915523f648a80",
-                "reference": "cbab8a3487cfc2a2fd6a2d63812915523f648a80",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/a938210be3276606b1d81d82776aff0e4962d3c9",
+                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9",
                 "shasum": ""
             },
             "type": "library",
@@ -522,7 +522,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -540,7 +540,7 @@
                 "option",
                 "select"
             ],
-            "time": "2015-02-01 13:03:27"
+            "time": "2015-05-22 12:25:10"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -883,16 +883,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-depdrop",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-depdrop.git",
-                "reference": "f508999940da61568b197ef4030b5f03f86b0d65"
+                "reference": "69acb9e2ca35c789e6de09c6ea9a94b68a36776b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/f508999940da61568b197ef4030b5f03f86b0d65",
-                "reference": "f508999940da61568b197ef4030b5f03f86b0d65",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/69acb9e2ca35c789e6de09c6ea9a94b68a36776b",
+                "reference": "69acb9e2ca35c789e6de09c6ea9a94b68a36776b",
                 "shasum": ""
             },
             "require": {
@@ -907,7 +907,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -928,7 +928,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-08 19:07:46"
+            "time": "2015-05-22 10:15:23"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -1587,16 +1587,16 @@
         },
         {
             "name": "timurmelnikov/yii2-panel-menu",
-            "version": "dev-master",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TimurMelnikov/yii2-panel-menu.git",
-                "reference": "bd4911f481fcf5343ea9bc01a50de870c4d3f184"
+                "reference": "82997308c183792c75d4eb008a856f512c113342"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TimurMelnikov/yii2-panel-menu/zipball/bd4911f481fcf5343ea9bc01a50de870c4d3f184",
-                "reference": "bd4911f481fcf5343ea9bc01a50de870c4d3f184",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-panel-menu/zipball/82997308c183792c75d4eb008a856f512c113342",
+                "reference": "82997308c183792c75d4eb008a856f512c113342",
                 "shasum": ""
             },
             "require": {
@@ -1625,7 +1625,7 @@
                 "menu",
                 "yii2"
             ],
-            "time": "2015-05-15 13:49:37"
+            "time": "2015-05-19 08:59:46"
         },
         {
             "name": "yiisoft/yii2",
@@ -2169,7 +2169,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "timurmelnikov/yii2-panel-menu": 20,
         "yiisoft/yii2-faker": 20
     },
     "prefer-stable": false,
