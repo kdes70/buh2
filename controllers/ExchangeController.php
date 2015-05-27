@@ -58,6 +58,8 @@ class ExchangeController extends Controller {
      */
     public function actionCreate() {
         $model = new Exchange();
+        $model->start_date = date('Y-m-d');
+        $model->number_units = 100;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -115,7 +117,7 @@ class ExchangeController extends Controller {
 
     //Получение значений курсов валют...
     //public function actionGetExchange($currency_code, $start_date) {
-    public function actionGetexchange() {
+    public function actionGetExchange($a=1) {
 
         //$location = Locations::findOne($zipId);
 
@@ -125,12 +127,12 @@ JSON;
 
 
 
-        $json = file_get_contents('https://api.privatbank.ua/p24api/exchange_rates?json&date=10.05.2015');
+        $json = file_get_contents('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3');
 
 
 
-        echo Json::encode($json);
-        //echo $data;
+        //echo Json::encode($json);
+        echo $json;
         exit;
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use kartik\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 
@@ -27,10 +28,10 @@ use dosamigos\datepicker\DatePicker;
         ]
     ]);
     ?>
-
-    <?= $form->field($model, 'currency_code')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'number_units')->textInput() ?>
+    <?= $form->field($model, 'currency_code')->dropDownList(['' => 'Выберите валюту...', 'USD' => 'USD', 'EUR' => 'EUR', 'RUR' => 'RUR']) ?>
+
+
 
     <?=
     $form->field($model, 'official_exchange', [
@@ -54,3 +55,37 @@ use dosamigos\datepicker\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+
+
+
+<?php
+$url = Url::toRoute('/exchange/get-exchange');
+
+$script = <<<JS
+$('#get-exchange').click(function(){
+    //var zipId = $(this).val();
+     var zipId = 3;
+      
+     $.get('$url', {zipId : zipId}, function(data){
+	
+
+     var currency_code =  $('#exchange-currency_code').val();  
+        
+     var data = $.parseJSON(data);     
+        
+          $.each(data, function(idx, obj) {
+            if (obj.ccy == currency_code) $('#exchange-official_exchange').attr('value', obj.buy);
+          });
+        
+        
+    // $('#exchange-official_exchange').attr('value', data.baseCurrency);
+        
+   });
+
+});
+        
+JS;
+
+$this->registerJs($script);
+?>
