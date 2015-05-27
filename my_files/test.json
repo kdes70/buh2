@@ -1,3 +1,16 @@
-{
-    "name": "timur"
-}
+[{
+        "ccy": "RUR",
+        "base_ccy": "UAH",
+        "buy": "0.42573",
+        "sale": "0.42385"
+    }, {
+        "ccy": "EUR",
+        "base_ccy": "UAH",
+        "buy": "23.40729",
+        "sale": "23.20055"
+    }, {
+        "ccy": "USD",
+        "base_ccy": "UAH",
+        "buy": "21.42347",
+        "sale": "21.13368"
+    }]
