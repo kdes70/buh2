@@ -63,7 +63,7 @@ use timurmelnikov\widgets\ShowLoading;
 
 <?php
 
-echo ShowLoading::widget(['loadingType' => 4]);
+echo ShowLoading::widget(['loadingType' => 1]);
 
 
 $url = Url::toRoute('/exchange/get-exchange');
