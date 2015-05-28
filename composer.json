@@ -18,11 +18,10 @@
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-       
         "kartik-v/yii2-widgets": "*",
         "2amigos/yii2-date-picker-widget": "~1.0",
         "timurmelnikov/yii2-panel-menu": "*",
-        "nirvana-msu/yii2-showloading": "1.0.*@dev"
+        "timurmelnikov/yii2-showloading": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

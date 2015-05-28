@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
-
-use nirvana\showloading\ShowLoadingAsset;
+//use nirvana\showloading\ShowLoading;
+use timurmelnikov\widgets\ShowLoading;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Exchange */
@@ -63,7 +63,9 @@ use nirvana\showloading\ShowLoadingAsset;
 
 <?php
 
-ShowLoadingAsset::register($this);
+echo ShowLoading::widget(['loadingType' => 4]);
+
+
 $url = Url::toRoute('/exchange/get-exchange');
 
 $script = <<<JS

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cf2ee180b2e376608d20ecfcd0ec528f",
+    "hash": "b87cc848ff7da9749e8312434683f2ba",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -1534,59 +1534,6 @@
             "time": "2014-11-09 19:54:17"
         },
         {
-            "name": "nirvana-msu/yii2-showloading",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nirvana-msu/yii2-showloading.git",
-                "reference": "23a3b97ec6323b88fbfbf881270cee01b2534e25"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nirvana-msu/yii2-showloading/zipball/23a3b97ec6323b88fbfbf881270cee01b2534e25",
-                "reference": "23a3b97ec6323b88fbfbf881270cee01b2534e25",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "nirvana\\showloading\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander Stepanov",
-                    "email": "student_vmk@mail.ru"
-                },
-                {
-                    "name": "Jim Keller",
-                    "homepage": "http://www.contextllc.com"
-                }
-            ],
-            "description": "Yii2 extension for showLoading jQuery plugin",
-            "keywords": [
-                "ajax",
-                "jquery",
-                "plugin",
-                "showLoading",
-                "widget",
-                "yii2"
-            ],
-            "time": "2015-01-11 18:55:14"
-        },
-        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.0",
             "source": {
@@ -1679,6 +1626,49 @@
                 "yii2"
             ],
             "time": "2015-05-19 08:59:46"
+        },
+        {
+            "name": "timurmelnikov/yii2-showloading",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TimurMelnikov/yii2-showloading.git",
+                "reference": "b1635c834a9d26a553c03aedc2df2cc44306a6a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-showloading/zipball/b1635c834a9d26a553c03aedc2df2cc44306a6a9",
+                "reference": "b1635c834a9d26a553c03aedc2df2cc44306a6a9",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "timurmelnikov\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Timur Melnikov",
+                    "email": "melnilovt@gmail.com"
+                }
+            ],
+            "description": "Yii2 расширение для подключения плагина jQuery showLoading",
+            "keywords": [
+                "ajax",
+                "jquery",
+                "showLoading",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-05-28 13:33:55"
         },
         {
             "name": "yiisoft/yii2",
@@ -2222,7 +2212,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "nirvana-msu/yii2-showloading": 20,
+        "timurmelnikov/yii2-showloading": 20,
         "yiisoft/yii2-faker": 20
     },
     "prefer-stable": false,

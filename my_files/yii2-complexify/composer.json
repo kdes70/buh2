@@ -1,0 +1,20 @@
+{
+    "name": "timurmelnikov/yii2-complexify",
+    "type": "yii2-extension",
+    "description": "Complexify",
+    "keywords": ["yii2", "password"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Timur Melnikov",
+            "email": "melnikovt@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "timurmelnikov\\widgets\\": ""
+        }
+    }
+}
