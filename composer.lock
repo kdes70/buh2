@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3cadb5164763cb4a4e34f199f5d8c7f8",
+    "hash": "1799d55370c9ac5b7b4fb5c15617b907",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -1587,16 +1587,16 @@
         },
         {
             "name": "timurmelnikov/yii2-panel-menu",
-            "version": "1.1",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TimurMelnikov/yii2-panel-menu.git",
-                "reference": "f87e7dccbd81a97dd5c6ba834f19396ae5456175"
+                "reference": "dbe473473d36b0d7171391198ac13149199f06fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TimurMelnikov/yii2-panel-menu/zipball/f87e7dccbd81a97dd5c6ba834f19396ae5456175",
-                "reference": "f87e7dccbd81a97dd5c6ba834f19396ae5456175",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-panel-menu/zipball/dbe473473d36b0d7171391198ac13149199f06fa",
+                "reference": "dbe473473d36b0d7171391198ac13149199f06fa",
                 "shasum": ""
             },
             "require": {
@@ -1625,20 +1625,20 @@
                 "menu",
                 "yii2"
             ],
-            "time": "2015-05-17 14:06:17"
+            "time": "2015-05-30 08:25:13"
         },
         {
             "name": "timurmelnikov/yii2-showloading",
-            "version": "dev-master",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TimurMelnikov/yii2-showloading.git",
-                "reference": "3019fc14d6ce88f67dea313ad2ed09271ce13675"
+                "reference": "737c85cff4b68b33bf5755ae0b1992ad8c953df5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TimurMelnikov/yii2-showloading/zipball/3019fc14d6ce88f67dea313ad2ed09271ce13675",
-                "reference": "3019fc14d6ce88f67dea313ad2ed09271ce13675",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-showloading/zipball/737c85cff4b68b33bf5755ae0b1992ad8c953df5",
+                "reference": "737c85cff4b68b33bf5755ae0b1992ad8c953df5",
                 "shasum": ""
             },
             "require": {
@@ -1668,7 +1668,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-05-30 07:43:44"
+            "time": "2015-05-30 08:07:59"
         },
         {
             "name": "yiisoft/yii2",
@@ -2216,7 +2216,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "timurmelnikov/yii2-showloading": 20,
         "yiisoft/yii2-faker": 20
     },
     "prefer-stable": false,
