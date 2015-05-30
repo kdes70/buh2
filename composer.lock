@@ -1587,16 +1587,16 @@
         },
         {
             "name": "timurmelnikov/yii2-panel-menu",
-            "version": "1.1.1",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TimurMelnikov/yii2-panel-menu.git",
-                "reference": "82997308c183792c75d4eb008a856f512c113342"
+                "reference": "f87e7dccbd81a97dd5c6ba834f19396ae5456175"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TimurMelnikov/yii2-panel-menu/zipball/82997308c183792c75d4eb008a856f512c113342",
-                "reference": "82997308c183792c75d4eb008a856f512c113342",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-panel-menu/zipball/f87e7dccbd81a97dd5c6ba834f19396ae5456175",
+                "reference": "f87e7dccbd81a97dd5c6ba834f19396ae5456175",
                 "shasum": ""
             },
             "require": {
@@ -1625,7 +1625,7 @@
                 "menu",
                 "yii2"
             ],
-            "time": "2015-05-19 08:59:46"
+            "time": "2015-05-17 14:06:17"
         },
         {
             "name": "timurmelnikov/yii2-showloading",
@@ -1633,12 +1633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TimurMelnikov/yii2-showloading.git",
-                "reference": "b1635c834a9d26a553c03aedc2df2cc44306a6a9"
+                "reference": "3019fc14d6ce88f67dea313ad2ed09271ce13675"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TimurMelnikov/yii2-showloading/zipball/b1635c834a9d26a553c03aedc2df2cc44306a6a9",
-                "reference": "b1635c834a9d26a553c03aedc2df2cc44306a6a9",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-showloading/zipball/3019fc14d6ce88f67dea313ad2ed09271ce13675",
+                "reference": "3019fc14d6ce88f67dea313ad2ed09271ce13675",
                 "shasum": ""
             },
             "require": {
@@ -1668,7 +1668,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-05-28 13:33:55"
+            "time": "2015-05-30 07:43:44"
         },
         {
             "name": "yiisoft/yii2",
@@ -1936,16 +1936,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "010c7efedd88bf31141a02719f51fb44c732d5a0"
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/010c7efedd88bf31141a02719f51fb44c732d5a0",
-                "reference": "010c7efedd88bf31141a02719f51fb44c732d5a0",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
                 "shasum": ""
             },
             "require": {
@@ -1955,14 +1955,18 @@
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
+            "suggest": {
+                "ext-intl": "*"
+            },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
             },
             "autoload": {
-                "psr-0": {
-                    "Faker": "src/",
-                    "Faker\\PHPUnit": "test/"
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1980,7 +1984,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2014-06-04 14:43:02"
+            "time": "2015-05-29 06:29:14"
         },
         {
             "name": "phpspec/php-diff",
