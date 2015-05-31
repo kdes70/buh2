@@ -130,6 +130,11 @@ JSON;
         $json = file_get_contents('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3');
 
 
+//        $currency_code;
+//        $start_date;
+//        $xml = file_get_contents('https://privat24.privatbank.ua/p24/accountorder?oper=prp&PUREXML&apicour&country=ua');
+//        
+        
 
         //echo Json::encode($json);
         echo $json;
