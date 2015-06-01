@@ -5,14 +5,15 @@ use yii\helpers\Html;
 use app\widgets\ShowHide;
 use kartik\growl\Growl;
 
-echo Growl::widget([
-    'type' => Growl::TYPE_SUCCESS,
-    'icon' => 'glyphicon glyphicon-ok-sign',
-    'title' => 'Готово!',
-    'showSeparator' => true,
-    'body' => 'Тестовое сообщение...',
-    'pluginOptions' => ['delay' => 3000]
-]);
+//echo Growl::widget([
+//    'type' => Growl::TYPE_SUCCESS,
+//    'icon' => 'glyphicon glyphicon-ok-sign',
+//    'title' => 'Готово!',
+//    'showSeparator' => true,
+//    'body' => 'Тестовое сообщение...',
+//    'pluginOptions' => ['delay' => 3000]
+//]);
+//
 ?>
 
 
@@ -40,30 +41,127 @@ echo Growl::widget([
 
 
 
+
+
+        <!-- Блок управления -->
+        <style>
+            .custom {
+                width: 378px !important;
+            }
+        </style>
+
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default custom">Кошельки</button>
+            <button type="button" class="btn btn-primary">Добавить</button>
+            <div class="btn-group " role="group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Шаблон
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Интернет</a></li>
+                    <li><a href="#">Пиво</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default custom">Доходы</button>
+            <button type="button" class="btn btn-primary">Добавить</button>
+            <div class="btn-group " role="group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Шаблон
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Интернет</a></li>
+                    <li><a href="#">Пиво</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default custom">Расходы</button>
+            <button type="button" class="btn btn-primary">Добавить</button>
+            <div class="btn-group " role="group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Шаблон
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Интернет</a></li>
+                    <li><a href="#">Пиво</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default custom">Переводы</button>
+            <button type="button" class="btn btn-primary">Добавить</button>
+            <div class="btn-group " role="group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Шаблон
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Интернет</a></li>
+                    <li><a href="#">Пиво</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default custom">Шаблоны</button>
+            <button type="button" class="btn btn-primary">Добавить</button>
+            <div class="btn-group " role="group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Шаблон
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Интернет</a></li>
+                    <li><a href="#">Пиво</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+
+        <!-- Блок управления (конец) -->
+
+
+
+
+
+
         <?php
-        echo yii\bootstrap\Tabs::widget([
-            'items' => [
-                [
-                    'label' => 'Расходы',
-                    //'content' => $exp,
-                    'content' => $this->render('_expense', ['dataProvider' => $dataProviderExpense, 'searchModel' => $searchModelExpense, 'model' => $modelExpense]),
-                    'options' => ['id' => 'myveryownID'],
-                    'active' => true
-                ],
-                [
-                    'label' => 'Доходы',
-                    'content' => $this->render('_income', ['dataProvider' => $dataProviderIncome, 'searchModel' => $searchModelIncome, 'model' => $modelIncome]),
-                    //'headerOptions' => [...],
-                    'options' => ['id' => 'myveryownID1'],
-                ],
-                [
-                    'label' => 'Переводы',
-                    'content' => 'Переводы...',
-                    //'headerOptions' => [...],
-                    'options' => ['id' => 'myveryownID2'],
-                ],
-            ],
-        ]);
+//        echo yii\bootstrap\Tabs::widget([
+//            'items' => [
+//                [
+//                    'label' => 'Расходы',
+//                    //'content' => $exp,
+//                    'content' => $this->render('_expense', ['dataProvider' => $dataProviderExpense, 'searchModel' => $searchModelExpense, 'model' => $modelExpense]),
+//                    'options' => ['id' => 'myveryownID'],
+//                    'active' => true
+//                ],
+//                [
+//                    'label' => 'Доходы',
+//                    'content' => $this->render('_income', ['dataProvider' => $dataProviderIncome, 'searchModel' => $searchModelIncome, 'model' => $modelIncome]),
+//                    //'headerOptions' => [...],
+//                    'options' => ['id' => 'myveryownID1'],
+//                ],
+//                [
+//                    'label' => 'Переводы',
+//                    'content' => 'Переводы...',
+//                    //'headerOptions' => [...],
+//                    'options' => ['id' => 'myveryownID2'],
+//                ],
+//            ],
+//        ]);
         ?>
 
     </div>
