@@ -1,6 +1,10 @@
 Домашняя бухгалтерия на Yii2
 ================================
 
+
+Приложение в стадии разработки.
+
+
 Yii 2 Basic Application Template is a skeleton Yii 2 application best for
 rapidly creating small projects.
 
