@@ -44,92 +44,125 @@ use kartik\growl\Growl;
 
 
         <!-- Блок управления -->
-        <style>
-            .custom {
-                width: 378px !important;
-            }
-        </style>
 
 
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default custom">Кошельки</button>
-            <button type="button" class="btn btn-primary">Добавить</button>
-            <div class="btn-group " role="group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Шаблон
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Интернет</a></li>
-                    <li><a href="#">Пиво</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr />
 
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default custom">Доходы</button>
-            <button type="button" class="btn btn-primary">Добавить</button>
-            <div class="btn-group " role="group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Шаблон
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Интернет</a></li>
-                    <li><a href="#">Пиво</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr />
 
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default custom">Расходы</button>
-            <button type="button" class="btn btn-primary">Добавить</button>
-            <div class="btn-group " role="group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Шаблон
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Интернет</a></li>
-                    <li><a href="#">Пиво</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr />
 
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default custom">Переводы</button>
-            <button type="button" class="btn btn-primary">Добавить</button>
-            <div class="btn-group " role="group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Шаблон
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Интернет</a></li>
-                    <li><a href="#">Пиво</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr />
 
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default custom">Шаблоны</button>
-            <button type="button" class="btn btn-primary">Добавить</button>
-            <div class="btn-group " role="group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Шаблон
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Интернет</a></li>
-                    <li><a href="#">Пиво</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr />
+
+        <!--
+                <style type="text/css">
+                    .custab{
+                        border: 1px solid #ccc;
+                        padding: 5px;
+                        margin: 5% 0;
+                        box-shadow: 3px 3px 2px #ccc;
+                        transition: 0.5s;
+                    }
+                    .custab:hover{
+                        box-shadow: 3px 3px 0px transparent;
+                        transition: 0.5s;
+                    }
+                </style>-->
+
+
+
+        <table class="table table-striped custab">
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+
+                    <th>Раздел</th>
+                    <th class="text-center">Действие</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>1</td>
+
+                <td>Кошельки</td>
+                <td class="text-right"><a class='btn btn-primary' href="#"><span class="glyphicon glyphicon-plus-sign"></span> Добавить</a>         <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="glyphicon glyphicon-edit"></span> Шаблон
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div></td>
+            </tr>
+
+
+            <tr>
+                <td>2</td>
+
+                <td>Доходы</td>
+                <td class="text-right"><a class='btn btn-primary' href="#"><span class="glyphicon glyphicon-plus-sign"></span> Добавить</a>         <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="glyphicon glyphicon-edit"></span> Шаблон
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div></td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+
+                <td>Расходы</td>
+                <td class="text-right"><a class='btn btn-primary' href="#"><span class="glyphicon glyphicon-plus-sign"></span> Добавить</a>         <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="glyphicon glyphicon-edit"></span> Шаблон
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div></td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+
+                <td>Переводы</td>
+                <td class="text-right"><a class='btn btn-primary' href="#"><span class="glyphicon glyphicon-plus-sign"></span> Добавить</a>         <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="glyphicon glyphicon-edit"></span> Шаблон
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div></td>
+            </tr>
+            
+            
+            <tr>
+                <td>5</td>
+
+                <td>Шаблоны</td>
+                <td class="text-right"><a class='btn btn-primary' href="#"><span class="glyphicon glyphicon-plus-sign"></span> Добавить</a>         <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="glyphicon glyphicon-edit"></span> Шаблон
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div></td>
+            </tr>
+
+        </table>
+
+
 
         <!-- Блок управления (конец) -->
 
