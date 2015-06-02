@@ -70,19 +70,15 @@ use kartik\growl\Growl;
             </thead>
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
-
-
                 <td class="text-right">
-
-
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span> Добавить', ['/wallet/create'], ['class' => 'btn btn-primary']) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary']) ?>         
                 </td>
                 <td class="text-right"> 
 
                     <div class="btn-group" role="group">
 
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <span class="glyphicon glyphicon-edit"></span> Шаблон
+                            <span class="glyphicon glyphicon-edit"></span>
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -92,6 +88,61 @@ use kartik\growl\Growl;
                     </div>
                 </td>
             </tr>
+
+
+            <tr>
+                <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
+                <td class="text-right">
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary']) ?>         
+                </td>
+                <td class="text-right"> 
+
+                    <div class="btn-group" role="group">
+
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
+                <td class="text-right">
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary']) ?>         
+                </td>
+                <td class="text-right"> 
+
+                    <div class="btn-group" role="group">
+
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+
+
+
+
+
+
+
+
         </table>
         <!-- Блок управления (конец) -->
     </div>
