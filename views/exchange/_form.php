@@ -31,7 +31,7 @@ use timurmelnikov\widgets\ShowLoading;
     ]);
     ?>
     <?= $form->field($model, 'number_units')->textInput() ?>
-    <?= $form->field($model, 'currency_code')->dropDownList(['' => 'Выберите валюту...', 'USD' => 'USD', 'EUR' => 'EUR', 'RUR' => 'RUR']) ?>
+    <?= $form->field($model, 'currency_code')->dropDownList(['' => 'Выберите валюту...', 'USD' => 'USD', 'EUR' => 'EUR', 'RUB' => 'RUB']) ?>
 
 
 
@@ -39,7 +39,7 @@ use timurmelnikov\widgets\ShowLoading;
     $form->field($model, 'official_exchange', [
         'addon' => [
             'append' => [
-                'content' => Html::button('Получить...', ['class' => 'btn btn-primary', 'id' => 'get-exchange']),
+                'content' => Html::button('Получить на сегодня...', ['class' => 'btn btn-primary', 'id' => 'get-exchange']),
                 'asButton' => true
             ]
         ]
@@ -62,27 +62,19 @@ use timurmelnikov\widgets\ShowLoading;
 
 
 <?php
-
 echo ShowLoading::widget(['loadingType' => 1]);
 
-
 $url = Url::toRoute('/exchange/get-exchange');
-
 $script = <<<JS
 $('#get-exchange').click(function () {
     $('#w0').showLoading();
-    var zipId = 3; //Формирование параметра - var zipId = $(this).val();
-    $.get('$url', {zipId: zipId}, function (data) {
-        var currency_code = $('#exchange-currency_code').val();
-        var data = $.parseJSON(data);
-        $.each(data, function (idx, obj) {
-            if (obj.ccy == currency_code)
-                $('#exchange-official_exchange').attr('value', obj.buy);
-        });
+    $.get('$url', {char3: $('#exchange-currency_code').val()}, function (data) {
         $('#w0').hideLoading();
+        $('#exchange-official_exchange').attr('value', data);
     });
 });
 JS;
+
 
 $this->registerJs($script);
 ?>

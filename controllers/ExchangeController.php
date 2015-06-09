@@ -116,29 +116,13 @@ class ExchangeController extends Controller {
     }
 
     //Получение значений курсов валют...
-    //public function actionGetExchange($currency_code, $start_date) {
-    public function actionGetExchange($a=1) {
-
-        //$location = Locations::findOne($zipId);
-
-        $data = <<<JSON
-        [{"ccy":"RUR","base_ccy":"UAH","buy":"0.41000","sale":"0.45000"},{"ccy":"EUR","base_ccy":"UAH","buy":"22.00000","sale":"24.50000"},{"ccy":"USD","base_ccy":"UAH","buy":"20.00000","sale":"22.50000"}]        
-JSON;
-
-
-
-        $json = file_get_contents('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3');
-
-
-//        $currency_code;
-//        $start_date;
-//        $xml = file_get_contents('https://privat24.privatbank.ua/p24/accountorder?oper=prp&PUREXML&apicour&country=ua');
-//        
-        
-
-        //echo Json::encode($json);
-        echo $json;
-        exit;
+    public function actionGetExchange($char3 = null) {
+        $xml = simplexml_load_file('http://bank-ua.com/export/currrate.xml');
+        foreach ($xml->children() as $item) {
+            if ($item->char3 == $char3) {
+                echo $item->rate;
+            }
+        }
     }
 
 }
