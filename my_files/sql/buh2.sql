@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 09 2015 г., 09:50
+-- Время создания: Июн 09 2015 г., 13:38
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `db1_categoryexp` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=115 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=117 ;
 
 --
 -- Дамп данных таблицы `db1_categoryexp`
@@ -129,7 +129,8 @@ INSERT INTO `db1_categoryexp` (`id`, `parent_id`, `name`) VALUES
 (111, 82, 'Электроэнергия'),
 (112, 82, 'Вода'),
 (113, 82, 'Мусор'),
-(114, 77, 'Лекарства');
+(114, 77, 'Лекарства'),
+(116, 60, 'Молокопродукты');
 
 -- --------------------------------------------------------
 
@@ -360,6 +361,7 @@ INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `username`, `auth_key`
 CREATE TABLE IF NOT EXISTS `db1_wallet` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
+  `current_sum` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'Текущая сумма',
   `state` tinyint(1) NOT NULL COMMENT 'Состояние (0-действуюший, 1-Закрытый)',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   PRIMARY KEY (`id`),
@@ -370,9 +372,9 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
 -- Дамп данных таблицы `db1_wallet`
 --
 
-INSERT INTO `db1_wallet` (`id`, `name`, `state`, `user_id`) VALUES
-(1, 'Карточка FidoBank', 0, 3),
-(2, 'Наличные', 0, 3);
+INSERT INTO `db1_wallet` (`id`, `name`, `current_sum`, `state`, `user_id`) VALUES
+(1, 'Карточка FidoBank', '500.00', 0, 3),
+(2, 'Наличные', '125.21', 0, 3);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

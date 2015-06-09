@@ -19,6 +19,7 @@ class WalletSearch extends Wallet
     {
         return [
             [['id', 'state', 'user_id'], 'integer'],
+            [['current_sum'], 'number'],
             [['name'], 'safe'],
         ];
     }
@@ -59,6 +60,8 @@ class WalletSearch extends Wallet
             'id' => $this->id,
             'state' => $this->state,
             'user_id' => $this->user_id,
+            'current_sum' => $this->current_sum,
+            
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

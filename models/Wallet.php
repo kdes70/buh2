@@ -30,8 +30,9 @@ class Wallet extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'state', 'user_id'], 'required'],
+            [['name', 'state', 'user_id', 'current_sum'], 'required'],
             [['state', 'user_id'], 'integer'],
+            [['current_sum'], 'number'],
             [['name'], 'string', 'max' => 50]
         ];
     }
@@ -44,6 +45,7 @@ class Wallet extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Наименование',
+            'current_sum'=>'Текущая сумма',
             'state' => 'Состояние (0-действуюший, 1-Закрытый)',
             'user_id' => 'Пользователь',
         ];

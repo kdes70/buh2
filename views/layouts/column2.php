@@ -13,6 +13,8 @@ $this->beginContent('@app/views/layouts/main.php');
 </div>
 <div class="row">
     <div class="col-lg-2">
+        
+        
         <?php
         echo PanelMenu::widget(['items' => isset($this->params['menuItems']) ? $this->params['menuItems'] : [],
             'heading' => 'Действия',

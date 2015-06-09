@@ -21,6 +21,7 @@ $this->params['menuItems'] = [
 
     <?php Pjax::begin(['timeout' => 3000]); ?>
 
+
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,

@@ -42,17 +42,6 @@ class CategoryexpController extends Controller {
     }
 
     /**
-     * Displays a single Categoryexp model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id) {
-        return $this->render('view', [
-                    'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new Categoryexp model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -63,9 +52,6 @@ class CategoryexpController extends Controller {
 
         //$model->setParent($parent_id);
         $model->parent_id = $parent_id;
-
-
-
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index', 'parent_id' => $model->parent_id]);
