@@ -32,9 +32,9 @@ class Expense extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cost', 'amount', 'unit_id', 'categoryexp_id', 'name', 'date_oper', 'user_id', 'operwallet_id'], 'required'],
+            [['cost', 'amount', 'unit_id', 'categoryexp_id', 'name', 'date_oper', 'user_id', 'wallet_id'], 'required'],
             [['cost', 'amount'], 'number'],
-            [['unit_id', 'categoryexp_id', 'user_id', 'operwallet_id'], 'integer'],
+            [['unit_id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['date_oper'], 'safe'],
             [['name'], 'string', 'max' => 50]
         ];
@@ -53,7 +53,8 @@ class Expense extends \yii\db\ActiveRecord {
             'name' => 'Наименование',
             'date_oper' => 'Дата операции',
             'user_id' => 'Пользователь',
-            'operwallet_id' => 'Операции с кошельками',
+
+            'wallet_id'=>'Кошелек',
         ];
     }
 

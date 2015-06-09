@@ -18,7 +18,7 @@ class IncomeSearch extends Income
     public function rules()
     {
         return [
-            [['id', 'categoryinc_id', 'user_id'], 'integer'],
+            [['id', 'categoryinc_id', 'user_id', 'wallet_id'], 'integer'],
             [['amount'], 'number'],
             [['date_oper'], 'safe'],
         ];
@@ -62,6 +62,7 @@ class IncomeSearch extends Income
             'categoryinc_id' => $this->categoryinc_id,
             'date_oper' => $this->date_oper,
             'user_id' => $this->user_id,
+            'wallet_id' => $this->wallet_id,
         ]);
 
         return $dataProvider;

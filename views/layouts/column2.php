@@ -15,11 +15,12 @@ $this->beginContent('@app/views/layouts/main.php');
     <div class="col-lg-2">
         <?php
         echo PanelMenu::widget(['items' => isset($this->params['menuItems']) ? $this->params['menuItems'] : [],
+            'heading' => 'Действия',
         ]);
         ?>
     </div>
     <div class="col-lg-10">
-        <?php echo $content; ?>
+<?php echo $content; ?>
     </div>
 </div>
 <?php

@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class WalletController extends Controller
 {
+    
+    public $layout = 'column2.php';
     public function behaviors()
     {
         return [
@@ -61,6 +63,10 @@ class WalletController extends Controller
     public function actionCreate()
     {
         $model = new Wallet();
+        
+        //Получаем ID пользователя
+        $model->user_id = Yii::$app->user->getId();
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

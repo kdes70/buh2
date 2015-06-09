@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 27 2015 г., 15:05
+-- Время создания: Июн 09 2015 г., 09:50
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -199,19 +199,18 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   `date_oper` date NOT NULL COMMENT 'Дата операции',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
-  `operwallet_id` int(11) NOT NULL COMMENT 'Операции с кошельками',
+  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек',
   PRIMARY KEY (`id`),
   KEY `unit_id` (`unit_id`),
   KEY `category_id` (`categoryexp_id`),
-  KEY `user_id` (`user_id`),
-  KEY `operwallet_id` (`operwallet_id`)
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=39 ;
 
 --
 -- Дамп данных таблицы `db1_expense`
 --
 
-INSERT INTO `db1_expense` (`id`, `cost`, `amount`, `unit_id`, `categoryexp_id`, `name`, `date_oper`, `user_id`, `operwallet_id`) VALUES
+INSERT INTO `db1_expense` (`id`, `cost`, `amount`, `unit_id`, `categoryexp_id`, `name`, `date_oper`, `user_id`, `wallet_id`) VALUES
 (12, '40.00', '1.00', 5, 61, 'Лопата', '2013-10-17', 1, 0),
 (13, '150.00', '1.00', 5, 61, 'Дрель', '2013-10-16', 1, 0),
 (14, '78.13', '1.00', 2, 60, 'Печение', '2013-12-31', 1, 0),
@@ -247,6 +246,7 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
   `categoryinc_id` int(11) NOT NULL COMMENT 'Категория доходов',
   `date_oper` date NOT NULL COMMENT 'Дата операции',
   `user_id` int(11) NOT NULL,
+  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек',
   PRIMARY KEY (`id`),
   KEY `category_id` (`categoryinc_id`),
   KEY `user_id` (`user_id`)
@@ -256,9 +256,9 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
 -- Дамп данных таблицы `db1_income`
 --
 
-INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`) VALUES
-(3, '100.00', 3, '2015-01-01', 3),
-(4, '2200.00', 3, '2015-05-01', 3);
+INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`, `wallet_id`) VALUES
+(3, '100.00', 3, '2015-01-01', 3, 0),
+(4, '2200.00', 3, '2015-05-01', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -364,7 +364,15 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `db1_wallet`
+--
+
+INSERT INTO `db1_wallet` (`id`, `name`, `state`, `user_id`) VALUES
+(1, 'Карточка FidoBank', 0, 3),
+(2, 'Наличные', 0, 3);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

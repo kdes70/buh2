@@ -9,6 +9,10 @@ use yii\helpers\Html;
 $this->title = 'Create Wallet';
 $this->params['breadcrumbs'][] = ['label' => 'Wallets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->params['menuItems'] = [
+    ['label' => 'Назад', 'url' => ['/wallet']],
+];
 ?>
 <div class="wallet-create">
 

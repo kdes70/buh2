@@ -32,9 +32,9 @@ class Income extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['amount', 'categoryinc_id', 'date_oper', 'user_id'], 'required'],
+            [['amount', 'categoryinc_id', 'date_oper', 'user_id', 'wallet_id'], 'required'],
             [['amount'], 'number'],
-            [['categoryinc_id', 'user_id'], 'integer'],
+            [['categoryinc_id', 'user_id', 'wallet_id'], 'integer'],
             [['date_oper'], 'safe']
         ];
     }
@@ -48,6 +48,7 @@ class Income extends \yii\db\ActiveRecord
             'id' => 'ID',
             'amount' => 'Сумма дохода',
             'categoryinc_id' => 'Категория доходов',
+            'wallet_id'=>'Кошелек',
             'date_oper' => 'Дата операции',
             'user_id' => 'User ID',
         ];

@@ -19,6 +19,7 @@ use kartik\growl\Growl;
 
 <div class="row">
     <div class="col-md-3 col-lg-3">
+        <img src="images/logo.png" width="250" height="250" alt="<?= Yii::$app->name ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Остстки на сегодня</div>

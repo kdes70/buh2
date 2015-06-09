@@ -9,6 +9,12 @@ use yii\grid\GridView;
 
 $this->title = 'Wallets';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->params['menuItems'] = [
+
+    ['label' => 'Создать', 'url' => ['create',]],
+];
+
 ?>
 <div class="wallet-index">
 
