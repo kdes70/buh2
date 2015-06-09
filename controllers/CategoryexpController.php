@@ -49,6 +49,7 @@ class CategoryexpController extends Controller {
     public function actionCreate($parent_id = 0) {
         $model = new Categoryexp();
 
+        
 
         //$model->setParent($parent_id);
         $model->parent_id = $parent_id;
@@ -58,6 +59,7 @@ class CategoryexpController extends Controller {
         } else {
             return $this->render('create', [
                         'model' => $model,
+       
             ]);
         }
     }

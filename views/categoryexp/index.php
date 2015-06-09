@@ -19,7 +19,7 @@ $this->params['menuItems'] = [
 ?>
 <div class="categoryexp-index">
 
-    <?php Pjax::begin(['timeout' => 3000]); ?>
+    <?php //Pjax::begin(['timeout' => 3000, 'id'=>'index111']); ?>
 
 
     <?=
@@ -63,6 +63,6 @@ $this->params['menuItems'] = [
                     ]);
                     ?>
 
-                    <?php Pjax::end(); ?>
+                    <?php //Pjax::end(); ?>
 
 </div>

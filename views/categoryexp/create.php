@@ -15,9 +15,6 @@ $this->params['menuItems'] = [
 ];
 ?>
 <div class="categoryexp-create">
-
-
-
     <?=
     $this->render('_form', [
         'model' => $model,

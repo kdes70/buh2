@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 09 2015 г., 13:38
+-- Время создания: Июн 09 2015 г., 14:40
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `db1_categoryexp` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=117 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=120 ;
 
 --
 -- Дамп данных таблицы `db1_categoryexp`
@@ -130,7 +130,8 @@ INSERT INTO `db1_categoryexp` (`id`, `parent_id`, `name`) VALUES
 (112, 82, 'Вода'),
 (113, 82, 'Мусор'),
 (114, 77, 'Лекарства'),
-(116, 60, 'Молокопродукты');
+(116, 60, 'Молокопродукты'),
+(119, 77, 'Услуги врача');
 
 -- --------------------------------------------------------
 
