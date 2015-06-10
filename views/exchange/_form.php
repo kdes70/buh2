@@ -69,8 +69,8 @@ $script = <<<JS
 $('#get-exchange').click(function () {
     $('#w0').showLoading();
     $.get('$url', {char3: $('#exchange-currency_code').val()}, function (data) {
+        $('#exchange-official_exchange').val(data);
         $('#w0').hideLoading();
-        $('#exchange-official_exchange').attr('value', data);
     });
 });
 JS;

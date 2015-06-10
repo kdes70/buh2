@@ -19,8 +19,9 @@ $this->params['menuItems'] = [
 ?>
 <div class="categoryexp-index">
 
-    <?php //Pjax::begin(['timeout' => 3000, 'id'=>'index111']); ?>
+    <?php //Pjax::begin(['timeout' => 3000,]); ?>
 
+    <?php //echo '<p>'.Html::a('Создать', ['create', 'parent_id' => $searchModel->parent_id], ['class' => 'btn btn-success']).'</p>' ?>
 
     <?=
     GridView::widget([
@@ -32,6 +33,7 @@ $this->params['menuItems'] = [
             [
                 'header' => Html::a($searchModel->getAttributeLabel('parent_id'), ['/categoryexp', 'parent_id' => $searchModel->getParentId()]),
                 'format' => 'html',
+                //'filter' => Html::a($searchModel->getAttributeLabel('parent_id'), ['create', 'parent_id' => $searchModel->parent_id]),
                 'value' => function($data) {
             return Html::a($data->parent->name, ['/categoryexp', 'parent_id' => $data->parent->parent_id]);
         },
