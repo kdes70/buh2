@@ -14,14 +14,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menuItems'] = [
 
-    ['label' => 'Создать', 'url' => ['create', 'parent_id' => $searchModel->parent_id]],
+        // ['label' => 'Создать', 'url' => ['create', 'parent_id' => $searchModel->parent_id]],
 ];
 ?>
 <div class="categoryexp-index">
 
-    <?php //Pjax::begin(['timeout' => 3000,]); ?>
+    <?php Pjax::begin(['timeout' => 3000,]); ?>
 
-    <?php //echo '<p>'.Html::a('Создать', ['create', 'parent_id' => $searchModel->parent_id], ['class' => 'btn btn-success']).'</p>' ?>
+
+    <?php
+    $a = Html::a('Создать', ['create', 'parent_id' => $searchModel->parent_id], ['id' => 'createButton', 'class' => 'btn btn-success']);
+    echo '<p>' . $a . '</p>'
+    ?>
 
     <?=
     GridView::widget([
@@ -65,6 +69,26 @@ $this->params['menuItems'] = [
                     ]);
                     ?>
 
-                    <?php //Pjax::end(); ?>
+                    <?php Pjax::end(); ?>
 
-</div>
+                </div>
+
+
+
+
+                <?php
+                $script = <<<JS
+$("document").ready(function(){
+  //alert('888');    
+  //var link = $("#createButton").attr("href");      
+        
+  //$("#w3>li>a").text($a);
+  //$("#w3>li>a").attr("href", link);
+   
+});
+
+JS;
+
+
+                $this->registerJs($script);
+                ?>
