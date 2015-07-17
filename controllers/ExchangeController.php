@@ -14,6 +14,8 @@ use yii\helpers\Json;
  * ExchangeController implements the CRUD actions for Exchange model.
  */
 class ExchangeController extends Controller {
+    
+    public $layout = 'column2.php';
 
     public function behaviors() {
         return [
@@ -40,16 +42,6 @@ class ExchangeController extends Controller {
         ]);
     }
 
-    /**
-     * Displays a single Exchange model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id) {
-        return $this->render('view', [
-                    'model' => $this->findModel($id),
-        ]);
-    }
 
     /**
      * Creates a new Exchange model.
@@ -62,7 +54,7 @@ class ExchangeController extends Controller {
         $model->number_units = 100;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                         'model' => $model,
@@ -80,7 +72,7 @@ class ExchangeController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                         'model' => $model,

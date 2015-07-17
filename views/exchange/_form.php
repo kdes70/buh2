@@ -30,9 +30,9 @@ use timurmelnikov\widgets\ShowLoading;
         ]
     ]);
     ?>
-    <?= $form->field($model, 'number_units')->textInput() ?>
-    <?= $form->field($model, 'currency_code')->dropDownList(['' => 'Выберите валюту...', 'USD' => 'USD', 'EUR' => 'EUR', 'RUB' => 'RUB']) ?>
 
+    <?= $form->field($model, 'currency_code')->dropDownList(['' => 'Выберите валюту...', 'USD' => 'USD', 'EUR' => 'EUR', 'RUB' => 'RUB']) ?>
+    <?= $form->field($model, 'number_units')->textInput([]) ?>
 
 
     <?=

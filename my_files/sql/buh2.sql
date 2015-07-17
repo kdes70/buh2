@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 09 2015 г., 16:08
+-- Время создания: Июл 17 2015 г., 15:51
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `db1_categoryexp` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=120 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=121 ;
 
 --
 -- Дамп данных таблицы `db1_categoryexp`
@@ -131,7 +131,8 @@ INSERT INTO `db1_categoryexp` (`id`, `parent_id`, `name`) VALUES
 (113, 82, 'Мусор'),
 (114, 77, 'Лекарства'),
 (116, 60, 'Молокопродукты'),
-(119, 77, 'Услуги врача');
+(119, 77, 'Услуги врача'),
+(120, 108, 'Удобрения');
 
 -- --------------------------------------------------------
 
@@ -176,15 +177,16 @@ CREATE TABLE IF NOT EXISTS `db1_exchange` (
   `number_units` int(11) NOT NULL COMMENT 'Количество единиц',
   `official_exchange` decimal(10,6) NOT NULL COMMENT 'Официальный курс',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `db1_exchange`
 --
 
 INSERT INTO `db1_exchange` (`id`, `start_date`, `currency_code`, `number_units`, `official_exchange`) VALUES
-(1, '2005-01-01', 'USD', 100, '801.303100'),
-(2, '2015-05-27', 'eee', 100, '21.423470');
+(3, '2015-07-17', 'USD', 100, '2198.668700'),
+(4, '2015-07-17', 'EUR', 100, '2389.293300'),
+(6, '2015-07-17', 'RUB', 10, '3.860700');
 
 -- --------------------------------------------------------
 
