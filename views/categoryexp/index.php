@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menuItems'] = [
 
-        // ['label' => 'Создать', 'url' => ['create', 'parent_id' => $searchModel->parent_id]],
+    ['label' => 'Создать', 'url' => ['create', 'parent_id' => 0]],
 ];
 ?>
 <div class="categoryexp-index">
@@ -22,10 +22,7 @@ $this->params['menuItems'] = [
     <?php Pjax::begin(['timeout' => 3000,]); ?>
 
 
-    <?php
-    $a = Html::a('Создать', ['create', 'parent_id' => $searchModel->parent_id], ['id' => 'createButton', 'class' => 'btn btn-success']);
-    echo '<p>' . $a . '</p>'
-    ?>
+
 
     <?=
     GridView::widget([
@@ -35,7 +32,7 @@ $this->params['menuItems'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'header' => Html::a($searchModel->getAttributeLabel('parent_id'), ['/categoryexp', 'parent_id' => $searchModel->getParentId()]),
+                'header' => Html::a($searchModel->getAttributeLabel('parent_id'), ['/categoryexp', 'parent_id' => $searchModel->getParentId()]) . ' / ' . Html::a('Создать в текущей', ['create', 'parent_id' => $searchModel->parent_id], []),
                 'format' => 'html',
                 //'filter' => Html::a($searchModel->getAttributeLabel('parent_id'), ['create', 'parent_id' => $searchModel->parent_id]),
                 'value' => function($data) {
@@ -71,24 +68,4 @@ $this->params['menuItems'] = [
 
                     <?php Pjax::end(); ?>
 
-                </div>
-
-
-
-
-                <?php
-                $script = <<<JS
-$("document").ready(function(){
-  //alert('888');    
-  //var link = $("#createButton").attr("href");      
-        
-  //$("#w3>li>a").text($a);
-  //$("#w3>li>a").attr("href", link);
-   
-});
-
-JS;
-
-
-                $this->registerJs($script);
-                ?>
+</div>
