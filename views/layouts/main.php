@@ -31,7 +31,7 @@ AppAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' =>  Yii::$app->name,
+                'brandLabel' => Yii::$app->name,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -45,6 +45,16 @@ AppAsset::register($this);
                         'items' => [ ['label' => 'Доходы', 'url' => ['/income']],
                             ['label' => 'Расходы', 'url' => ['/expense']],
                             ['label' => 'Переводы', 'url' => '#'],],
+                    ],
+                    ['label' => 'Отчеты',
+                        'items' => [
+                            ['label' => 'Отчет 1', 'url' => ['#']],
+                            ['label' => 'Отчет 2', 'url' => ['#']],
+                            '<li class="divider"></li>',
+                            ['label' => 'Отчет 3', 'url' => ['#']],
+                            '<li class="divider"></li>',
+                            ['label' => 'Отчет 4', 'url' => ['#']],
+                        ],
                     ],
                     ['label' => 'Словари',
                         'items' => [
@@ -79,9 +89,9 @@ AppAsset::register($this);
             ?>
 
             <div class="container">
-                <?php
-                //echo Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]);
-                ?>
+<?php
+//echo Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]);
+?>
                 <?= $content ?>
             </div>
         </div>
@@ -93,7 +103,7 @@ AppAsset::register($this);
             </div>
         </footer>
 
-        <?php $this->endBody() ?>
+<?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

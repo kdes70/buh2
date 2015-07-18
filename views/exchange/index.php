@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExchangeSearch */
@@ -31,7 +32,11 @@ $this->params['menuItems'] = [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
             'start_date',
-            'currency_code',
+            [
+                'attribute' => 'currency_code',
+                'value' => 'currency_code',
+                'filter' => Html::activeDropDownList($searchModel, 'currency_code', [ 'USD' => 'USD', 'EUR' => 'EUR', 'RUB' => 'RUB'], ['class' => 'form-control', 'prompt' => 'Выберите валюту...']),
+            ],
             'number_units',
             'official_exchange',
             ['class' => \yii\grid\ActionColumn::className(),
@@ -51,4 +56,9 @@ $this->params['menuItems'] = [
             ]);
             ?>
             <?php Pjax::end(); ?>
+
+
+
+            <?php
+            ?>
 </div>
