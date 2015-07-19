@@ -20,6 +20,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-widgets": "*",
         "2amigos/yii2-date-picker-widget": "~1.0",
+        "2amigos/yii2-chartjs-widget" : "~2.0",
         "timurmelnikov/yii2-panel-menu": "*",
         "timurmelnikov/yii2-showloading": "*"
     },

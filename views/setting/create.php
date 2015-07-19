@@ -6,14 +6,17 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Setting */
 
-$this->title = 'Create Setting';
-$this->params['breadcrumbs'][] = ['label' => 'Settings', 'url' => ['index']];
+$this->title = 'Создание';
+$this->params['breadcrumbs'][] = ['label' => 'Настройки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->params['menuItems'] = [
+    ['label' => 'Назад', 'url' => ['/setting']],
+];
 ?>
 <div class="setting-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

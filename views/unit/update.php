@@ -6,16 +6,22 @@ use yii\helpers\Html;
 /* @var $model app\models\Unit */
 
 $this->title = 'Update Unit: ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Units', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Единицы измерения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
+
+$this->params['menuItems'] = [
+    ['label' => 'Назад', 'url' => ['/unit']],
+];
 ?>
 <div class="unit-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ])
+    ?>
 
 </div>

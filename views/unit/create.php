@@ -6,14 +6,17 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Unit */
 
-$this->title = 'Create Unit';
-$this->params['breadcrumbs'][] = ['label' => 'Units', 'url' => ['index']];
+$this->title = 'Создание';
+$this->params['breadcrumbs'][] = ['label' => 'Единицы измерения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->params['menuItems'] = [
+    ['label' => 'Назад', 'url' => ['/unit']],
+];
 ?>
 <div class="unit-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+   
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
