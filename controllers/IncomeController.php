@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class IncomeController extends Controller
 {
+    public $layout = 'column2.php';
     public function behaviors()
     {
         return [

@@ -8,14 +8,12 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ExpenseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Expenses';
+$this->title = 'Расходы';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menuItems'] = [
 
-    ['label' => 'XXXXXX', 'url' => ['#', 'parent_id' => 0]],
-    ['label' => 'XXXXXX 1', 'url' => ['#', 'parent_id' => 1]],
-    ['label' => 'XXXXXX 2', 'url' => ['#', 'parent_id' => 2]],
+    ['label' => 'Создать', 'url' => ['create']],
 ];
 ?>
 
@@ -23,12 +21,10 @@ $this->params['menuItems'] = [
 
 <div class="expense-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Expense', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
     <?php Pjax::begin(['timeout' => 3000]); ?>
 
 
@@ -36,6 +32,7 @@ $this->params['menuItems'] = [
     GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //   'id',

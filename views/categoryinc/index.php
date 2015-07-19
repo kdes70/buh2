@@ -2,37 +2,41 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CategoryincSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categoryincs';
+$this->title = 'Категории доходов';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->params['menuItems'] = [
+
+    ['label' => 'Создать', 'url' => ['create']],
+];
 ?>
 <div class="categoryinc-index">
+    <?php Pjax::begin(['timeout' => 3000,]); ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Categoryinc', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            // 'id',
             'parent_id',
             'user_id',
             'name',
             'wallet_default',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);
+    ?>
+
+    <?php Pjax::end(); ?>
 
 </div>

@@ -39,4 +39,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
+    //Мои методы...
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels() {
+        return [
+            'created_at' => 'Создан',
+            'updated_at' => 'Изменен',
+            'username' => 'Логин',
+            'status' => 'Статус'
+        ];
+    }
+
 }

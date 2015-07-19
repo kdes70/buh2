@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\WalletSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Wallets';
+$this->title = 'Кошельки (счета)';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->params['menuItems'] = [
@@ -18,17 +18,13 @@ $this->params['menuItems'] = [
 ?>
 <div class="wallet-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
-    <p>
-        <?= Html::a('Create Wallet', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?php Pjax::begin(['timeout' => 3000]); ?>
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             // 'id',

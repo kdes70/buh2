@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use yii\helpers\ArrayHelper;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExchangeSearch */
@@ -28,7 +28,7 @@ $this->params['menuItems'] = [
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'layout' => '{items}{summary}{pager}',
-        'columns' => [
+    'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
             'start_date',
@@ -59,6 +59,4 @@ $this->params['menuItems'] = [
 
 
 
-            <?php
-            ?>
 </div>
