@@ -14,7 +14,7 @@ use yii\helpers\Json;
  * ExchangeController implements the CRUD actions for Exchange model.
  */
 class ExchangeController extends Controller {
-    
+
     public $layout = 'column2.php';
 
     public function behaviors() {
@@ -41,7 +41,6 @@ class ExchangeController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-
 
     /**
      * Creates a new Exchange model.
@@ -112,9 +111,28 @@ class ExchangeController extends Controller {
         $xml = simplexml_load_file('http://bank-ua.com/export/currrate.xml');
         foreach ($xml->children() as $item) {
             if ($item->char3 == $char3) {
-                echo $item->rate;
+
+//Проблема тут - {"rate":{"0":"2201.4924"},"size":{"0":"100"}}
+                //$rate = $item->rate[1];
+                //$size = $item->size[1];
+
+                $rate = 555;
+                $size = 111;
+
+
+                echo json_encode(['rate' => $rate, 'size' => $size]);
+
+
+
+
+                //echo $item->rate;
+                //echo json_encode([55, 66]);
             }
         }
+
+
+
+        // echo '2534534534';
     }
 
 }
