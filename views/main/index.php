@@ -2,24 +2,14 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use app\widgets\ShowHide;
-use kartik\growl\Growl;
 
-//echo Growl::widget([
-//    'type' => Growl::TYPE_SUCCESS,
-//    'icon' => 'glyphicon glyphicon-ok-sign',
-//    'title' => 'Готово!',
-//    'showSeparator' => true,
-//    'body' => 'Тестовое сообщение...',
-//    'pluginOptions' => ['delay' => 3000]
-//]);
-//
+
 ?>
 
 
 <div class="row">
     <div class="col-md-3 col-lg-3">
-        <img src="images/logo.png" width="250" height="250" alt="<?= Yii::$app->name ?>">
+        <img src=<?= Yii::$app->request->baseUrl . '/images/logo.png' ?> width="100%"  alt="<?= Yii::$app->name ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Остстки на сегодня</div>
@@ -41,24 +31,6 @@ use kartik\growl\Growl;
 
 
     <div class="col-md-6 col-lg-6">
-        <!-- Блок управления -->
-<!--        <style type="text/css">
-            .custab{
-                border: 1px solid #ccc;
-                //padding: 5px;
-                //margin: 5% 0;
-                box-shadow: 3px 3px 2px #ccc;
-                transition: 0.5s;
-            }
-            .custab:hover{
-                box-shadow: 3px 3px 0px transparent;
-                transition: 0.5s;
-            }
-            td, th{
-
-                border: 1px solid #ccc; 
-            }
-        </style>-->
 
 
         <table class="table table-striped custab">
@@ -135,11 +107,6 @@ use kartik\growl\Growl;
                     </div>
                 </td>
             </tr>
-
-
-
-
-
 
 
 
