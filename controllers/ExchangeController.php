@@ -107,32 +107,14 @@ class ExchangeController extends Controller {
     }
 
     //Получение значений курсов валют...
-    public function actionGetExchange($char3 = null) {
+    public function actionGetExchange($char3 = 'USD') {
         $xml = simplexml_load_file('http://bank-ua.com/export/currrate.xml');
         foreach ($xml->children() as $item) {
             if ($item->char3 == $char3) {
 
-//Проблема тут - {"rate":{"0":"2201.4924"},"size":{"0":"100"}}
-                //$rate = $item->rate[1];
-                //$size = $item->size[1];
-
-                $rate = 555;
-                $size = 111;
-
-
-                echo json_encode(['rate' => $rate, 'size' => $size]);
-
-
-
-
-                //echo $item->rate;
-                //echo json_encode([55, 66]);
+                echo json_encode(['rate' => $item->rate, 'size' => $item->size]);
             }
         }
-
-
-
-        // echo '2534534534';
     }
 
 }

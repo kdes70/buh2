@@ -1,13 +1,8 @@
 $('#get-exchange').click(function () {
     $('#w0').showLoading();
-    var zipId = 3; //Формирование параметра - var zipId = $(this).val();
-    $.get('$url', {zipId: zipId}, function (data) {
-        var currency_code = $('#exchange-currency_code').val();
-        var data = $.parseJSON(data);
-        $.each(data, function (idx, obj) {
-            if (obj.ccy == currency_code)
-                $('#exchange-official_exchange').attr('value', obj.buy);
-        });
+    $.get('$url', {char3: $('#exchange-currency_code').val()}, function (data) {
+        $('#exchange-number_units').val($.parseJSON(data).size[0]);
+        $('#exchange-official_exchange').val($.parseJSON(data).rate[0]);
         $('#w0').hideLoading();
     });
 });
