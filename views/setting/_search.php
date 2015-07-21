@@ -6,26 +6,30 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\SettingSearch */
 /* @var $form yii\widgets\ActiveForm */
+
+//rrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 ?>
 
 <div class="setting-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    <?php
+    $form = ActiveForm::begin([
+                'action' => ['index'],
+                'method' => 'get',
+    ]);
+    ?>
 
     <?= $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'user_id') ?>
 
-    <?= $form->field($model, 'name') ?>
+        <?= $form->field($model, 'name') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+    <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>
