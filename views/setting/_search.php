@@ -7,7 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\SettingSearch */
 /* @var $form yii\widgets\ActiveForm */
 
-//rrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 ?>
 
 <div class="setting-search">
