@@ -36,15 +36,23 @@ $this->params['menuItems'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //   'id',
-            'cost',
-            'amount',
+            [
+                'attribute' => 'categoryexp_id',
+                'value' => 'categoryexp.name'
+            ],
+            [
+                'attribute' => 'amount',
+                'value' => 'amount',
+                'contentOptions' => ['style' => 'text-align: right'],
+            ],
             [
                 'attribute' => 'unit_id',
                 'value' => 'unit.name'
             ],
             [
-                'attribute' => 'categoryexp_id',
-                'value' => 'categoryexp.name'
+                'attribute' => 'cost',
+                'value' => 'cost',
+                'contentOptions' => ['style' => 'text-align: right'],
             ],
             // 'name',
             // 'date_oper',

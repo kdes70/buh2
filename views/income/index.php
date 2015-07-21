@@ -31,7 +31,11 @@ $this->params['menuItems'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-            'amount',
+            [
+                'attribute' => 'amount',
+                'value' => 'amount',
+                'contentOptions' => ['style' => 'text-align: right'],
+            ],
             'categoryinc_id',
             'date_oper',
             'user_id',

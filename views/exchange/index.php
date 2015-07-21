@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExchangeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -28,7 +27,7 @@ $this->params['menuItems'] = [
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'layout' => '{items}{summary}{pager}',
-    'columns' => [
+        'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
             'start_date',
@@ -38,7 +37,11 @@ $this->params['menuItems'] = [
                 'filter' => Html::activeDropDownList($searchModel, 'currency_code', [ 'USD' => 'USD', 'EUR' => 'EUR', 'RUB' => 'RUB'], ['class' => 'form-control', 'prompt' => 'Выберите валюту...']),
             ],
             'number_units',
-            'official_exchange',
+            [
+                'attribute' => 'official_exchange',
+                'value' => 'official_exchange',
+                'contentOptions' => ['style' => 'text-align: right'],
+            ],
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],
