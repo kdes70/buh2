@@ -28,7 +28,8 @@ class Exchange extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['start_date', 'currency_code', 'number_units', 'official_exchange'], 'required'],
-            [['start_date', 'currency_code'], 'unique', 'targetAttribute' => ['start_date', 'currency_code']],
+            [['start_date', 'currency_code'], 'unique', 'targetAttribute' => ['start_date', 'currency_code'],
+                'message' => 'Курс такой валюты, на заданную дату уже существует!'],
             [['start_date'], 'safe'],
             [['number_units'], 'integer'],
             [['official_exchange'], 'number'],
