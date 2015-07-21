@@ -17,19 +17,12 @@ use app\models\Wallet;
 
     <?= $form->field($model, 'current_sum')->textInput() ?>
 
-
-
-   
-
     <?= $form->field($model, 'state')->dropDownList(['' => 'Выберите...', Wallet::STATE_ACTIVE => 'Активен', Wallet::STATE_CLOSE => 'Закрыт']) ?>
-
-
-
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

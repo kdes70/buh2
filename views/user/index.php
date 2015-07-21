@@ -31,16 +31,28 @@ $this->params['menuItems'] = [
             'created_at',
             'updated_at',
             'username',
-           // 'auth_key',
+            // 'auth_key',
             // 'email_confirm_token:email',
             // 'password_hash',
             // 'password_reset_token',
             // 'email:email',
-             'status',
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]);
-    ?>
-    <?php Pjax::end(); ?>
+            'status',
+            ['class' => \yii\grid\ActionColumn::className(),
+                'header' => 'Действия',
+                'options' => ['width' => '70px'],
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить']);
+                    },
+                            'delete' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['delete', 'id' => $key], ['title' => 'Удалить', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?']);
+                    },
+                        ],
+                        'template' => '{update}  {delete}'
+                    ],
+                ],
+            ]);
+            ?>
+            <?php Pjax::end(); ?>
 
 </div>

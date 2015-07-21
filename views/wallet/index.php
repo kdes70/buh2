@@ -37,19 +37,23 @@ $this->params['menuItems'] = [
                 'filter' => Html::activeDropDownList($searchModel, 'state', [Wallet::STATE_ACTIVE => 'Активен', Wallet::STATE_CLOSE => 'Закрыт'], ['class' => 'form-control', 'prompt' => 'Выберите...']),
             ],
             'user_id',
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]);
-    ?>
+            ['class' => \yii\grid\ActionColumn::className(),
+                'header' => 'Действия',
+                'options' => ['width' => '70px'],
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить']);
+                    },
+                            'delete' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['delete', 'id' => $key], ['title' => 'Удалить', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?']);
+                    },
+                        ],
+                        'template' => '{update}  {delete}'
+                    ],
+                ],
+            ]);
+            ?>
 
-
-
-
-
-
-
-
-
-    <?php Pjax::end(); ?>
+            <?php Pjax::end(); ?>
 
 </div>

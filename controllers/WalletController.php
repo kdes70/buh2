@@ -42,17 +42,6 @@ class WalletController extends Controller {
     }
 
     /**
-     * Displays a single Wallet model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id) {
-        return $this->render('view', [
-                    'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new Wallet model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -65,7 +54,7 @@ class WalletController extends Controller {
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                         'model' => $model,
@@ -83,7 +72,7 @@ class WalletController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                         'model' => $model,
