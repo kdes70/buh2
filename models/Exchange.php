@@ -13,23 +13,22 @@ use Yii;
  * @property integer $number_units
  * @property string $official_exchange
  */
-class Exchange extends \yii\db\ActiveRecord
-{
+class Exchange extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%exchange}}';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['start_date', 'currency_code', 'number_units', 'official_exchange'], 'required'],
+            [['start_date', 'currency_code'], 'unique', 'targetAttribute' => ['start_date', 'currency_code']],
             [['start_date'], 'safe'],
             [['number_units'], 'integer'],
             [['official_exchange'], 'number'],
@@ -40,8 +39,7 @@ class Exchange extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'start_date' => 'Дата начала',
@@ -50,4 +48,5 @@ class Exchange extends \yii\db\ActiveRecord
             'official_exchange' => 'Официальный курс',
         ];
     }
+
 }
