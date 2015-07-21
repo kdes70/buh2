@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 <div class="row">
     <div class="col-md-3 col-lg-3">
-        <img src=<?= Yii::$app->request->baseUrl . '/images/logo.png' ?> width="100%"  alt="<?= Yii::$app->name ?>">
+        <img class="visible-md" src=<?= Yii::$app->request->baseUrl . '/images/logo.png' ?> width="100%"  alt="<?= Yii::$app->name ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Остстки на сегодня</div>

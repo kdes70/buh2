@@ -36,7 +36,11 @@ $this->params['menuItems'] = [
                 'value' => 'currency_code',
                 'filter' => Html::activeDropDownList($searchModel, 'currency_code', [ 'USD' => 'USD', 'EUR' => 'EUR', 'RUB' => 'RUB'], ['class' => 'form-control', 'prompt' => 'Выберите валюту...']),
             ],
-            'number_units',
+            [
+                'attribute' => 'number_units',
+                'value' => 'number_units',
+                'contentOptions' => ['style' => 'text-align: right'],
+            ],
             [
                 'attribute' => 'official_exchange',
                 'value' => 'official_exchange',

@@ -40,16 +40,6 @@ class ExpenseController extends Controller {
         ]);
     }
 
-    /**
-     * Displays a single Expense model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id) {
-        return $this->render('view', [
-                    'model' => $this->findModel($id),
-        ]);
-    }
 
     /**
      * Creates a new Expense model.
@@ -63,7 +53,7 @@ class ExpenseController extends Controller {
         $model->user_id = Yii::$app->user->identity->id;
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                         'model' => $model,
@@ -81,7 +71,7 @@ class ExpenseController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                         'model' => $model,
