@@ -60,6 +60,8 @@ class ExpenseController extends Controller {
         $model = new Expense();
         $model->date_oper = date('Y-m-d');
 
+        $model->user_id = Yii::$app->user->identity->id;
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

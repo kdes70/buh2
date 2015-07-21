@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 21 2015 г., 09:06
+-- Время создания: Июл 21 2015 г., 11:11
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
   UNIQUE KEY `name` (`name`,`user_id`),
   KEY `wallet_default` (`wallet_default`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=14 ;
 
 --
 -- Дамп данных таблицы `db1_categoryinc`
@@ -358,14 +358,17 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   KEY `idx_user_username` (`username`),
   KEY `idx_user_email` (`email`),
   KEY `idx_user_status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Дамп данных таблицы `db1_user`
 --
 
 INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
-(3, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 10);
+(1, 1429777037, 1429777037, 'admin', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'admin@ukr.net', 1),
+(2, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 1),
+(3, 1429777037, 1429777037, 'beata', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'beata@ukr.net', 10),
+(8, 1429777037, 1429777037, 'dasha', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'dasha@ukr.net', 10);
 
 -- --------------------------------------------------------
 
@@ -424,6 +427,7 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_expense`
 --
 ALTER TABLE `db1_expense`
+  ADD CONSTRAINT `db1_expense_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`);
 
@@ -439,12 +443,6 @@ ALTER TABLE `db1_income`
 --
 ALTER TABLE `db1_setting`
   ADD CONSTRAINT `` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `db1_user`
---
-ALTER TABLE `db1_user`
-  ADD CONSTRAINT `db1_user_ibfk_1` FOREIGN KEY (`id`) REFERENCES `db1_expense` (`user_id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_wallet`
