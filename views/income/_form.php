@@ -16,20 +16,6 @@ use app\models\Wallet;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
-
-
-    <?=
-    $form->field($model, 'categoryinc_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(app\models\Categoryinc::find()->all(), 'id', 'name'),
-        'language' => 'ru',
-        //'theme' => Select2::THEME_BOOTSTRAP,
-        'options' => ['placeholder' => 'Выберите...'],
-        'pluginOptions' => [
-            'allowClear' => true,
-        ],
-    ])
-    ?>
 
     <?=
     $form->field($model, 'date_oper')->widget(
@@ -45,6 +31,24 @@ use app\models\Wallet;
         ]
     ]);
     ?>
+
+
+    <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
+
+
+    <?=
+    $form->field($model, 'categoryinc_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(app\models\Categoryinc::find()->all(), 'id', 'name'),
+        'language' => 'ru',
+        //'theme' => Select2::THEME_BOOTSTRAP,
+        'options' => ['placeholder' => 'Выберите...'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ])
+    ?>
+
+
 
 
     <?= $form->field($model, 'user_id')->textInput() ?>

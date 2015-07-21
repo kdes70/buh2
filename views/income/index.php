@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use app\models\Income;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\IncomeSearch */
@@ -36,7 +37,11 @@ $this->params['menuItems'] = [
                 'value' => 'amount',
                 'contentOptions' => ['style' => 'text-align: right'],
             ],
-            'categoryinc_id',
+
+            [
+                'attribute' => 'categoryinc_id',
+                'value' => 'categoryinc.name'
+            ],
             'date_oper',
             'user_id',
             ['class' => 'yii\grid\ActionColumn'],
