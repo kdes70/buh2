@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 21 2015 г., 13:53
+-- Время создания: Июл 21 2015 г., 15:01
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `db1_exchange` (
   `official_exchange` decimal(10,6) NOT NULL COMMENT 'Официальный курс',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_exchange_uniq` (`currency_code`,`start_date`) COMMENT 'Уникальность кода валюты за дату'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=18 ;
 
 --
 -- Дамп данных таблицы `db1_exchange`
@@ -193,8 +193,8 @@ INSERT INTO `db1_exchange` (`id`, `start_date`, `currency_code`, `number_units`,
 (9, '2015-07-20', 'USD', 100, '2203.213400'),
 (10, '2015-07-20', 'EUR', 100, '2390.927200'),
 (14, '2015-07-21', 'USD', 100, '2203.213400'),
-(15, '2015-07-21', 'EUR', 100, '2390.927200'),
-(16, '2015-07-21', 'RUB', 10, '3.876600');
+(16, '2015-07-21', 'RUB', 10, '3.876600'),
+(17, '2015-07-21', 'EUR', 100, '2390.927200');
 
 -- --------------------------------------------------------
 
