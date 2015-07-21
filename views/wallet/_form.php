@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Wallet;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Wallet */
@@ -13,12 +14,17 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-    
+
     <?= $form->field($model, 'current_sum')->textInput() ?>
-    
 
 
-    <?= $form->field($model, 'state')->textInput() ?>
+
+   
+
+    <?= $form->field($model, 'state')->dropDownList(['' => 'Выберите...', Wallet::STATE_ACTIVE => 'Активен', Wallet::STATE_CLOSE => 'Закрыт']) ?>
+
+
+
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 

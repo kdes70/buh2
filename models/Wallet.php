@@ -14,21 +14,22 @@ use Yii;
  *
  * @property User $user
  */
-class Wallet extends \yii\db\ActiveRecord
-{
+class Wallet extends \yii\db\ActiveRecord {
+
+    const STATE_ACTIVE = 0;
+    const STATE_CLOSE = 1;
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%wallet}}';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'state', 'user_id', 'current_sum'], 'required'],
             [['state', 'user_id'], 'integer'],
@@ -40,13 +41,12 @@ class Wallet extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'Наименование',
-            'current_sum'=>'Текущая сумма',
-            'state' => 'Состояние (0-действуюший, 1-Закрытый)',
+            'current_sum' => 'Текущая сумма',
+            'state' => 'Состояние',
             'user_id' => 'Пользователь',
         ];
     }
@@ -54,8 +54,8 @@ class Wallet extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
 }

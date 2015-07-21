@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use app\models\Wallet;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\WalletSearch */
@@ -30,7 +31,11 @@ $this->params['menuItems'] = [
             // 'id',
             'name',
             'current_sum',
-            'state',
+            [
+                'attribute' => 'state',
+                'value' => 'state',
+                'filter' => Html::activeDropDownList($searchModel, 'state', [Wallet::STATE_ACTIVE => 'Активен', Wallet::STATE_CLOSE => 'Закрыт'], ['class' => 'form-control', 'prompt' => 'Выберите...']),
+            ],
             'user_id',
             ['class' => 'yii\grid\ActionColumn'],
         ],
