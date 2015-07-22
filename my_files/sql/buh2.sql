@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 22 2015 г., 11:47
+-- Время создания: Июл 22 2015 г., 15:28
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -258,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
   `amount` decimal(10,2) NOT NULL COMMENT 'Сумма дохода',
   `categoryinc_id` int(11) NOT NULL COMMENT 'Категория доходов',
   `date_oper` date NOT NULL COMMENT 'Дата операции',
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек',
   PRIMARY KEY (`id`),
   KEY `category_id` (`categoryinc_id`),

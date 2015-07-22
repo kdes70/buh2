@@ -2,14 +2,10 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-
-
 ?>
-
-
 <div class="row">
     <div class="col-md-3 col-lg-3">
-        <img class="visible-md visible-lg" src=<?= Yii::$app->request->baseUrl . '/images/logo.png' ?> width="100%"  alt="<?= Yii::$app->name ?>">
+        <img class="visible-md visible-lg" src="<?= Yii::$app->request->baseUrl . '/images/logo.png'; ?>" style='width: 100%' alt="<?= Yii::$app->name; ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Остстки на сегодня</div>
@@ -25,20 +21,13 @@ use yii\helpers\Html;
             <div class="panel-body">
             </div>                     
         </div>
-
-
     </div>
-
-
     <div class="col-md-6 col-lg-6">
-
-
         <table class="table table-striped custab">
             <thead>
                 <tr>
                     <th colspan="1" width="100%">Раздел</th>
                     <th colspan="2" class="text-center">Действие</th>
-
                 </tr>
             </thead>
             <tr>
@@ -47,10 +36,8 @@ use yii\helpers\Html;
                     <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary']) ?>         
                 </td>
                 <td class="text-right"> 
-
                     <div class="btn-group" role="group">
-
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-edit"></span>
                             <span class="caret"></span>
                         </button>
@@ -61,18 +48,14 @@ use yii\helpers\Html;
                     </div>
                 </td>
             </tr>
-
-
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
                     <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary']) ?>         
                 </td>
                 <td class="text-right"> 
-
                     <div class="btn-group" role="group">
-
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-edit"></span>
                             <span class="caret"></span>
                         </button>
@@ -83,20 +66,14 @@ use yii\helpers\Html;
                     </div>
                 </td>
             </tr>
-
-
-
-
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
                     <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary']) ?>         
                 </td>
                 <td class="text-right"> 
-
                     <div class="btn-group" role="group">
-
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-edit"></span>
                             <span class="caret"></span>
                         </button>
@@ -107,16 +84,18 @@ use yii\helpers\Html;
                     </div>
                 </td>
             </tr>
-
-
-
-
         </table>
         <!-- Блок управления (конец) -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Журнал операций</div>
+            </div>     
+            <div class="panel-body">
+            </div>                     
+        </div>
     </div>
     <div class="col-md-3 col-lg-3">
-
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Ввод операций</div>
@@ -124,7 +103,6 @@ use yii\helpers\Html;
             <div class="panel-body">
             </div>                     
         </div>
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Информация</div>
@@ -132,6 +110,5 @@ use yii\helpers\Html;
             <div class="panel-body">
             </div>                     
         </div>
-
     </div>
 </div>
