@@ -14,29 +14,40 @@ $this->params['menuItems'] = [
 
     ['label' => 'Создать', 'url' => ['create']],
 ];
-
 ?>
 <div class="setting-index">
 
-    
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-  <?php Pjax::begin(['timeout' => 3000]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
-    <?= GridView::widget([
+    <?php Pjax::begin(['timeout' => 3000]); ?>
+
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             //'id',
             'user_id',
             'name',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-    <?php Pjax::end(); ?>
+            ['class' => \yii\grid\ActionColumn::className(),
+                'header' => 'Действия',
+                'options' => ['width' => '70px'],
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить']);
+                    },
+                            'delete' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['delete', 'id' => $key], ['title' => 'Удалить', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?']);
+                    },
+                        ],
+                        'template' => '{update}  {delete}'
+                    ],
+                ],
+            ]);
+            ?>
+            <?php Pjax::end(); ?>
 
 </div>

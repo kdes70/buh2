@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 21 2015 г., 15:01
+-- Время создания: Июл 22 2015 г., 11:26
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
   UNIQUE KEY `name` (`name`,`user_id`),
   KEY `wallet_default` (`wallet_default`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
 
 --
 -- Дамп данных таблицы `db1_categoryinc`
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
   KEY `unit_id` (`unit_id`),
   KEY `category_id` (`categoryexp_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=40 ;
 
 --
 -- Дамп данных таблицы `db1_expense`
@@ -244,7 +244,8 @@ INSERT INTO `db1_expense` (`id`, `cost`, `amount`, `unit_id`, `categoryexp_id`, 
 (35, '40.00', '550.00', 2, 98, 'Московская', '2014-07-17', 1, 0),
 (36, '10.39', '1.00', 5, 61, 'Изолента', '2014-06-30', 3, 0),
 (37, '56.00', '1.00', 5, 72, 'Шампунь', '2014-07-17', 3, 0),
-(38, '11.00', '1.00', 4, 63, 'Мороженое', '2014-07-09', 3, 0);
+(38, '11.00', '1.00', 4, 63, 'Мороженое', '2014-07-09', 3, 0),
+(39, '1.00', '1.00', 5, 92, 'Детское', '2015-07-22', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -269,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
 --
 
 INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`, `wallet_id`) VALUES
-(3, '100.00', 3, '2015-01-01', 3, 0),
+(3, '100.00', 3, '2015-01-01', 3, 2),
 (4, '2200.00', 3, '2015-05-01', 3, 0);
 
 -- --------------------------------------------------------
@@ -312,8 +313,8 @@ CREATE TABLE IF NOT EXISTS `db1_setting` (
 --
 
 INSERT INTO `db1_setting` (`id`, `user_id`, `name`) VALUES
-(2, 3, 'test'),
-(3, 3, 'Еще одна настройка...');
+(2, 3, 'Кошелек по умолчанию'),
+(3, 3, 'Единица измерения по умолчанию');
 
 -- --------------------------------------------------------
 
@@ -431,9 +432,9 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_expense`
 --
 ALTER TABLE `db1_expense`
-  ADD CONSTRAINT `db1_expense_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`),
-  ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`);
+  ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
+  ADD CONSTRAINT `db1_expense_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_income`

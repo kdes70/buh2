@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Июл 20 2015 г., 19:27
--- Версия сервера: 5.5.43-0ubuntu0.14.04.1
--- Версия PHP: 5.5.9-1ubuntu4.11
+-- Хост: 127.0.0.1
+-- Время создания: Июл 21 2015 г., 15:01
+-- Версия сервера: 5.5.36
+-- Версия PHP: 5.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
   UNIQUE KEY `name` (`name`,`user_id`),
   KEY `wallet_default` (`wallet_default`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=14 ;
 
 --
 -- Дамп данных таблицы `db1_categoryinc`
@@ -176,21 +176,25 @@ CREATE TABLE IF NOT EXISTS `db1_exchange` (
   `currency_code` varchar(3) NOT NULL COMMENT 'Код валюты',
   `number_units` int(11) NOT NULL COMMENT 'Количество единиц',
   `official_exchange` decimal(10,6) NOT NULL COMMENT 'Официальный курс',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=11 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_exchange_uniq` (`currency_code`,`start_date`) COMMENT 'Уникальность кода валюты за дату'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=18 ;
 
 --
 -- Дамп данных таблицы `db1_exchange`
 --
 
 INSERT INTO `db1_exchange` (`id`, `start_date`, `currency_code`, `number_units`, `official_exchange`) VALUES
-(3, '2015-07-17', 'USD', 100, 2198.668700),
-(4, '2015-07-17', 'EUR', 100, 2389.293300),
-(6, '2015-07-17', 'RUB', 10, 3.860700),
-(7, '2015-07-18', 'USD', 100, 2201.492400),
-(8, '2015-07-20', 'RUB', 10, 3.876600),
-(9, '2015-07-20', 'USD', 100, 2203.213400),
-(10, '2015-07-20', 'EUR', 100, 2390.927200);
+(3, '2015-07-17', 'USD', 100, '2198.668700'),
+(4, '2015-07-17', 'EUR', 100, '2389.293300'),
+(6, '2015-07-17', 'RUB', 10, '3.860700'),
+(7, '2015-07-18', 'USD', 100, '2201.492400'),
+(8, '2015-07-20', 'RUB', 10, '3.876600'),
+(9, '2015-07-20', 'USD', 100, '2203.213400'),
+(10, '2015-07-20', 'EUR', 100, '2390.927200'),
+(14, '2015-07-21', 'USD', 100, '2203.213400'),
+(16, '2015-07-21', 'RUB', 10, '3.876600'),
+(17, '2015-07-21', 'EUR', 100, '2390.927200');
 
 -- --------------------------------------------------------
 
@@ -219,28 +223,28 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
 --
 
 INSERT INTO `db1_expense` (`id`, `cost`, `amount`, `unit_id`, `categoryexp_id`, `name`, `date_oper`, `user_id`, `wallet_id`) VALUES
-(12, 40.00, 1.00, 5, 61, 'Лопата', '2013-10-17', 1, 0),
-(13, 150.00, 1.00, 5, 61, 'Дрель', '2013-10-16', 1, 0),
-(14, 78.13, 1.00, 2, 60, 'Печение', '2013-12-31', 1, 0),
-(16, 120.00, 1.00, 5, 61, 'Топор', '2013-12-10', 1, 0),
-(17, 14.75, 3000.00, 2, 60, 'Картошка', '2013-12-11', 1, 0),
-(18, 39.58, 400.00, 2, 98, 'Школьная', '2013-12-09', 1, 0),
-(19, 39.00, 1.00, 4, 72, 'Зубная паста', '2013-12-10', 1, 0),
-(20, 30.38, 1.00, 6, 95, 'Сити Такси', '2013-12-10', 1, 0),
-(21, 15.60, 1.00, 4, 77, 'Презервативы', '2013-12-10', 1, 0),
-(22, 74.00, 1.00, 5, 61, 'Лопата', '2013-12-12', 1, 0),
-(23, 120.59, 2000.00, 2, 60, 'Рыба', '2013-12-12', 1, 0),
-(26, 45.00, 700.00, 2, 99, 'Форель', '2014-07-31', 1, 0),
-(27, 19.27, 1.00, 4, 60, 'Сыр "Янтарь"', '2014-07-15', 1, 0),
-(30, 35.00, 1.00, 6, 95, 'Сити Такси', '2014-07-15', 1, 0),
-(31, 30.00, 900.00, 2, 84, 'Картошка', '2014-07-15', 1, 0),
-(32, 105.00, 1.00, 5, 83, 'Закарпатский', '2014-07-15', 1, 0),
-(33, 142.00, 2.00, 4, 60, 'Вафли "Артек"', '2014-07-15', 1, 0),
-(34, 40.00, 1.00, 5, 89, 'ТрансКом', '2014-07-17', 2, 0),
-(35, 40.00, 550.00, 2, 98, 'Московская', '2014-07-17', 1, 0),
-(36, 10.39, 1.00, 5, 61, 'Изолента', '2014-06-30', 3, 0),
-(37, 56.00, 1.00, 5, 72, 'Шампунь', '2014-07-17', 3, 0),
-(38, 11.00, 1.00, 4, 63, 'Мороженое', '2014-07-09', 3, 0);
+(12, '40.00', '1.00', 5, 61, 'Лопата', '2013-10-17', 1, 0),
+(13, '150.00', '1.00', 5, 61, 'Дрель', '2013-10-16', 1, 0),
+(14, '78.13', '1.00', 2, 60, 'Печение', '2013-12-31', 1, 0),
+(16, '120.00', '1.00', 5, 61, 'Топор', '2013-12-10', 1, 0),
+(17, '14.75', '3000.00', 2, 60, 'Картошка', '2013-12-11', 1, 0),
+(18, '39.58', '400.00', 2, 98, 'Школьная', '2013-12-09', 1, 0),
+(19, '39.00', '1.00', 4, 72, 'Зубная паста', '2013-12-10', 1, 0),
+(20, '30.38', '1.00', 6, 95, 'Сити Такси', '2013-12-10', 1, 0),
+(21, '15.60', '1.00', 4, 77, 'Презервативы', '2013-12-10', 1, 0),
+(22, '74.00', '1.00', 5, 61, 'Лопата', '2013-12-12', 1, 0),
+(23, '120.59', '2000.00', 2, 60, 'Рыба', '2013-12-12', 1, 0),
+(26, '45.00', '700.00', 2, 99, 'Форель', '2014-07-31', 1, 0),
+(27, '19.27', '1.00', 4, 60, 'Сыр "Янтарь"', '2014-07-15', 1, 0),
+(30, '35.00', '1.00', 6, 95, 'Сити Такси', '2014-07-15', 1, 0),
+(31, '30.00', '900.00', 2, 84, 'Картошка', '2014-07-15', 1, 0),
+(32, '105.00', '1.00', 5, 83, 'Закарпатский', '2014-07-15', 1, 0),
+(33, '142.00', '2.00', 4, 60, 'Вафли "Артек"', '2014-07-15', 1, 0),
+(34, '40.00', '1.00', 5, 89, 'ТрансКом', '2014-07-17', 2, 0),
+(35, '40.00', '550.00', 2, 98, 'Московская', '2014-07-17', 1, 0),
+(36, '10.39', '1.00', 5, 61, 'Изолента', '2014-06-30', 3, 0),
+(37, '56.00', '1.00', 5, 72, 'Шампунь', '2014-07-17', 3, 0),
+(38, '11.00', '1.00', 4, 63, 'Мороженое', '2014-07-09', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -265,8 +269,8 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
 --
 
 INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`, `wallet_id`) VALUES
-(3, 100.00, 3, '2015-01-01', 3, 0),
-(4, 2200.00, 3, '2015-05-01', 3, 0);
+(3, '100.00', 3, '2015-01-01', 3, 0),
+(4, '2200.00', 3, '2015-05-01', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -358,14 +362,17 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   KEY `idx_user_username` (`username`),
   KEY `idx_user_email` (`email`),
   KEY `idx_user_status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Дамп данных таблицы `db1_user`
 --
 
 INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
-(3, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 10);
+(1, 1429777037, 1429777037, 'admin', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'admin@ukr.net', 1),
+(2, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 1),
+(3, 1429777037, 1429777037, 'beata', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'beata@ukr.net', 10),
+(8, 1429777037, 1429777037, 'dasha', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'dasha@ukr.net', 10);
 
 -- --------------------------------------------------------
 
@@ -388,8 +395,8 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
 --
 
 INSERT INTO `db1_wallet` (`id`, `name`, `current_sum`, `state`, `user_id`) VALUES
-(1, 'Карточка FidoBank', 500.00, 0, 3),
-(2, 'Наличные', 125.21, 0, 3);
+(1, 'Карточка FidoBank', '500.00', 1, 3),
+(2, 'Наличные', '125.21', 0, 3);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -424,6 +431,7 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_expense`
 --
 ALTER TABLE `db1_expense`
+  ADD CONSTRAINT `db1_expense_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`);
 
@@ -439,12 +447,6 @@ ALTER TABLE `db1_income`
 --
 ALTER TABLE `db1_setting`
   ADD CONSTRAINT `` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `db1_user`
---
-ALTER TABLE `db1_user`
-  ADD CONSTRAINT `db1_user_ibfk_1` FOREIGN KEY (`id`) REFERENCES `db1_expense` (`user_id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_wallet`
