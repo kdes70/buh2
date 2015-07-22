@@ -44,7 +44,7 @@ AppAsset::register($this);
                     ['label' => 'Операции',
                         'items' => [ ['label' => 'Доходы', 'url' => ['/income']],
                             ['label' => 'Расходы', 'url' => ['/expense']],
-                            ['label' => 'Переводы', 'url' => '#'],
+                            ['label' => 'Перемещения', 'url' => ['/move']],
                             '<li class="divider"></li>',
                             ['label' => 'Шаблоны операций', 'url' => ['#']],
                         ],

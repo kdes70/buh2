@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 22 2015 г., 15:28
+-- Время создания: Июл 22 2015 г., 16:03
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -298,6 +298,32 @@ INSERT INTO `db1_migration` (`version`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `db1_move`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_move` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wallet_from` int(11) NOT NULL COMMENT 'Из кошелька',
+  `wallet_to` int(11) NOT NULL COMMENT 'В кошелек',
+  `move_sum` decimal(10,2) NOT NULL COMMENT 'Сумма перемещения',
+  `date_oper` date NOT NULL COMMENT 'Дата операции',
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `wallet_to` (`wallet_to`),
+  KEY `user_id` (`user_id`),
+  KEY `wallet_from` (`wallet_from`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Перемещения' AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `db1_move`
+--
+
+INSERT INTO `db1_move` (`id`, `wallet_from`, `wallet_to`, `move_sum`, `date_oper`, `user_id`) VALUES
+(1, 1, 2, '22.00', '2008-05-05', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `db1_setting`
 --
 
@@ -443,6 +469,14 @@ ALTER TABLE `db1_expense`
 ALTER TABLE `db1_income`
   ADD CONSTRAINT `db1_income_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
   ADD CONSTRAINT `db1_income_ibfk_2` FOREIGN KEY (`categoryinc_id`) REFERENCES `db1_categoryinc` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `db1_move`
+--
+ALTER TABLE `db1_move`
+  ADD CONSTRAINT `db1_move_ibfk_3` FOREIGN KEY (`wallet_to`) REFERENCES `db1_wallet` (`id`),
+  ADD CONSTRAINT `db1_move_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
+  ADD CONSTRAINT `db1_move_ibfk_2` FOREIGN KEY (`wallet_from`) REFERENCES `db1_wallet` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_setting`
