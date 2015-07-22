@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 22 2015 г., 11:26
+-- Время создания: Июл 22 2015 г., 11:47
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`categoryinc_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=6 ;
 
 --
 -- Дамп данных таблицы `db1_income`
@@ -271,7 +271,8 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
 
 INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`, `wallet_id`) VALUES
 (3, '100.00', 3, '2015-01-01', 3, 2),
-(4, '2200.00', 3, '2015-05-01', 3, 0);
+(4, '2200.00', 3, '2015-05-01', 3, 0),
+(5, '890.00', 4, '2015-07-22', 2, 2);
 
 -- --------------------------------------------------------
 

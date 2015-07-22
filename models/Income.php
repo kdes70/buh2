@@ -50,7 +50,7 @@ class Income extends \yii\db\ActiveRecord
             'categoryinc_id' => 'Категория доходов',
             'wallet_id'=>'Кошелек',
             'date_oper' => 'Дата операции',
-            'user_id' => 'User ID',
+            'user_id' => 'Пользователь',
         ];
     }
 

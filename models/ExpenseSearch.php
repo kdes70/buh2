@@ -10,13 +10,12 @@ use app\models\Expense;
 /**
  * ExpenseSearch represents the model behind the search form about `app\models\Expense`.
  */
-class ExpenseSearch extends Expense
-{
+class ExpenseSearch extends Expense {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'unit_id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['cost', 'amount'], 'number'],
@@ -27,8 +26,7 @@ class ExpenseSearch extends Expense
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,12 +38,12 @@ class ExpenseSearch extends Expense
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Expense::find();
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+        'query' => $query,
+        'sort' => ['defaultOrder' => ['date_oper'  => SORT_DESC]]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
@@ -67,4 +65,5 @@ class ExpenseSearch extends Expense
 
         return $dataProvider;
     }
+
 }

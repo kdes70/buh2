@@ -36,19 +36,20 @@ $this->params['menuItems'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //   'id',
+            'date_oper',
             [
                 'attribute' => 'categoryexp_id',
                 'value' => 'categoryexp.name'
             ],
-            [
-                'attribute' => 'amount',
-                'value' => 'amount',
-                'contentOptions' => ['style' => 'text-align: right'],
-            ],
-            [
-                'attribute' => 'unit_id',
-                'value' => 'unit.name'
-            ],
+//            [
+//                'attribute' => 'amount',
+//                'value' => 'amount',
+//                'contentOptions' => ['style' => 'text-align: right'],
+//            ],
+//            [
+//                'attribute' => 'unit_id',
+//                'value' => 'unit.name'
+//            ],
             [
                 'attribute' => 'cost',
                 'value' => 'cost',
@@ -56,7 +57,7 @@ $this->params['menuItems'] = [
             ],
             // 'name',
             // 'date_oper',
-            // 'user_id',
+             'user_id',
             // 'operwallet_id',
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
