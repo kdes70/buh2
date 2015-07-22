@@ -84,6 +84,24 @@ use yii\helpers\Html;
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
+                <td class="text-right">
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary']) ?>         
+                </td>
+                <td class="text-right"> 
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dropdown link</a></li>
+                            <li><a href="#">Dropdown link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
         </table>
         <!-- Блок управления (конец) -->
 
