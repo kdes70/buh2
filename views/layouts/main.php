@@ -47,6 +47,7 @@ AppAsset::register($this);
                             '<li class="divider"></li>',
                             ['label' => 'Доходы', 'url' => ['/income']],
                             ['label' => 'Расходы', 'url' => ['/expense']],
+                            '<li class="divider"></li>',
                             ['label' => 'Перемещения', 'url' => ['/move']],
 
                         ],
