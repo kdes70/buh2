@@ -13,10 +13,7 @@ use app\models\Wallet;
 ?>
 
 <div class="income-form">
-
     <?php $form = ActiveForm::begin(); ?>
-
-
     <?=
     $form->field($model, 'date_oper')->widget(
             DatePicker::className(), [
@@ -31,11 +28,7 @@ use app\models\Wallet;
         ]
     ]);
     ?>
-
-
     <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
-
-
     <?=
     $form->field($model, 'categoryinc_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(app\models\Categoryinc::find()->all(), 'id', 'name'),
@@ -47,13 +40,7 @@ use app\models\Wallet;
         ],
     ])
     ?>
-
-
-
-
     <?= $form->field($model, 'user_id')->textInput() ?>
-
-
     <?=
     $form->field($model, 'wallet_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE])->all(), 'id', 'name'),
@@ -65,13 +52,9 @@ use app\models\Wallet;
         ],
     ])
     ?>
-
-
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::Button('Сохоанить, как шаблон', ['class' => 'btn btn-primary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>
