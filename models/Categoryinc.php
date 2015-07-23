@@ -32,7 +32,7 @@ class Categoryinc extends \yii\db\ActiveRecord {
             [['user_id', 'wallet_default'], 'integer'],
             [['name', 'wallet_default'], 'required'],
             [['name'], 'string', 'max' => 50],
-            [['name', 'user_id'], 'unique', 'targetAttribute' => ['name', 'user_id'], 'message' => 'The combination of Пользователь and Наименование has already been taken.']
+            [['name', 'user_id'], 'unique', 'targetAttribute' => ['name', 'user_id'], 'message' => 'У текущего пользователя, такая категория дохода уже существует!']
         ];
     }
 

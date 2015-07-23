@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 23 2015 г., 15:45
+-- Время создания: Июл 23 2015 г., 16:35
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
   UNIQUE KEY `name` (`name`,`user_id`),
   KEY `wallet_default` (`wallet_default`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=14 ;
 
 --
 -- Дамп данных таблицы `db1_categoryinc`
@@ -342,32 +342,6 @@ CREATE TABLE IF NOT EXISTS `db1_setting` (
 INSERT INTO `db1_setting` (`id`, `user_id`, `name`) VALUES
 (2, 3, 'Кошелек по умолчанию'),
 (3, 3, 'Единица измерения по умолчанию');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `db1_unit`
---
-
-CREATE TABLE IF NOT EXISTS `db1_unit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL COMMENT 'Наименование',
-  `fullname` varchar(100) NOT NULL COMMENT 'Полное наименование',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Единицы измерения' AUTO_INCREMENT=10 ;
-
---
--- Дамп данных таблицы `db1_unit`
---
-
-INSERT INTO `db1_unit` (`id`, `name`, `fullname`) VALUES
-(2, 'г', 'Грамм'),
-(3, 'м', 'Метр'),
-(4, 'пач', 'Пачка'),
-(5, 'шт', 'Штука'),
-(6, 'опер', 'Операция'),
-(9, 'кг', 'Килограмм');
 
 -- --------------------------------------------------------
 

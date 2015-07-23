@@ -20,8 +20,8 @@ use app\models\Wallet;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        
-        <?=
+
+    <?=
     $form->field($model, 'wallet_default')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
         'language' => 'ru',
@@ -32,7 +32,7 @@ use app\models\Wallet;
         ],
     ])
     ?>
-    
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

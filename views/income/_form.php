@@ -42,7 +42,7 @@ use app\models\Wallet;
     <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
     <?=
     $form->field($model, 'categoryinc_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(app\models\Categoryinc::find()->all(), 'id', 'name'),
+        'data' => ArrayHelper::map(app\models\Categoryinc::find()->where(['user_id'=>Yii::$app->user->identity->id])->all(), 'id', 'name'),
         'language' => 'ru',
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],

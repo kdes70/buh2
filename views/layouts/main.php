@@ -49,7 +49,6 @@ AppAsset::register($this);
                             ['label' => 'Расходы', 'url' => ['/expense']],
                             '<li class="divider"></li>',
                             ['label' => 'Перемещения', 'url' => ['/move']],
-
                         ],
                     ],
                     ['label' => 'Отчеты',
@@ -66,8 +65,6 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'Категории доходов', 'url' => ['/categoryinc']],
                             ['label' => 'Категории расходов', 'url' => ['/categoryexp']],
-                            '<li class="divider"></li>',
-                            ['label' => 'Единицы измерения (УДАЛИТЬ!)', 'url' => ['/unit']],
                             '<li class="divider"></li>',
                             ['label' => 'Курсы валют', 'url' => ['/exchange']],
                             '<li class="divider"></li>',
