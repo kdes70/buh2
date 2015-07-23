@@ -30,7 +30,7 @@ use app\models\Wallet;
     ?>
     <?=
     $form->field($model, 'wallet_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE])->all(), 'id', 'name'),
+        'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id'=>Yii::$app->user->identity->id])->all(), 'id', 'name'),
         'language' => 'ru',
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],

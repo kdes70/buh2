@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 23 2015 г., 11:32
+-- Время создания: Июл 23 2015 г., 11:51
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -417,15 +417,17 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=5 ;
 
 --
 -- Дамп данных таблицы `db1_wallet`
 --
 
 INSERT INTO `db1_wallet` (`id`, `name`, `current_sum`, `state`, `user_id`) VALUES
-(1, 'Карточка FidoBank', '500.00', 1, 3),
-(2, 'Наличные', '125.21', 0, 3);
+(1, 'Карточка FidoBank', '500.00', 0, 2),
+(2, 'Карточка Приват', '125.21', 0, 2),
+(3, 'Наличные', '900.00', 0, 2),
+(4, 'Карточка Приват', '100.00', 0, 3);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
