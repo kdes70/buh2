@@ -48,6 +48,7 @@ class MoveController extends Controller {
     public function actionCreate() {
         $model = new Move();
         $model->user_id = Yii::$app->user->identity->id;
+        $model->date_oper = date('Y-m-d');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
