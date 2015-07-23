@@ -42,11 +42,13 @@ AppAsset::register($this);
                 'items' => [
                     // ['label' => 'Главная', 'url' => ['/main']],
                     ['label' => 'Операции',
-                        'items' => [ ['label' => 'Доходы', 'url' => ['/income']],
+                        'items' => [
+                            ['label' => 'Кошельки (счета)', 'url' => ['/wallet']],
+                            '<li class="divider"></li>',
+                            ['label' => 'Доходы', 'url' => ['/income']],
                             ['label' => 'Расходы', 'url' => ['/expense']],
                             ['label' => 'Перемещения', 'url' => ['/move']],
-                            '<li class="divider"></li>',
-                            ['label' => 'Шаблоны операций', 'url' => ['#']],
+
                         ],
                     ],
                     ['label' => 'Отчеты',
@@ -64,12 +66,9 @@ AppAsset::register($this);
                             ['label' => 'Категории доходов', 'url' => ['/categoryinc']],
                             ['label' => 'Категории расходов', 'url' => ['/categoryexp']],
                             '<li class="divider"></li>',
-                            ['label' => 'Кошельки (счета)', 'url' => ['/wallet']],
-                            '<li class="divider"></li>',
-                            ['label' => 'Единицы измерения', 'url' => ['/unit']],
+                            ['label' => 'Единицы измерения (УДАЛИТЬ!)', 'url' => ['/unit']],
                             '<li class="divider"></li>',
                             ['label' => 'Курсы валют', 'url' => ['/exchange']],
-                            
                             '<li class="divider"></li>',
                             ['label' => 'Шаблоны доходов', 'url' => ['#']],
                             ['label' => 'Шаблоны расходов', 'url' => ['#']],

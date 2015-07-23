@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 23 2015 г., 11:51
+-- Время создания: Июл 23 2015 г., 12:00
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -142,7 +142,6 @@ INSERT INTO `db1_categoryexp` (`id`, `parent_id`, `name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) DEFAULT NULL COMMENT 'Родительская категория',
   `user_id` int(11) DEFAULT NULL COMMENT 'Пользователь',
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   `wallet_default` int(11) NOT NULL COMMENT 'Кошелек по умолчанию',
@@ -156,13 +155,13 @@ CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
 -- Дамп данных таблицы `db1_categoryinc`
 --
 
-INSERT INTO `db1_categoryinc` (`id`, `parent_id`, `user_id`, `name`, `wallet_default`) VALUES
-(3, 1, 1, 'Зарплата', 1),
-(4, NULL, 1, 'Аванс', 1),
-(5, NULL, 1, 'Конверт', 2),
-(6, NULL, 1, 'Калым', 2),
-(7, NULL, 3, 'Аванс', 4),
-(12, NULL, 3, 'Зарплата', 4);
+INSERT INTO `db1_categoryinc` (`id`, `user_id`, `name`, `wallet_default`) VALUES
+(3, 2, 'Зарплата', 1),
+(4, 2, 'Аванс', 1),
+(5, 2, 'Конверт', 2),
+(6, 2, 'Калым', 2),
+(7, 3, 'Аванс', 4),
+(12, 3, 'Зарплата', 4);
 
 -- --------------------------------------------------------
 

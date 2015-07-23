@@ -31,7 +31,7 @@ class Categoryinc extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_id', 'user_id', 'wallet_default'], 'integer'],
+            [['user_id', 'wallet_default'], 'integer'],
             [['name', 'wallet_default'], 'required'],
             [['name'], 'string', 'max' => 50],
             [['name', 'user_id'], 'unique', 'targetAttribute' => ['name', 'user_id'], 'message' => 'The combination of Пользователь and Наименование has already been taken.']
@@ -45,7 +45,6 @@ class Categoryinc extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'parent_id' => 'Родительская категория',
             'user_id' => 'Пользователь',
             'name' => 'Наименование',
             'wallet_default' => 'Кошелек по умолчанию',

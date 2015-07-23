@@ -10,15 +10,14 @@ use app\models\Categoryinc;
 /**
  * CategoryincSearch represents the model behind the search form about `app\models\Categoryinc`.
  */
-class CategoryincSearch extends Categoryinc
-{
+class CategoryincSearch extends Categoryinc {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['id', 'parent_id', 'user_id', 'wallet_default'], 'integer'],
+            [['id', 'user_id', 'wallet_default'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -26,8 +25,7 @@ class CategoryincSearch extends Categoryinc
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -39,8 +37,7 @@ class CategoryincSearch extends Categoryinc
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Categoryinc::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -57,7 +54,6 @@ class CategoryincSearch extends Categoryinc
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'parent_id' => $this->parent_id,
             'user_id' => $this->user_id,
             'wallet_default' => $this->wallet_default,
         ]);
@@ -66,4 +62,5 @@ class CategoryincSearch extends Categoryinc
 
         return $dataProvider;
     }
+
 }
