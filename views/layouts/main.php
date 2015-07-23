@@ -69,6 +69,10 @@ AppAsset::register($this);
                             ['label' => 'Единицы измерения', 'url' => ['/unit']],
                             '<li class="divider"></li>',
                             ['label' => 'Курсы валют', 'url' => ['/exchange']],
+                            
+                            '<li class="divider"></li>',
+                            ['label' => 'Шаблоны доходов', 'url' => ['#']],
+                            ['label' => 'Шаблоны расходов', 'url' => ['#']],
                         ],
                     ],
                     ['label' => 'Управление',
