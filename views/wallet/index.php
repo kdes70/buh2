@@ -40,7 +40,10 @@ $this->params['menuItems'] = [
                 'value' => 'state',
                 'filter' => Html::activeDropDownList($searchModel, 'state', [Wallet::STATE_ACTIVE => 'Активен', Wallet::STATE_CLOSE => 'Закрыт'], ['class' => 'form-control', 'prompt' => 'Выберите...']),
             ],
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],

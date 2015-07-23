@@ -58,4 +58,21 @@ class Wallet extends \yii\db\ActiveRecord {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    //Мои статические методы для списков
+
+    /**
+     * Возвращает список Пользователей и их Кошельков
+     */
+    public static function getAllAndUserName() {
+
+        $sql = 'SELECT
+            wa.id as id, concat(us.username, "-", wa.name) as name
+            FROM db1_wallet wa, db1_user us
+            where wa.user_id = us.id
+            and wa.state = 0
+            order by us.username, wa.name';
+
+        return self::findBySql($sql)->all();
+    }
+
 }

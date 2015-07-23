@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Wallet;
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Move */
@@ -15,7 +16,20 @@ use app\models\Wallet;
 
     <?php $form = ActiveForm::begin(); ?>
 
-
+    <?=
+    $form->field($model, 'date_oper')->widget(
+            DatePicker::className(), [
+        // inline too, not bad
+        'inline' => FALSE,
+        'language' => 'ru',
+        // modify template for custom rendering
+        //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd'
+        ]
+    ]);
+    ?>
 
     <?=
     $form->field($model, 'wallet_from')->widget(Select2::classname(), [
@@ -29,9 +43,11 @@ use app\models\Wallet;
     ])
     ?>
 
+
+
     <?=
     $form->field($model, 'wallet_to')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE])->all(), 'id', 'name'),
+        'data' => ArrayHelper::map(Wallet::getAllAndUserName(), 'id', 'name'),
         'language' => 'ru',
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],
@@ -41,9 +57,11 @@ use app\models\Wallet;
     ])
     ?>
 
+
+
     <?= $form->field($model, 'move_sum')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date_oper')->textInput() ?>
+
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 

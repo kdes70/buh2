@@ -42,8 +42,11 @@ $this->params['menuItems'] = [
                 'value' => 'amount',
                 'contentOptions' => ['style' => 'text-align: right'],
             ],
-            'user_id',
-                        ['class' => \yii\grid\ActionColumn::className(),
+            [
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
+            ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],
                 'buttons' => [
@@ -56,9 +59,9 @@ $this->params['menuItems'] = [
                         ],
                         'template' => '{update}  {delete}'
                     ],
-        ],
-    ]);
-    ?>
-    <?php Pjax::end(); ?>
+                ],
+            ]);
+            ?>
+            <?php Pjax::end(); ?>
 
 </div>

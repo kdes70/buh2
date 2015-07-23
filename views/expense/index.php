@@ -41,15 +41,6 @@ $this->params['menuItems'] = [
                 'attribute' => 'categoryexp_id',
                 'value' => 'categoryexp.name'
             ],
-//            [
-//                'attribute' => 'amount',
-//                'value' => 'amount',
-//                'contentOptions' => ['style' => 'text-align: right'],
-//            ],
-//            [
-//                'attribute' => 'unit_id',
-//                'value' => 'unit.name'
-//            ],
             [
                 'attribute' => 'cost',
                 'value' => 'cost',
@@ -57,7 +48,10 @@ $this->params['menuItems'] = [
             ],
             // 'name',
             // 'date_oper',
-             'user_id',
+            [
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
             // 'operwallet_id',
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',

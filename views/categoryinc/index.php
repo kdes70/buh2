@@ -27,9 +27,10 @@ $this->params['menuItems'] = [
         'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            // 'id',
-            // 'parent_id',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
             'name',
             'wallet_default',
             ['class' => \yii\grid\ActionColumn::className(),

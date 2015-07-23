@@ -16,21 +16,19 @@ use Yii;
  * @property User $user
  * @property Categoryinc $categoryinc
  */
-class Income extends \yii\db\ActiveRecord
-{
+class Income extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%income}}';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['amount', 'categoryinc_id', 'date_oper', 'user_id', 'wallet_id'], 'required'],
             [['amount'], 'number'],
@@ -42,13 +40,12 @@ class Income extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'amount' => 'Сумма дохода',
             'categoryinc_id' => 'Категория',
-            'wallet_id'=>'Кошелек (счет)',
+            'wallet_id' => 'Кошелек (счет)',
             'date_oper' => 'Дата операции',
             'user_id' => 'Пользователь',
         ];
@@ -57,16 +54,15 @@ class Income extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategoryinc()
-    {
+    public function getCategoryinc() {
         return $this->hasOne(Categoryinc::className(), ['id' => 'categoryinc_id']);
     }
+
 }
