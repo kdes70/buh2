@@ -28,31 +28,7 @@ use app\models\Wallet;
         ]
     ]);
     ?>  
-    <?= $form->field($model, 'cost')->textInput(['maxlength' => 10]) ?>
-    <?= $form->field($model, 'amount')->textInput(['maxlength' => 10]) ?>
-    <?=
-    $form->field($model, 'unit_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(app\models\Unit::find()->all(), 'id', 'fullname'),
-        'language' => 'ru',
-        'options' => ['placeholder' => 'Выберите...'],
-        'pluginOptions' => [
-            'allowClear' => true,
-        ],
-    ])
-    ?>
-    <?=
-    $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
-        'language' => 'ru',
-        //'theme' => Select2::THEME_BOOTSTRAP,
-        'options' => ['placeholder' => 'Выберите...'],
-        'pluginOptions' => [
-            'allowClear' => true,
-        ],
-    ])
-    ?>
-    <?= $form->field($model, 'name')->textInput(['maxlength' => 50]) ?>
-    <?= $form->field($model, 'user_id')->textInput() ?>
+
     <?=
     $form->field($model, 'wallet_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE])->all(), 'id', 'name'),
@@ -64,9 +40,30 @@ use app\models\Wallet;
         ],
     ])
     ?>
+
+    <?= $form->field($model, 'cost')->textInput(['maxlength' => 10]) ?>
+
+    <?=
+    $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
+        'language' => 'ru',
+        //'theme' => Select2::THEME_BOOTSTRAP,
+        'options' => ['placeholder' => 'Выберите...'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ])
+    ?>
+
+
+    <?= $form->field($model, 'description')->textInput(['maxlength' => 200]) ?>        
+
+
+    <?= $form->field($model, 'user_id')->textInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::Button('Сохоанить, как шаблон', ['class' => 'btn btn-primary']) ?>
+        <?= Html::Button('Сохоанить шаблон', ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

@@ -19,7 +19,7 @@ class ExpenseSearch extends Expense {
         return [
             [['id', 'unit_id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['cost', 'amount'], 'number'],
-            [['name', 'date_oper'], 'safe'],
+            [['name', 'description', 'date_oper'], 'safe'],
         ];
     }
 
@@ -42,8 +42,8 @@ class ExpenseSearch extends Expense {
         $query = Expense::find();
 
         $dataProvider = new ActiveDataProvider([
-        'query' => $query,
-        'sort' => ['defaultOrder' => ['date_oper'  => SORT_DESC]]
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['date_oper' => SORT_DESC]]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
@@ -62,7 +62,7 @@ class ExpenseSearch extends Expense {
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
-
+        $query->andFilterWhere(['like', 'description', $this->description]);
         return $dataProvider;
     }
 
