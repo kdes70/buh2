@@ -63,7 +63,7 @@ use dosamigos\datepicker\DatePicker;
 
 
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+   
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

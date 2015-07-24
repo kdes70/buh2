@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\Unit;
+use app\models\Wallet;
 
 /**
  * This is the model class for table "db1_expense".
@@ -34,7 +35,7 @@ class Expense extends \yii\db\ActiveRecord {
         return [
             [['cost', 'categoryexp_id', 'date_oper', 'user_id', 'wallet_id'], 'required'],
             [['cost', 'amount'], 'number'],
-            [['unit_id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
+            [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['date_oper'], 'safe'],
             [['name'], 'string', 'max' => 50],
             [['description'], 'string', 'max' => 200]
@@ -49,7 +50,6 @@ class Expense extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'cost' => 'Сумма расхода',
             'amount' => 'Количество',
-            'unit_id' => 'Единица измерения',
             'categoryexp_id' => 'Категория',
             'description' => 'Описание',
             'name' => 'Наименование',
@@ -78,6 +78,21 @@ class Expense extends \yii\db\ActiveRecord {
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Минусуем сумму расхода из кошелька
+     */
+    public function beforeSave($insert) {
+        if ($this->isNewRecord) {
+
+            $wallet = Wallet::findOne($this->wallet_id);
+            $wallet->current_sum = $wallet->current_sum - $this->cost;
+
+            $wallet->update();
+        }
+
+        return parent::beforeSave($insert);
     }
 
 }

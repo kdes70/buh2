@@ -16,7 +16,7 @@ $this->params['menuItems'] = [
 ?>
 <div class="move-index">
 
-  
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
@@ -33,7 +33,10 @@ $this->params['menuItems'] = [
             'wallet_from',
             'wallet_to',
             'move_sum',
-            // 'user_id',
+            [
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],

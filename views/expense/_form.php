@@ -31,7 +31,8 @@ use app\models\Wallet;
 
     <?=
     $form->field($model, 'wallet_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id'=>Yii::$app->user->identity->id])->all(), 'id', 'name'),
+        //'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
+        'data' => ArrayHelper::map(Wallet::getAllAndCurrentSum(Yii::$app->user->identity->id), 'id', 'name'),
         'language' => 'ru',
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],
@@ -59,11 +60,13 @@ use app\models\Wallet;
     <?= $form->field($model, 'description')->textInput(['maxlength' => 200]) ?>        
 
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+
 
     <div class="form-group">
+
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::Button('Сохоанить шаблон', ['class' => 'btn btn-primary']) ?>
+        <?= $model->isNewRecord ? Html::Button('Создать и продолжить...', ['class' => 'btn btn-success']) : null ?>
+        <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

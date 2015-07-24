@@ -33,6 +33,10 @@ $this->params['menuItems'] = [
             ],
             'name',
             'wallet_default',
+            [
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],
