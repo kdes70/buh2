@@ -17,9 +17,9 @@ class ExpenseSearch extends Expense {
      */
     public function rules() {
         return [
-            [['id', 'unit_id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
-            [['cost', 'amount'], 'number'],
-            [['name', 'description', 'date_oper'], 'safe'],
+            [['id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
+            [['cost',], 'number'],
+            [['description', 'date_oper'], 'safe'],
         ];
     }
 
@@ -53,15 +53,13 @@ class ExpenseSearch extends Expense {
         $query->andFilterWhere([
             'id' => $this->id,
             'cost' => $this->cost,
-            'amount' => $this->amount,
-            'unit_id' => $this->unit_id,
             'categoryexp_id' => $this->categoryexp_id,
             'date_oper' => $this->date_oper,
             'user_id' => $this->user_id,
             'wallet_id' => $this->wallet_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+
         $query->andFilterWhere(['like', 'description', $this->description]);
         return $dataProvider;
     }

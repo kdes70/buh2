@@ -11,10 +11,10 @@ use app\models\Wallet;
  *
  * @property integer $id
  * @property string $cost
- * @property string $amount
+
  * @property integer $unit_id
  * @property integer $categoryexp_id
- * @property string $name
+
  * @property string $date_oper
  * @property integer $user_id
  * @property integer $operwallet_id
@@ -34,11 +34,10 @@ class Expense extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['cost', 'categoryexp_id', 'date_oper', 'user_id', 'wallet_id'], 'required'],
-            [['cost', 'amount'], 'number'],
+            [['cost'], 'number'],
             [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['cost'], 'checkSumInWallet'],
             [['date_oper'], 'safe'],
-            [['name'], 'string', 'max' => 50],
             [['description'], 'string', 'max' => 200]
         ];
     }
@@ -50,10 +49,9 @@ class Expense extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'cost' => 'Сумма расхода',
-            'amount' => 'Количество',
+     
             'categoryexp_id' => 'Категория',
             'description' => 'Описание',
-            'name' => 'Наименование',
             'date_oper' => 'Дата операции',
             'user_id' => 'Пользователь',
             'wallet_id' => 'Кошелек (счет)',
@@ -94,6 +92,27 @@ class Expense extends \yii\db\ActiveRecord {
         }
 
         return parent::beforeSave($insert);
+    }
+
+    
+        /**
+     * Возврат денег "Откат", при удалении Расхода
+     */
+    public function beforeDelete() {
+        if (parent::beforeDelete()) {
+            
+            
+            $wallet = Wallet::findOne($this->wallet_id);
+            $wallet->current_sum = $wallet->current_sum + $this->cost;
+
+            $wallet->update();
+            
+            
+            
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Валидаторы
