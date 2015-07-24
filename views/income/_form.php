@@ -32,6 +32,7 @@ use app\models\Wallet;
     $form->field($model, 'wallet_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
         'language' => 'ru',
+        'disabled' => $model->isNewRecord ? false : true,
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],
         'pluginOptions' => [
@@ -39,7 +40,7 @@ use app\models\Wallet;
         ],
     ])
     ?>
-    <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'amount')->textInput(['maxlength' => true, 'disabled' => $model->isNewRecord ? false : true,]) ?>
     <?=
     $form->field($model, 'categoryinc_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(app\models\Categoryinc::find()->where(['user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),

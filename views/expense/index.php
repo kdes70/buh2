@@ -38,6 +38,10 @@ $this->params['menuItems'] = [
             //   'id',
             'date_oper',
             [
+                'attribute' => 'wallet_id',
+                'value' => 'wallet.name'
+            ],
+            [
                 'attribute' => 'categoryexp_id',
                 'value' => 'categoryexp.name'
             ],
@@ -49,10 +53,10 @@ $this->params['menuItems'] = [
             // 'name',
             // 'date_oper',
             [
-            'attribute' => 'user_id',
-            'value' => 'user.username'
-        ],
-        // 'operwallet_id',
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
+            // 'operwallet_id',
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],

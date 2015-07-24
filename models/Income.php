@@ -54,6 +54,13 @@ class Income extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getWallet() {
+        return $this->hasOne(Wallet::className(), ['id' => 'wallet_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
@@ -63,6 +70,41 @@ class Income extends \yii\db\ActiveRecord {
      */
     public function getCategoryinc() {
         return $this->hasOne(Categoryinc::className(), ['id' => 'categoryinc_id']);
+    }
+
+    /**
+     * Добавляем сумму дохода в кошелек
+     */
+    public function beforeSave($insert) {
+        if ($this->isNewRecord) {
+
+            $wallet = Wallet::findOne($this->wallet_id);
+            $wallet->current_sum = $wallet->current_sum + $this->amount;
+
+            $wallet->update();
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
+     * Возврат снятие денег "Откат", при удалении Дохода
+     */
+    public function beforeDelete() {
+        if (parent::beforeDelete()) {
+
+
+            $wallet = Wallet::findOne($this->wallet_id);
+            $wallet->current_sum = $wallet->current_sum - $this->amount;
+
+            $wallet->update();
+
+
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

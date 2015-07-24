@@ -49,7 +49,6 @@ class Expense extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'cost' => 'Сумма расхода',
-     
             'categoryexp_id' => 'Категория',
             'description' => 'Описание',
             'date_oper' => 'Дата операции',
@@ -61,8 +60,8 @@ class Expense extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUnit() {
-        return $this->hasOne(Unit::className(), ['id' => 'unit_id']);
+    public function getWallet() {
+        return $this->hasOne(Wallet::className(), ['id' => 'wallet_id']);
     }
 
     /**
@@ -94,21 +93,20 @@ class Expense extends \yii\db\ActiveRecord {
         return parent::beforeSave($insert);
     }
 
-    
-        /**
+    /**
      * Возврат денег "Откат", при удалении Расхода
      */
     public function beforeDelete() {
         if (parent::beforeDelete()) {
-            
-            
+
+
             $wallet = Wallet::findOne($this->wallet_id);
             $wallet->current_sum = $wallet->current_sum + $this->cost;
 
             $wallet->update();
-            
-            
-            
+
+
+
             return true;
         } else {
             return false;
