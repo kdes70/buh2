@@ -6,6 +6,7 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Wallet;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Expense */
@@ -41,7 +42,7 @@ use app\models\Wallet;
         ],
         'addon' => [
             'append' => [
-                'content' => Html::button('Переместить', ['class' => 'btn btn-default', 'id' => 'add-move',]),
+                'content' => Html::button('Переместить', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1"]),
                 'asButton' => true,
             ]
         ]
@@ -61,7 +62,7 @@ use app\models\Wallet;
         ],
         'addon' => [
             'append' => [
-                'content' => Html::button('Добавить', ['class' => 'btn btn-default', 'id' => 'add-categoryexp']),
+                'content' => Html::button('Добавить', ['class' => 'btn btn-default', 'id' => 'add-categoryexp', 'data-toggle' => "modal", 'data-target' => "#win2"]),
                 'asButton' => true
             ]
         ]
@@ -78,7 +79,31 @@ use app\models\Wallet;
 
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= $model->isNewRecord ? Html::Button('Создать и продолжить...', ['class' => 'btn btn-success']) : null ?>
-        <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default']) ?>
+        <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default',]) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
+
+
+
+<?php
+Modal::begin([
+    'header' => '<h4>Перемещение средств</h4>',
+    'id' => 'win1'
+        //'toggleButton' => ['label' => 'click me'],
+]);
+
+echo 'Окно 1';
+
+Modal::end();
+
+Modal::begin([
+    'header' => '<h4>Добавить категорию</h4>',
+    'id' => 'win2'
+        //'toggleButton' => ['label' => 'click me'],
+]);
+
+echo 'Окно 2';
+
+Modal::end();
+?>
