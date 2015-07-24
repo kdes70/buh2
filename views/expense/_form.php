@@ -37,7 +37,7 @@ use yii\bootstrap\Modal;
         //'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
         'data' => ArrayHelper::map(Wallet::getAllAndCurrentSum(Yii::$app->user->identity->id), 'id', 'name'),
         'language' => 'ru',
-        'disabled' => $model->isNewRecord ? false:true,
+        'disabled' => $model->isNewRecord ? false : true,
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],
         'pluginOptions' => [
@@ -45,15 +45,16 @@ use yii\bootstrap\Modal;
         ],
         'addon' => [
             'append' => [
-                'content' => Html::button('<span class="glyphicon glyphicon-refresh"></span>', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1"]),
+                'content' => Html::button('<span class="glyphicon glyphicon-refresh"></span>', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1", 'disabled' => $model->isNewRecord ? false : true]),
                 'asButton' => true,
             ]
         ]
     ])
     ?>
 
-    <?= $form->field($model, 'cost')->textInput(['maxlength' => 10,
-        'disabled' => $model->isNewRecord ? false:true,])
+    <?=
+    $form->field($model, 'cost')->textInput(['maxlength' => 10,
+        'disabled' => $model->isNewRecord ? false : true,])
     ?>
 
     <?=
@@ -75,7 +76,7 @@ use yii\bootstrap\Modal;
     ?>
 
 
-<?= $form->field($model, 'description')->textInput(['maxlength' => 200]) ?>        
+    <?= $form->field($model, 'description')->textInput(['maxlength' => 200]) ?>        
 
 
 
@@ -84,9 +85,9 @@ use yii\bootstrap\Modal;
 
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= $model->isNewRecord ? Html::Button('Создать и продолжить...', ['class' => 'btn btn-success']) : null ?>
-    <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default',]) ?>
+        <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default',]) ?>
     </div>
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 </div>
 
 

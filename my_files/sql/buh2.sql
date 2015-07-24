@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 24 2015 г., 15:18
+-- Время создания: Июл 24 2015 г., 15:38
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -424,9 +424,9 @@ ALTER TABLE `db1_expense`
 -- Ограничения внешнего ключа таблицы `db1_income`
 --
 ALTER TABLE `db1_income`
-  ADD CONSTRAINT `db1_income_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`),
   ADD CONSTRAINT `db1_income_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
-  ADD CONSTRAINT `db1_income_ibfk_2` FOREIGN KEY (`categoryinc_id`) REFERENCES `db1_categoryinc` (`id`);
+  ADD CONSTRAINT `db1_income_ibfk_2` FOREIGN KEY (`categoryinc_id`) REFERENCES `db1_categoryinc` (`id`),
+  ADD CONSTRAINT `db1_income_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_move`
