@@ -36,6 +36,7 @@ class Expense extends \yii\db\ActiveRecord {
             [['cost', 'categoryexp_id', 'date_oper', 'user_id', 'wallet_id'], 'required'],
             [['cost', 'amount'], 'number'],
             [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
+            [['cost'], 'checkSumInWallet'],
             [['date_oper'], 'safe'],
             [['name'], 'string', 'max' => 50],
             [['description'], 'string', 'max' => 200]
@@ -93,6 +94,22 @@ class Expense extends \yii\db\ActiveRecord {
         }
 
         return parent::beforeSave($insert);
+    }
+
+    //Валидаторы
+
+    /**
+     * Проверка достаточности суммы в кошельке, для операции
+     */
+    public function checkSumInWallet($attribute, $params) {
+
+        $wallet = Wallet::findOne($this->wallet_id);
+        $sum_in_wallet = $wallet->current_sum;
+
+        if ($wallet->current_sum < $this->cost) {
+
+            $this->addError($attribute, 'В кошельке (на счете), не достаточно средств для совершения операции');
+        }
     }
 
 }

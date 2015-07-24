@@ -39,6 +39,12 @@ use app\models\Wallet;
         'pluginOptions' => [
             'allowClear' => true,
         ],
+        'addon' => [
+            'append' => [
+                'content' => Html::button('Переместить', ['class' => 'btn btn-default', 'id' => 'add-move',]),
+                'asButton' => true,
+            ]
+        ]
     ])
     ?>
 
@@ -53,6 +59,12 @@ use app\models\Wallet;
         'pluginOptions' => [
             'allowClear' => true,
         ],
+        'addon' => [
+            'append' => [
+                'content' => Html::button('Добавить', ['class' => 'btn btn-default', 'id' => 'add-categoryexp']),
+                'asButton' => true
+            ]
+        ]
     ])
     ?>
 
