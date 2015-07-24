@@ -42,7 +42,7 @@ use yii\bootstrap\Modal;
         ],
         'addon' => [
             'append' => [
-                'content' => Html::button('Переместить', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1"]),
+                'content' => Html::button('<span class="glyphicon glyphicon-refresh"></span>', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1"]),
                 'asButton' => true,
             ]
         ]
@@ -62,7 +62,7 @@ use yii\bootstrap\Modal;
         ],
         'addon' => [
             'append' => [
-                'content' => Html::button('Добавить', ['class' => 'btn btn-default', 'id' => 'add-categoryexp', 'data-toggle' => "modal", 'data-target' => "#win2"]),
+                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'add-categoryexp', 'data-toggle' => "modal", 'data-target' => "#win2"]),
                 'asButton' => true
             ]
         ]
