@@ -1,14 +1,11 @@
 <?php
-
-use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = 'Изменение: ' . ' ' . $model->id;
+$this->title = 'Изменение: ' . ' ' . $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Изменение';
+$this->params['breadcrumbs'][] = ['label' => 'Изменение: ' . $model->username];
+
 
 $this->params['menuItems'] = [
     ['label' => 'Назад', 'url' => ['/user']],
@@ -18,10 +15,10 @@ $this->params['menuItems'] = [
 
 
 
-    <?=
-    $this->render('_form', [
-        'model' => $model,
-    ])
-    ?>
+<?=
+$this->render('_form', [
+    'model' => $model,
+])
+?>
 
 </div>
