@@ -14,12 +14,15 @@ use app\models\Wallet;
 
  * @property integer $unit_id
  * @property integer $categoryexp_id
+ * @property string $categoryexp_add
 
  * @property string $date_oper
  * @property integer $user_id
  * @property integer $operwallet_id
  */
 class Expense extends \yii\db\ActiveRecord {
+
+    public $categoryexp_add;
 
     /**
      * @inheritdoc
@@ -37,6 +40,7 @@ class Expense extends \yii\db\ActiveRecord {
             [['cost'], 'number'],
             [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['cost'], 'checkSumInWallet'],
+            [['categoryexp_add'], 'checkCategoryexp'],
             [['date_oper'], 'safe'],
             [['description'], 'string', 'max' => 200]
         ];
@@ -50,6 +54,7 @@ class Expense extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'cost' => 'Сумма расхода',
             'categoryexp_id' => 'Категория',
+            'categoryexp_add' => 'Добавить категорию',
             'description' => 'Описание',
             'date_oper' => 'Дата операции',
             'user_id' => 'Пользователь',
@@ -82,6 +87,21 @@ class Expense extends \yii\db\ActiveRecord {
      * Минусуем сумму расхода из кошелька
      */
     public function beforeSave($insert) {
+
+
+
+        //if(trim($this->categoryexp_add) !== ''){
+        // }
+
+
+
+
+
+
+
+
+
+
         if ($this->isNewRecord) {
 
             $wallet = Wallet::findOne($this->wallet_id);
@@ -126,6 +146,17 @@ class Expense extends \yii\db\ActiveRecord {
         if ($wallet->current_sum < $this->cost) {
 
             $this->addError($attribute, 'В кошельке (на счете), не достаточно средств для совершения операции');
+        }
+    }
+
+    /**
+     * Проверка категории расходов, при добавлении на уникальность
+     */
+    public function checkCategoryexp($attribute, $params) {
+
+        if (Categoryexp::findOne(['name' => $this->categoryexp_add])) {
+
+            $this->addError($attribute, 'Нарушение уникальности категории расходов');
         }
     }
 

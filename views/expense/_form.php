@@ -68,12 +68,21 @@ use yii\bootstrap\Modal;
         ],
         'addon' => [
             'append' => [
-                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'add-categoryexp', 'data-toggle' => "modal", 'data-target' => "#win2"]),
+                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'categoryexp-add-button', 'data-toggle' => "modal", 'data-target' => "#win2"]),
                 'asButton' => true
             ]
         ]
     ])
     ?>
+
+
+    <div id="categoryexp-add" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
+        <?= $form->field($model, 'categoryexp_add')->textInput(['maxlength' => 20,]) ?>
+    </div>
+
+
+
+
 
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => 200]) ?>        
@@ -98,18 +107,16 @@ Modal::begin([
     'id' => 'win1'
         //'toggleButton' => ['label' => 'click me'],
 ]);
-
 echo 'Окно 1';
-
 Modal::end();
 
-Modal::begin([
-    'header' => '<h4>Добавить категорию</h4>',
-    'id' => 'win2'
-        //'toggleButton' => ['label' => 'click me'],
-]);
 
-echo 'Окно 2';
+$script = <<<JS
+$('#categoryexp-add-button').click(function () {
+    $('#categoryexp-add').toggle('slow');
+    return false;
+});
 
-Modal::end();
+JS;
+$this->registerJs($script);
 ?>
