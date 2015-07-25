@@ -31,8 +31,8 @@ $this->params['menuItems'] = [
             //'id',
             'date_oper',
             'wallet_from',
-            'wallet_to',
             'move_sum',
+            'wallet_to',
             [
                 'attribute' => 'user_id',
                 'value' => 'user.username'
@@ -45,7 +45,7 @@ $this->params['menuItems'] = [
                         return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить']);
                     },
                             'delete' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-trash"/>', ['delete', 'id' => $key], ['title' => 'Удалить', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?']);
+                        return Html::a('<span class="glyphicon glyphicon-arrow-left"/>', ['delete', 'id' => $key], ['title' => 'Откатить операцию', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите откатить операцию?']);
                     },
                         ],
                         'template' => '{update}  {delete}'

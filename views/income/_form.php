@@ -53,10 +53,12 @@ use app\models\Wallet;
     ])
     ?>
 
+    <?= $model->isNewRecord ? $form->field($model, 'continue')->checkbox() : null ?>
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= $model->isNewRecord ? Html::Button('Создать и продолжить...', ['class' => 'btn btn-success']) : null ?>
+        
         <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default']) ?>
     </div>
     <?php ActiveForm::end(); ?>

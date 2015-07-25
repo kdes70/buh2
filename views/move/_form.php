@@ -31,10 +31,13 @@ use dosamigos\datepicker\DatePicker;
     ]);
     ?>
 
+
     <?=
     $form->field($model, 'wallet_from')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
+        //'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
+        'data' => ArrayHelper::map(Wallet::getAllAndCurrentSum(Yii::$app->user->identity->id), 'id', 'name'),
         'language' => 'ru',
+        'disabled' => $model->isNewRecord ? false : true,
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],
         'pluginOptions' => [
@@ -44,11 +47,13 @@ use dosamigos\datepicker\DatePicker;
     ?>
 
 
+    <?= $form->field($model, 'move_sum')->textInput(['maxlength' => true, 'disabled' => $model->isNewRecord ? false : true,]) ?>
 
     <?=
     $form->field($model, 'wallet_to')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(Wallet::getAllAndUserName(), 'id', 'name'),
         'language' => 'ru',
+        'disabled' => $model->isNewRecord ? false : true,
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],
         'pluginOptions' => [
@@ -56,14 +61,8 @@ use dosamigos\datepicker\DatePicker;
         ],
     ])
     ?>
+    <?= $form->field($model, 'description')->textInput(['maxlength' => 200]) ?> 
 
-
-
-    <?= $form->field($model, 'move_sum')->textInput(['maxlength' => true]) ?>
-
-
-
-   
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

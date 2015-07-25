@@ -6,6 +6,7 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Wallet;
+
 //use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
@@ -104,13 +105,10 @@ use app\models\Wallet;
 
 $script = <<<JS
 $('#categoryexp-add-button').click(function () {
-        
-   $('#categoryexp-add').toggle('slow');
-   $('#expense-categoryexp_add').val(null); 
-   
-   $('#expense-categoryexp_add').focus();
-        
-   return false;
+    $('#categoryexp-add').toggle('slow');
+    $('#expense-categoryexp_add').val(null);
+    $('#expense-categoryexp_add').focus();
+    return false;
 });
 JS;
 

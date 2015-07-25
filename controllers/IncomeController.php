@@ -51,10 +51,17 @@ class IncomeController extends Controller {
         $model->user_id = Yii::$app->user->identity->id;
         $model->date_oper = date('Y-m-d');
 
-
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+
+            if ($_POST['Income']['continue'] == 1) {
+                $model = new Income();
+                $model->continue = 1;
+                $model->date_oper = date('Y-m-d');
+                $model->user_id = Yii::$app->user->identity->id;
+                return $this->render('create', ['model' => $model,]);
+            } else {
+                return $this->redirect(['index']);
+            }
         } else {
             return $this->render('create', [
                         'model' => $model,

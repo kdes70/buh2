@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Move;
-use app\modelsMoveSearch;
+use app\models\MoveSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -31,7 +31,7 @@ class MoveController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new modelsMoveSearch();
+        $searchModel = new MoveSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

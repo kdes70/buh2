@@ -48,13 +48,18 @@ class ExpenseController extends Controller {
      */
     public function actionCreate() {
         $model = new Expense();
-
         $model->date_oper = date('Y-m-d');
-
         $model->user_id = Yii::$app->user->identity->id;
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            if ($_POST['Expense']['continue'] == 1) {
+                $model = new Expense();
+                $model->continue = 1;
+                $model->date_oper = date('Y-m-d');
+                $model->user_id = Yii::$app->user->identity->id;
+                return $this->render('create', ['model' => $model,]);
+            } else {
+                return $this->redirect(['index']);
+            }
         } else {
             return $this->render('create', [
                         'model' => $model,

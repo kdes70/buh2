@@ -66,7 +66,7 @@ class Wallet extends \yii\db\ActiveRecord {
     public static function getAllAndUserName() {
 
         $sql = 'SELECT
-            wa.id as id, concat(us.username, "-", wa.name) as name
+            wa.id as id, concat(wa.name, " (", us.username, ")") as name
             FROM db1_wallet wa, db1_user us
             where wa.user_id = us.id
             and wa.state = 0

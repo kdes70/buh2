@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%income}}".
  *
@@ -12,13 +10,15 @@ use Yii;
  * @property integer $categoryinc_id
  * @property string $date_oper
  * @property integer $user_id
- *
+
+ * @property integer $continue
  * @property User $user
  * @property Categoryinc $categoryinc
  */
 class Income extends \yii\db\ActiveRecord {
 
-    
+    public $continue = 0;
+
     /**
      * @inheritdoc
      */
@@ -49,6 +49,7 @@ class Income extends \yii\db\ActiveRecord {
             'wallet_id' => 'Кошелек (счет)',
             'date_oper' => 'Дата операции',
             'user_id' => 'Пользователь',
+            'continue' => 'Продолжать ввод...'
         ];
     }
 

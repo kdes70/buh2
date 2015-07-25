@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use app\models\Wallet;
 use app\models\Categoryexp;
 
@@ -12,10 +11,11 @@ use app\models\Categoryexp;
  * @property integer $id
  * @property string $cost
 
- * @property integer $unit_id
+
  * @property integer $categoryexp_id
  * @property string $categoryexp_add
- * @property integer $continue Description
+ * @property string $description
+ * @property integer $continue
 
  * @property string $date_oper
  * @property integer $user_id
@@ -92,15 +92,14 @@ class Expense extends \yii\db\ActiveRecord {
     public function beforeSave($insert) {
 
 
-
+        //Обработка создания новой категории
         if ($this->categoryexp_add) {
-
             $categoryexp = new Categoryexp();
             $categoryexp->parent_id = $this->categoryexp_id ? $this->categoryexp_id : 0;
             $categoryexp->name = $this->categoryexp_add;
             $categoryexp->save();
         }
-
+        //Обработка создания новой категории (конец)
 
         if ($this->isNewRecord) {
 
@@ -118,15 +117,9 @@ class Expense extends \yii\db\ActiveRecord {
      */
     public function beforeDelete() {
         if (parent::beforeDelete()) {
-
-
             $wallet = Wallet::findOne($this->wallet_id);
             $wallet->current_sum = $wallet->current_sum + $this->cost;
-
             $wallet->update();
-
-
-
             return true;
         } else {
             return false;
@@ -141,7 +134,6 @@ class Expense extends \yii\db\ActiveRecord {
     public function checkSumInWallet($attribute, $params) {
 
         $wallet = Wallet::findOne($this->wallet_id);
-        $sum_in_wallet = $wallet->current_sum;
 
         if ($wallet->current_sum < $this->cost) {
 
