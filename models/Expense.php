@@ -3,8 +3,8 @@
 namespace app\models;
 
 use Yii;
-use app\models\Unit;
 use app\models\Wallet;
+use app\models\Categoryexp;
 
 /**
  * This is the model class for table "db1_expense".
@@ -15,6 +15,7 @@ use app\models\Wallet;
  * @property integer $unit_id
  * @property integer $categoryexp_id
  * @property string $categoryexp_add
+ * @property integer $continue Description
 
  * @property string $date_oper
  * @property integer $user_id
@@ -23,6 +24,7 @@ use app\models\Wallet;
 class Expense extends \yii\db\ActiveRecord {
 
     public $categoryexp_add;
+    public $continue = 0;
 
     /**
      * @inheritdoc
@@ -54,11 +56,12 @@ class Expense extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'cost' => 'Сумма расхода',
             'categoryexp_id' => 'Категория',
-            'categoryexp_add' => 'Добавить категорию',
+            'categoryexp_add' => 'Новая подкатегория',
             'description' => 'Описание',
             'date_oper' => 'Дата операции',
             'user_id' => 'Пользователь',
             'wallet_id' => 'Кошелек (счет)',
+            'continue' => 'Продолжать ввод...'
         ];
     }
 
@@ -90,16 +93,13 @@ class Expense extends \yii\db\ActiveRecord {
 
 
 
-        //if(trim($this->categoryexp_add) !== ''){
-        // }
+        if ($this->categoryexp_add) {
 
-
-
-
-
-
-
-
+            $categoryexp = new Categoryexp();
+            $categoryexp->parent_id = $this->categoryexp_id ? $this->categoryexp_id : 0;
+            $categoryexp->name = $this->categoryexp_add;
+            $categoryexp->save();
+        }
 
 
         if ($this->isNewRecord) {

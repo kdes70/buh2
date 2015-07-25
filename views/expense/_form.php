@@ -6,7 +6,7 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Wallet;
-use yii\bootstrap\Modal;
+//use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Expense */
@@ -15,6 +15,7 @@ use yii\bootstrap\Modal;
 
 <div class="expense-form">
     <?php $form = ActiveForm::begin(); ?>
+
     <?=
     $form->field($model, 'date_oper')->widget(
             DatePicker::className(), [
@@ -30,8 +31,6 @@ use yii\bootstrap\Modal;
     ]);
     ?>  
 
-
-
     <?=
     $form->field($model, 'wallet_id')->widget(Select2::classname(), [
         //'data' => ArrayHelper::map(Wallet::find()->where(['state' => Wallet::STATE_ACTIVE, 'user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
@@ -43,12 +42,13 @@ use yii\bootstrap\Modal;
         'pluginOptions' => [
             'allowClear' => true,
         ],
-        'addon' => [
-            'append' => [
-                'content' => Html::button('<span class="glyphicon glyphicon-refresh"></span>', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1", 'disabled' => $model->isNewRecord ? false : true]),
-                'asButton' => true,
-            ]
-        ]
+            // Модальное окно для перемещения средств. Пока не нужно...
+//        'addon' => [
+//            'append' => [
+//                'content' => Html::button('<span class="glyphicon glyphicon-refresh"></span>', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1", 'disabled' => $model->isNewRecord ? false : true]),
+//                'asButton' => true,
+//            ]
+//        ]
     ])
     ?>
 
@@ -75,25 +75,15 @@ use yii\bootstrap\Modal;
     ])
     ?>
 
-
     <div id="categoryexp-add" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
         <?= $form->field($model, 'categoryexp_add')->textInput(['maxlength' => 20,]) ?>
     </div>
 
-
-
-
-
-
     <?= $form->field($model, 'description')->textInput(['maxlength' => 200]) ?>        
-
-
-
-
+    <?= $model->isNewRecord ? $form->field($model, 'continue')->checkbox() : null ?>
     <div class="form-group">
-
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= $model->isNewRecord ? Html::Button('Создать и продолжить...', ['class' => 'btn btn-success']) : null ?>
+
         <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default',]) ?>
     </div>
     <?php ActiveForm::end(); ?>
@@ -102,21 +92,27 @@ use yii\bootstrap\Modal;
 
 
 <?php
-Modal::begin([
-    'header' => '<h4>Перемещение средств</h4>',
-    'id' => 'win1'
-        //'toggleButton' => ['label' => 'click me'],
-]);
-echo 'Окно 1';
-Modal::end();
+// Модальное окно для перемещения средств. Пока не нужно...
+//Modal::begin([
+//    'header' => '<h4>Перемещение средств</h4>',
+//    'id' => 'win1'
+//        //'toggleButton' => ['label' => 'click me'],
+//]);
+//echo 'Окно 1';
+//Modal::end();
 
 
 $script = <<<JS
 $('#categoryexp-add-button').click(function () {
-    $('#categoryexp-add').toggle('slow');
-    return false;
+        
+   $('#categoryexp-add').toggle('slow');
+   $('#expense-categoryexp_add').val(null); 
+   
+   $('#expense-categoryexp_add').focus();
+        
+   return false;
 });
-
 JS;
+
 $this->registerJs($script);
 ?>

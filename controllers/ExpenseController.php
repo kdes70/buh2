@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
  * ExpenseController implements the CRUD actions for Expense model.
  */
 class ExpenseController extends Controller {
+
     public $layout = 'column2.php';
 
     public function behaviors() {
@@ -40,7 +41,6 @@ class ExpenseController extends Controller {
         ]);
     }
 
-
     /**
      * Creates a new Expense model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -48,10 +48,11 @@ class ExpenseController extends Controller {
      */
     public function actionCreate() {
         $model = new Expense();
+
         $model->date_oper = date('Y-m-d');
 
         $model->user_id = Yii::$app->user->identity->id;
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
