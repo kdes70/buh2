@@ -94,10 +94,16 @@ class Expense extends \yii\db\ActiveRecord {
 
         //Обработка создания новой категории
         if ($this->categoryexp_add) {
+            
+            //Добавляем новую категорию
             $categoryexp = new Categoryexp();
             $categoryexp->parent_id = $this->categoryexp_id ? $this->categoryexp_id : 0;
             $categoryexp->name = $this->categoryexp_add;
             $categoryexp->save();
+            
+            //Присваиваем расходу ID новой категории
+            $this->categoryexp_id = $categoryexp->id;
+            
         }
         //Обработка создания новой категории (конец)
 
