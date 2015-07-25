@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 25 2015 г., 19:29
+-- Время создания: Июл 25 2015 г., 19:39
 -- Версия сервера: 5.5.44-0ubuntu0.14.04.1
 -- Версия PHP: 5.5.9-1ubuntu4.11
 
@@ -148,8 +148,8 @@ CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
   `wallet_default` int(11) NOT NULL COMMENT 'Кошелек по умолчанию',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`,`user_id`),
-  KEY `wallet_default` (`wallet_default`),
-  KEY `user_id` (`user_id`)
+  KEY `user_id` (`user_id`),
+  KEY `wallet_default` (`wallet_default`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
 
 --
@@ -415,6 +415,12 @@ ALTER TABLE `db1_auth_item_child`
 --
 ALTER TABLE `db1_categoryexp`
   ADD CONSTRAINT `db1_categoryexp_ibfk_2` FOREIGN KEY (`parent_id`) REFERENCES `db1_categoryexp` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `db1_categoryinc`
+--
+ALTER TABLE `db1_categoryinc`
+  ADD CONSTRAINT `db1_categoryinc_ibfk_1` FOREIGN KEY (`wallet_default`) REFERENCES `db1_wallet` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_expense`
