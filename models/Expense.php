@@ -38,10 +38,13 @@ class Expense extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cost', 'categoryexp_id', 'date_oper', 'user_id', 'wallet_id'], 'required'],
+            [['cost', 'date_oper', 'user_id', 'wallet_id'], 'required'],
             [['cost'], 'number'],
             [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['cost'], 'checkSumInWallet'],
+            [['categoryexp_id'], 'required', 'when' => function($model) {
+            return $model->categoryexp_add == NULL;
+        }, 'message' => 'Необходимо заполнить «Категория» или создать новую.'],
             [['categoryexp_add'], 'checkCategoryexp'],
             [['date_oper'], 'safe'],
             [['description'], 'string', 'max' => 200]
@@ -56,7 +59,7 @@ class Expense extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'cost' => 'Сумма расхода',
             'categoryexp_id' => 'Категория',
-            'categoryexp_add' => 'Новая подкатегория',
+            'categoryexp_add' => 'Новая категория',
             'description' => 'Описание',
             'date_oper' => 'Дата операции',
             'user_id' => 'Пользователь',
@@ -94,16 +97,15 @@ class Expense extends \yii\db\ActiveRecord {
 
         //Обработка создания новой категории
         if ($this->categoryexp_add) {
-            
+
             //Добавляем новую категорию
             $categoryexp = new Categoryexp();
             $categoryexp->parent_id = $this->categoryexp_id ? $this->categoryexp_id : 0;
             $categoryexp->name = $this->categoryexp_add;
             $categoryexp->save();
-            
+
             //Присваиваем расходу ID новой категории
             $this->categoryexp_id = $categoryexp->id;
-            
         }
         //Обработка создания новой категории (конец)
 
@@ -154,7 +156,12 @@ class Expense extends \yii\db\ActiveRecord {
 
         if (Categoryexp::findOne(['name' => $this->categoryexp_add])) {
 
-            $this->addError($attribute, 'Нарушение уникальности категории расходов');
+            if (trim($this->categoryexp_add) == '') {
+
+                $this->addError($attribute, 'Необходимо заполнить «Новая категория».');
+            }
+
+            $this->addError($attribute, 'Нарушение уникальности категории расходов.');
         }
     }
 

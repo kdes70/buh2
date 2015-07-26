@@ -15,7 +15,12 @@ use app\models\Wallet;
 ?>
 
 <div class="expense-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+    $form = ActiveForm::begin([
+                'enableClientValidation' => FALSE,
+                'enableAjaxValidation' => TRUE,
+    ]);
+    ?>
 
     <?=
     $form->field($model, 'date_oper')->widget(
