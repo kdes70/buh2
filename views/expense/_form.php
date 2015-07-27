@@ -14,6 +14,22 @@ use app\models\Wallet;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+
+
+
+
+<?php if (Yii::$app->session->getFlash('created')): ?>
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <?= Yii::$app->session->getFlash('created') ?>
+    </div>
+<?php endif; ?>
+
+
+
+
 <div class="expense-form">
     <?php
     $form = ActiveForm::begin([
