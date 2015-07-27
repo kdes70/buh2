@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use kartik\widgets\Growl;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExpenseSearch */
@@ -16,6 +17,32 @@ $this->params['menuItems'] = [
     ['label' => 'Создать', 'url' => ['create']],
 ];
 ?>
+
+
+<?php if (Yii::$app->session->getFlash('save-as-template-ok')): ?>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_SUCCESS,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => 'Расходы',
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('save-as-template-ok')
+    ]);
+    ?>
+<?php endif; ?>
+
+
+<?php if (Yii::$app->session->getFlash('save-as-template-error')): ?>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_DANGER,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => 'Расходы',
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('save-as-template-error')
+    ]);
+    ?>
+<?php endif; ?>
 
 
 
@@ -67,8 +94,11 @@ $this->params['menuItems'] = [
                             'delete' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-arrow-left"/>', ['delete', 'id' => $key], ['title' => 'Откатить операцию', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите откатить операцию?']);
                     },
+                            'save_as_template' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-save"/>', ['save-as-template', 'id' => $key], ['title' => 'Создать шаблон операции', 'data-method' => 'post', 'data-confirm' => 'Создать на основе данной записи шаблон операции?']);
+                    },
                         ],
-                        'template' => '{update}  {delete}'
+                        'template' => '{save_as_template} {update} {delete}'
                     ],
                 ],
             ]);

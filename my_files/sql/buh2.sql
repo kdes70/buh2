@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Июл 27 2015 г., 13:53
--- Версия сервера: 5.5.44-0ubuntu0.14.04.1
--- Версия PHP: 5.5.9-1ubuntu4.11
+-- Хост: 127.0.0.1
+-- Время создания: Июл 27 2015 г., 14:32
+-- Версия сервера: 5.5.36
+-- Версия PHP: 5.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -184,17 +184,17 @@ CREATE TABLE IF NOT EXISTS `db1_exchange` (
 --
 
 INSERT INTO `db1_exchange` (`id`, `start_date`, `currency_code`, `number_units`, `official_exchange`) VALUES
-(3, '2015-07-17', 'USD', 100, 2198.668700),
-(4, '2015-07-17', 'EUR', 100, 2389.293300),
-(6, '2015-07-17', 'RUB', 10, 3.860700),
-(7, '2015-07-18', 'USD', 100, 2201.492400),
-(8, '2015-07-20', 'RUB', 10, 3.876600),
-(9, '2015-07-20', 'USD', 100, 2203.213400),
-(10, '2015-07-20', 'EUR', 100, 2390.927200),
-(14, '2015-07-21', 'USD', 100, 2203.213400),
-(16, '2015-07-21', 'RUB', 10, 3.876600),
-(17, '2015-07-21', 'EUR', 100, 2390.927200),
-(18, '2015-07-25', 'USD', 100, 2207.352000);
+(3, '2015-07-17', 'USD', 100, '2198.668700'),
+(4, '2015-07-17', 'EUR', 100, '2389.293300'),
+(6, '2015-07-17', 'RUB', 10, '3.860700'),
+(7, '2015-07-18', 'USD', 100, '2201.492400'),
+(8, '2015-07-20', 'RUB', 10, '3.876600'),
+(9, '2015-07-20', 'USD', 100, '2203.213400'),
+(10, '2015-07-20', 'EUR', 100, '2390.927200'),
+(14, '2015-07-21', 'USD', 100, '2203.213400'),
+(16, '2015-07-21', 'RUB', 10, '3.876600'),
+(17, '2015-07-21', 'EUR', 100, '2390.927200'),
+(18, '2015-07-25', 'USD', 100, '2207.352000');
 
 -- --------------------------------------------------------
 
@@ -211,21 +211,49 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
   PRIMARY KEY (`id`),
-  KEY `category_id` (`categoryexp_id`),
   KEY `user_id` (`user_id`),
-  KEY `wallet_id` (`wallet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=46 ;
+  KEY `wallet_id` (`wallet_id`),
+  KEY `categoryexp_id` (`categoryexp_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=47 ;
 
 --
 -- Дамп данных таблицы `db1_expense`
 --
 
 INSERT INTO `db1_expense` (`id`, `cost`, `categoryexp_id`, `description`, `date_oper`, `user_id`, `wallet_id`) VALUES
-(39, 1.00, 92, NULL, '2015-07-22', 2, 2),
-(40, 3.00, 90, '3', '2015-07-23', 2, 2),
-(41, 33.00, 90, '', '2015-07-23', 2, 2),
-(44, 3.00, 91, '', '2015-07-24', 2, 3),
-(45, 10.00, 99, 'Хек', '2015-07-24', 2, 3);
+(39, '1.00', 92, NULL, '2015-07-22', 2, 2),
+(40, '3.00', 90, '3', '2015-07-23', 2, 2),
+(41, '33.00', 90, '', '2015-07-23', 2, 2),
+(44, '3.00', 91, '', '2015-07-24', 2, 3),
+(45, '10.00', 99, 'Хек', '2015-07-24', 2, 3),
+(46, '150.00', 89, '', '2015-07-27', 2, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_expensetemp`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cost` decimal(10,2) NOT NULL COMMENT 'Сумма расхода',
+  `categoryexp_id` int(11) NOT NULL COMMENT 'Категория расходов',
+  `description` varchar(200) DEFAULT NULL COMMENT 'Описание',
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_temp` (`cost`,`categoryexp_id`,`description`,`user_id`,`wallet_id`),
+  KEY `user_id` (`user_id`),
+  KEY `wallet_id` (`wallet_id`),
+  KEY `categoryexp_id` (`categoryexp_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=10 ;
+
+--
+-- Дамп данных таблицы `db1_expensetemp`
+--
+
+INSERT INTO `db1_expensetemp` (`id`, `cost`, `categoryexp_id`, `description`, `user_id`, `wallet_id`) VALUES
+(9, '150.00', 89, '', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -251,9 +279,9 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
 --
 
 INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`, `wallet_id`) VALUES
-(3, 100.00, 3, '2015-01-01', 3, 2),
-(6, 600.00, 12, '2015-07-24', 3, 5),
-(8, 1000.00, 6, '2015-07-24', 2, 2);
+(3, '100.00', 3, '2015-01-01', 3, 2),
+(6, '600.00', 12, '2015-07-24', 3, 5),
+(8, '1000.00', 6, '2015-07-24', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -301,8 +329,8 @@ CREATE TABLE IF NOT EXISTS `db1_move` (
 --
 
 INSERT INTO `db1_move` (`id`, `wallet_from`, `wallet_to`, `move_sum`, `date_oper`, `user_id`, `description`) VALUES
-(4, 1, 2, 22.00, '2015-07-25', 2, ''),
-(5, 1, 5, 100.00, '2015-07-25', 2, '');
+(4, 1, 2, '22.00', '2015-07-25', 2, ''),
+(5, 1, 5, '100.00', '2015-07-25', 2, '');
 
 -- --------------------------------------------------------
 
@@ -406,11 +434,11 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
 --
 
 INSERT INTO `db1_wallet` (`id`, `name`, `current_sum`, `state`, `user_id`) VALUES
-(1, 'Карточка FidoBank', 400.00, 0, 2),
-(2, 'Карточка Приват', 235.21, 0, 2),
-(3, 'Наличные', 47.00, 0, 2),
-(4, 'Карточка Приват', 100.00, 0, 3),
-(5, 'Наличные', 700.00, 0, 3);
+(1, 'Карточка FidoBank', '400.00', 0, 2),
+(2, 'Карточка Приват', '235.21', 0, 2),
+(3, 'Наличные', '137.67', 0, 2),
+(4, 'Карточка Приват', '100.00', 0, 3),
+(5, 'Наличные', '700.00', 0, 3);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -454,6 +482,14 @@ ALTER TABLE `db1_expense`
   ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_4` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `db1_expensetemp`
+--
+ALTER TABLE `db1_expensetemp`
+  ADD CONSTRAINT `db1_expensetemp_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`),
+  ADD CONSTRAINT `db1_expensetemp_ibfk_1` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
+  ADD CONSTRAINT `db1_expensetemp_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_income`

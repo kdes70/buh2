@@ -8,6 +8,7 @@ use app\models\ExpenseSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Expensetemp;
 
 /**
  * ExpenseController implements the CRUD actions for Expense model.
@@ -110,6 +111,36 @@ class ExpenseController extends Controller {
     public function actionDelete($id) {
         $this->findModel($id)->delete();
 
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Сохраняет запись об операции в виде шаблона
+     * @return mixed
+     */
+    public function actionSaveAsTemplate($id) {
+
+        $expense = Expense::findOne($id);
+
+
+
+        $expensetemp = new Expensetemp();
+        $expensetemp->categoryexp_id = $expense->categoryexp_id;
+        $expensetemp->cost = $expense->cost;
+        $expensetemp->description = $expense->description;
+        $expensetemp->user_id = $expense->user_id;
+        $expensetemp->wallet_id = $expense->wallet_id;
+
+
+
+
+
+
+        if ($expensetemp->save()) {
+            Yii::$app->getSession()->setFlash('save-as-template-ok', 'Шаблон операции успешно создан.');
+        } else {
+            Yii::$app->getSession()->setFlash('save-as-template-error', 'Сохранение не возможно, такой шаблон уже есть.');
+        }
         return $this->redirect(['index']);
     }
 
