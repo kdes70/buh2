@@ -122,13 +122,11 @@ class Move extends \yii\db\ActiveRecord {
      * Проверка достаточности суммы в кошельке, для операции
      */
     public function checkSumInWallet($attribute, $params) {
-
-        $wallet = Wallet::findOne($this->wallet_from);
-
-
-        if ($wallet->current_sum < $this->move_sum) {
-
-            $this->addError($attribute, 'В кошельке (на счете), не достаточно средств для совершения операции');
+        if ($this->isNewRecord) {
+            $wallet = Wallet::findOne($this->wallet_from);
+            if ($wallet->current_sum < $this->move_sum) {
+                $this->addError($attribute, 'В кошельке (на счете), не достаточно средств для совершения операции');
+            }
         }
     }
 

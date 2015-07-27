@@ -141,11 +141,13 @@ class Expense extends \yii\db\ActiveRecord {
      */
     public function checkSumInWallet($attribute, $params) {
 
-        $wallet = Wallet::findOne($this->wallet_id);
+        if ($this->isNewRecord) {
+            $wallet = Wallet::findOne($this->wallet_id);
 
-        if ($wallet->current_sum < $this->cost) {
+            if ($wallet->current_sum < $this->cost) {
 
-            $this->addError($attribute, 'В кошельке (на счете), не достаточно средств для совершения операции');
+                $this->addError($attribute, 'В кошельке (на счете), не достаточно средств для совершения операции');
+            }
         }
     }
 
