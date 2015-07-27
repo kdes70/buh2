@@ -58,6 +58,7 @@ class IncomeController extends Controller {
                 $model->continue = 1;
                 $model->date_oper = date('Y-m-d');
                 $model->user_id = Yii::$app->user->identity->id;
+                Yii::$app->getSession()->setFlash('created', 'Доход успешно создан...');
                 return $this->render('create', ['model' => $model,]);
             } else {
                 return $this->redirect(['index']);

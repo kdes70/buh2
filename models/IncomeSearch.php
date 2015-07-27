@@ -46,7 +46,7 @@ class IncomeSearch extends Income
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['date_oper'  => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['date_oper'  => SORT_DESC, 'id' => SORT_DESC]]
         ]);
 
         $this->load($params);

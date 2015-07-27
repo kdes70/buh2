@@ -50,26 +50,19 @@ class ExpenseController extends Controller {
         $model = new Expense();
         $model->date_oper = date('Y-m-d');
         $model->user_id = Yii::$app->user->identity->id;
-
-
         //Для Ajax валидации       
         if (Yii::$app->request->isAjax && $model->load($_POST)) {
             Yii::$app->response->format = 'json';
             return \yii\widgets\ActiveForm::validate($model);
         }
         //Для Ajax валидации (конец)
-
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($_POST['Expense']['continue'] == 1) {
                 $model = new Expense();
                 $model->continue = 1;
                 $model->date_oper = date('Y-m-d');
                 $model->user_id = Yii::$app->user->identity->id;
-                
                 Yii::$app->getSession()->setFlash('created', 'Расход успешно создан...');
-                
-                
                 return $this->render('create', ['model' => $model,]);
             } else {
                 return $this->redirect(['index']);

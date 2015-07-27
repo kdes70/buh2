@@ -43,7 +43,7 @@ class ExpenseSearch extends Expense {
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['date_oper' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['date_oper' => SORT_DESC, 'id' => SORT_DESC]]
         ]);
 
         if (!($this->load($params) && $this->validate())) {

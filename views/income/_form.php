@@ -6,11 +6,25 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Wallet;
+use kartik\widgets\Growl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Income */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+
+
+<?php if (Yii::$app->session->getFlash('created')): ?>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_SUCCESS,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => 'Доходы',
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('created')
+    ]);
+    ?>
+<?php endif; ?>
 
 <div class="income-form">
     <?php $form = ActiveForm::begin(); ?>
@@ -58,7 +72,7 @@ use app\models\Wallet;
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        
+
         <?= Html::Button('Сохоанить как шаблон', ['class' => 'btn btn-default']) ?>
     </div>
     <?php ActiveForm::end(); ?>
