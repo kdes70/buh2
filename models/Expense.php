@@ -93,30 +93,23 @@ class Expense extends \yii\db\ActiveRecord {
      * Минусуем сумму расхода из кошелька
      */
     public function beforeSave($insert) {
-
-
         //Обработка создания новой категории
         if ($this->categoryexp_add) {
-
             //Добавляем новую категорию
             $categoryexp = new Categoryexp();
             $categoryexp->parent_id = $this->categoryexp_id ? $this->categoryexp_id : 0;
             $categoryexp->name = $this->categoryexp_add;
             $categoryexp->save();
-
             //Присваиваем расходу ID новой категории
             $this->categoryexp_id = $categoryexp->id;
         }
         //Обработка создания новой категории (конец)
 
         if ($this->isNewRecord) {
-
             $wallet = Wallet::findOne($this->wallet_id);
             $wallet->current_sum = $wallet->current_sum - $this->cost;
-
             $wallet->update();
         }
-
         return parent::beforeSave($insert);
     }
 
@@ -143,9 +136,7 @@ class Expense extends \yii\db\ActiveRecord {
 
         if ($this->isNewRecord) {
             $wallet = Wallet::findOne($this->wallet_id);
-
             if ($wallet->current_sum < $this->cost) {
-
                 $this->addError($attribute, 'В кошельке (на счете), не достаточно средств для совершения операции');
             }
         }
@@ -155,14 +146,10 @@ class Expense extends \yii\db\ActiveRecord {
      * Проверка категории расходов, при добавлении на уникальность
      */
     public function checkCategoryexp($attribute, $params) {
-
         if (Categoryexp::findOne(['name' => $this->categoryexp_add])) {
-
             if (trim($this->categoryexp_add) == '') {
-
-                $this->addError($attribute, 'Необходимо заполнить «Новая категория».');
+                $this->addError($attribute, 'Значение «Новая категория» не может состоять из пробелов.');
             }
-
             $this->addError($attribute, 'Нарушение уникальности категории расходов.');
         }
     }
