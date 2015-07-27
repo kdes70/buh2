@@ -38,7 +38,7 @@ class Expensetemp extends \yii\db\ActiveRecord
             [['cost'], 'number'],
             [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['description'], 'string', 'max' => 200],
-            [['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id'], 'unique', 'targetAttribute' => ['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id'], 'message' => 'The combination of Сумма расхода, Категория расходов, Описание, Пользователь and Кошелек (счет) has already been taken.']
+            [['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id'], 'unique', 'targetAttribute' => ['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id'], 'message' => 'Шаблон такой операции уже существует.']
         ];
     }
 

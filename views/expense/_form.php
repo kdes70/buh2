@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Wallet;
 use kartik\widgets\Growl;
+use app\models\Categoryexp;
 
 //use yii\bootstrap\Modal;
 
@@ -79,7 +80,7 @@ use kartik\widgets\Growl;
 
     <?=
     $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(app\models\Categoryexp::getAllForSelect(), 'id', 'name'),
+        'data' => ArrayHelper::map(Categoryexp::getAllForSelect(), 'id', 'name'),
         'language' => 'ru',
         //'theme' => Select2::THEME_BOOTSTRAP,
         'options' => ['placeholder' => 'Выберите...'],

@@ -5,17 +5,22 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Expensetemp */
 
-$this->title = 'Update Expensetemp: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Expensetemps', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Шаблоны расходов: ID = ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Шаблоны расходов', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Изменение ID = ' . $model->id,];
+
+$this->params['menuItems'] = [
+    ['label' => 'Назад', 'url' => ['/expensetemp']],
+];
 ?>
+
+
 <div class="expensetemp-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ])
+    ?>
 
 </div>

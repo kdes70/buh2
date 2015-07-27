@@ -70,7 +70,7 @@ AppAsset::register($this);
                             '<li class="divider"></li>',
                             ['label' => 'Единицы измерения', 'url' => ['/unit']],
                             '<li class="divider"></li>',
-                            ['label' => 'Шаблоны доходов', 'url' => ['#']],
+                            //['label' => 'Шаблоны доходов', 'url' => ['#']],
                             ['label' => 'Шаблоны расходов', 'url' => ['/expensetemp']],
                         ],
                     ],

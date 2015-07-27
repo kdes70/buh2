@@ -139,7 +139,7 @@ class ExpenseController extends Controller {
         if ($expensetemp->save()) {
             Yii::$app->getSession()->setFlash('save-as-template-ok', 'Шаблон операции успешно создан.');
         } else {
-            Yii::$app->getSession()->setFlash('save-as-template-error', 'Сохранение не возможно, такой шаблон уже есть.');
+            Yii::$app->getSession()->setFlash('save-as-template-error', 'Шаблон такой операции уже существует.');
         }
         return $this->redirect(['index']);
     }

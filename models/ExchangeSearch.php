@@ -10,13 +10,12 @@ use app\models\Exchange;
 /**
  * ExchangeSearch represents the model behind the search form about `app\models\Exchange`.
  */
-class ExchangeSearch extends Exchange
-{
+class ExchangeSearch extends Exchange {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'number_units'], 'integer'],
             [['start_date', 'currency_code'], 'safe'],
@@ -27,8 +26,7 @@ class ExchangeSearch extends Exchange
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,12 +38,12 @@ class ExchangeSearch extends Exchange
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Exchange::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['start_date' => SORT_DESC, 'id' => SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -67,4 +65,5 @@ class ExchangeSearch extends Exchange
 
         return $dataProvider;
     }
+
 }
