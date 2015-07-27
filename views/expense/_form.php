@@ -6,6 +6,7 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Wallet;
+use kartik\widgets\Growl;
 
 //use yii\bootstrap\Modal;
 
@@ -14,20 +15,17 @@ use app\models\Wallet;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-
-
-
-
 <?php if (Yii::$app->session->getFlash('created')): ?>
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <?= Yii::$app->session->getFlash('created') ?>
-    </div>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_SUCCESS,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => 'Расходы',
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('created')
+    ]);
+    ?>
 <?php endif; ?>
-
-
 
 
 <div class="expense-form">

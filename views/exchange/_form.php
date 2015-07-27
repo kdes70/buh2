@@ -6,7 +6,6 @@ use kartik\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use timurmelnikov\widgets\ShowLoading;
 
-use kartik\widgets\Growl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Exchange */
