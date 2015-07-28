@@ -14,7 +14,6 @@ use app\models\Expensetemp;
             <div class="panel-body">
             </div>                     
         </div>
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Контроль расходов</div>
@@ -25,47 +24,45 @@ use app\models\Expensetemp;
     </div>
     <div class="col-md-6 col-lg-6">
 
-
+        <!-- Блок управления -->
+        <!-- Заголовок -->
         <table class="table table-striped custab">
             <thead>
                 <tr>
-                    <th colspan="1" width="100%">Раздел</th>
+                    <th colspan="1">Раздел</th>
                     <th colspan="2" class="text-center">Действие</th>
                 </tr>
             </thead>
+            <!-- Заголовок (конец) -->
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
                     <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
-
             </tr>
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
                     <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
-
             </tr>
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать']) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
                 <td class="text-right"> 
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="Создать из шаблона">
+                    <div class="btn-group" role="group" style = "width:100%">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="Создать из шаблона" style = "width:100%">
                             <span class="glyphicon glyphicon-edit"></span>
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-
                             <?php
                             foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
                                 echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
                             }
                             ?>
-
                         </ul>
                     </div>
                 </td>
@@ -114,8 +111,8 @@ use app\models\Expensetemp;
 
 <h3>Раздел "Главная страница":</h3>
 <ul>
-    <li>Кнопкам управления присвоить - 'style' => "width:100%"</li>
-    
+    <li>Кнопкам управления присвоить - 'style' => "width:100%". В принципе слелал. Но... Криво...</li>
+
 </ul>
 
 
