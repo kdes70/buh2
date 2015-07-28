@@ -24,6 +24,8 @@ use app\models\Expensetemp;
         </div>
     </div>
     <div class="col-md-6 col-lg-6">
+
+
         <table class="table table-striped custab">
             <thead>
                 <tr>
@@ -32,49 +34,27 @@ use app\models\Expensetemp;
                 </tr>
             </thead>
             <tr>
-                <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
-                <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary']) ?>         
+                <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
+                <td class="text-right" colspan="2">
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
-                <td class="text-right"> 
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-edit"></span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Dropdown link</a></li>
-                            <li><a href="#">Dropdown link</a></li>
-                        </ul>
-                    </div>
-                </td>
+
             </tr>
             <tr>
-                <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
-                <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary']) ?>         
+                <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
+                <td class="text-right" colspan="2">
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
-                <td class="text-right"> 
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-edit"></span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Dropdown link</a></li>
-                            <li><a href="#">Dropdown link</a></li>
-                        </ul>
-                    </div>
-                </td>
+
             </tr>
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary']) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать']) ?>         
                 </td>
                 <td class="text-right"> 
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="Создать из шаблона">
                             <span class="glyphicon glyphicon-edit"></span>
                             <span class="caret"></span>
                         </button>
@@ -91,22 +71,11 @@ use app\models\Expensetemp;
                 </td>
             </tr>
             <tr>
-                <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
-                <td class="text-right">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary']) ?>         
+                <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
+                <td class="text-right" colspan="2">
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
-                <td class="text-right"> 
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-edit"></span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Dropdown link</a></li>
-                            <li><a href="#">Dropdown link</a></li>
-                        </ul>
-                    </div>
-                </td>
+
             </tr>
         </table>
         <!-- Блок управления (конец) -->
