@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExpensetempSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +26,7 @@ $this->params['menuItems'] = [
         'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            // 'id',
+            'name',
             'cost',
             [
                 'attribute' => 'categoryexp_id',
@@ -56,4 +55,4 @@ $this->params['menuItems'] = [
             ]);
             ?>
             <?php Pjax::end(); ?>
-        </div>
+</div>

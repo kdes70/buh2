@@ -15,7 +15,7 @@ use app\models\Categoryexp;
 <div class="expensetemp-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?=
     $form->field($model, 'wallet_id')->widget(Select2::classname(), [

@@ -10,25 +10,23 @@ use app\models\Expensetemp;
 /**
  * ExpensetempSearch represents the model behind the search form about `app\models\Expensetemp`.
  */
-class ExpensetempSearch extends Expensetemp
-{
+class ExpensetempSearch extends Expensetemp {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['cost'], 'number'],
-            [['description'], 'safe'],
+            [['description', 'name'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,8 +38,7 @@ class ExpensetempSearch extends Expensetemp
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Expensetemp::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -65,7 +62,9 @@ class ExpensetempSearch extends Expensetemp
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
+
 }

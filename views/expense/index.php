@@ -121,7 +121,7 @@ $this->params['menuItems'] = [
             ]);
 
             echo Html::beginForm(
-                    'save-as-template', 'post', ['class' => 'form']);
+                    ['save-as-template', 'id' => 39], 'post', ['class' => 'form']);
             echo '<div class="form-group">';
             echo Html::textInput('rrr', 'rrr', ['class' => 'form-control']);
             echo '</div>';

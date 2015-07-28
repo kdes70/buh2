@@ -122,8 +122,6 @@ class ExpenseController extends Controller {
 
         $expense = Expense::findOne($id);
 
-
-
         $expensetemp = new Expensetemp();
         $expensetemp->categoryexp_id = $expense->categoryexp_id;
         $expensetemp->cost = $expense->cost;
@@ -131,10 +129,8 @@ class ExpenseController extends Controller {
         $expensetemp->user_id = $expense->user_id;
         $expensetemp->wallet_id = $expense->wallet_id;
 
-
-
-
-
+        $expensetemp->name = 'test';
+        
 
         if ($expensetemp->save()) {
             Yii::$app->getSession()->setFlash('save-as-template-ok', 'Шаблон операции успешно создан.');

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 27 2015 г., 16:32
+-- Время создания: Июл 28 2015 г., 08:52
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -247,23 +247,22 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   `description` varchar(200) DEFAULT NULL COMMENT 'Описание',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
+  `name` varchar(50) NOT NULL COMMENT 'Наименование',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`user_id`,`name`),
   UNIQUE KEY `unique_temp` (`cost`,`categoryexp_id`,`description`,`user_id`,`wallet_id`),
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=20 ;
 
 --
 -- Дамп данных таблицы `db1_expensetemp`
 --
 
-INSERT INTO `db1_expensetemp` (`id`, `cost`, `categoryexp_id`, `description`, `user_id`, `wallet_id`) VALUES
-(11, '5.00', 60, 'Мороженое', 2, 1),
-(13, '33.00', 90, '', 2, 2),
-(14, '40.00', 122, '', 2, 1),
-(9, '150.00', 89, '', 2, 3),
-(12, '350.00', 122, '23423423', 2, 1);
+INSERT INTO `db1_expensetemp` (`id`, `cost`, `categoryexp_id`, `description`, `user_id`, `wallet_id`, `name`) VALUES
+(18, '40.00', 122, '', 2, 1, 'test'),
+(19, '2343.00', 72, '2', 2, 1, 'test1');
 
 -- --------------------------------------------------------
 
@@ -498,9 +497,9 @@ ALTER TABLE `db1_expense`
 -- Ограничения внешнего ключа таблицы `db1_expensetemp`
 --
 ALTER TABLE `db1_expensetemp`
-  ADD CONSTRAINT `db1_expensetemp_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`),
   ADD CONSTRAINT `db1_expensetemp_ibfk_1` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
-  ADD CONSTRAINT `db1_expensetemp_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
+  ADD CONSTRAINT `db1_expensetemp_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
+  ADD CONSTRAINT `db1_expensetemp_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_income`

@@ -18,35 +18,34 @@ use Yii;
  * @property Categoryexp $categoryexp
  * @property User $user
  */
-class Expensetemp extends \yii\db\ActiveRecord
-{
+class Expensetemp extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'db1_expensetemp';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['cost', 'categoryexp_id', 'user_id', 'wallet_id'], 'required'],
+            [['cost', 'categoryexp_id', 'user_id', 'wallet_id', 'name'], 'required'],
             [['cost'], 'number'],
             [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['description'], 'string', 'max' => 200],
-            [['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id'], 'unique', 'targetAttribute' => ['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id'], 'message' => 'Шаблон такой операции уже существует.']
+            [['name'], 'string', 'max' => 50],
+            [['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id', ], 'unique', 'targetAttribute' => ['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id', ], 'message' => 'Шаблон такой операции уже существует.'],
+            [['user_id', 'name'], 'unique', 'targetAttribute' => ['user_id', 'name'], 'message' => 'Имя такого шаблона существует.']
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'cost' => 'Сумма расхода',
@@ -54,30 +53,29 @@ class Expensetemp extends \yii\db\ActiveRecord
             'description' => 'Описание',
             'user_id' => 'Пользователь',
             'wallet_id' => 'Кошелек (счет)',
+            'name' => 'Наименование',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getWallet()
-    {
+    public function getWallet() {
         return $this->hasOne(Wallet::className(), ['id' => 'wallet_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategoryexp()
-    {
+    public function getCategoryexp() {
         return $this->hasOne(Categoryexp::className(), ['id' => 'categoryexp_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
 }
