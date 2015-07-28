@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 28 2015 г., 09:47
+-- Время создания: Июл 28 2015 г., 10:45
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=54 ;
 
 --
 -- Дамп данных таблицы `db1_expense`
@@ -232,7 +232,11 @@ INSERT INTO `db1_expense` (`id`, `cost`, `categoryexp_id`, `description`, `date_
 (45, '10.00', 99, 'Хек', '2015-07-24', 2, 3),
 (46, '150.00', 89, '', '2015-07-27', 2, 3),
 (47, '350.00', 122, '23423423', '2015-07-27', 2, 1),
-(48, '40.00', 122, 'Ява', '2015-07-27', 2, 1);
+(48, '40.00', 122, 'Ява', '2015-07-27', 2, 1),
+(50, '10.00', 99, 'Хек', '2015-07-28', 2, 3),
+(51, '150.00', 89, '', '2015-07-28', 2, 2),
+(52, '3.00', 94, '', '2015-07-28', 2, 3),
+(53, '150.00', 89, '', '2015-07-28', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -254,17 +258,15 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=42 ;
 
 --
 -- Дамп данных таблицы `db1_expensetemp`
 --
 
 INSERT INTO `db1_expensetemp` (`id`, `cost`, `categoryexp_id`, `description`, `user_id`, `wallet_id`, `name`) VALUES
-(37, '1.00', 92, NULL, 2, 2, 'Мыло'),
-(38, '3.00', 90, '3', 2, 2, 'Зубная паста'),
-(39, '3.00', 91, '', 2, 3, 'Шампунь'),
-(40, '10.00', 99, 'Хек', 2, 3, 'Рыбные продукты');
+(39, '3.00', 94, '', 2, 3, 'Проезд в маршрутке'),
+(41, '150.00', 89, '', 2, 3, 'Интернет');
 
 -- --------------------------------------------------------
 
@@ -283,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
   KEY `category_id` (`categoryinc_id`),
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=11 ;
 
 --
 -- Дамп данных таблицы `db1_income`
@@ -292,7 +294,9 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
 INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`, `wallet_id`) VALUES
 (3, '100.00', 3, '2015-01-01', 3, 2),
 (6, '600.00', 12, '2015-07-24', 3, 5),
-(8, '1000.00', 6, '2015-07-24', 2, 2);
+(8, '1000.00', 6, '2015-07-24', 2, 2),
+(9, '1500.00', 3, '2015-07-28', 2, 1),
+(10, '2000.00', 6, '2015-07-28', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -446,9 +450,9 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
 --
 
 INSERT INTO `db1_wallet` (`id`, `name`, `current_sum`, `state`, `user_id`) VALUES
-(1, 'Карточка FidoBank', '10.00', 0, 2),
-(2, 'Карточка Приват', '235.21', 0, 2),
-(3, 'Наличные', '137.67', 0, 2),
+(1, 'Карточка FidoBank', '1510.00', 0, 2),
+(2, 'Карточка Приват', '85.21', 0, 2),
+(3, 'Наличные', '1974.67', 0, 2),
 (4, 'Карточка Приват', '100.00', 0, 3),
 (5, 'Наличные', '700.00', 0, 3);
 

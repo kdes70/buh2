@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use app\models\Expensetemp;
 ?>
 <div class="row">
     <div class="col-md-3 col-lg-3">
@@ -78,8 +79,13 @@ use yii\helpers\Html;
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Dropdown link</a></li>
-                            <li><a href="#">Dropdown link</a></li>
+
+                            <?php
+                            foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
+                                echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
+                            }
+                            ?>
+
                         </ul>
                     </div>
                 </td>
@@ -87,7 +93,7 @@ use yii\helpers\Html;
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary']) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary']) ?>         
                 </td>
                 <td class="text-right"> 
                     <div class="btn-group" role="group">

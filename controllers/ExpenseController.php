@@ -48,10 +48,24 @@ class ExpenseController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreate($tmp = 0) {
         $model = new Expense();
         $model->date_oper = date('Y-m-d');
         $model->user_id = Yii::$app->user->identity->id;
+
+        if ($tmp > 0) {
+           
+        $model->cost = Expensetemp::findOne($tmp)->cost;
+        $model->wallet_id = Expensetemp::findOne($tmp)->wallet_id;
+        
+        $model->categoryexp_id = Expensetemp::findOne($tmp)->categoryexp_id;
+            
+        $model->description = Expensetemp::findOne($tmp)->description;
+        }
+
+
+
+
         //Для Ajax валидации       
         if (Yii::$app->request->isAjax && $model->load($_POST)) {
             Yii::$app->response->format = 'json';

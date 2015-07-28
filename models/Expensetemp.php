@@ -37,7 +37,7 @@ class Expensetemp extends \yii\db\ActiveRecord {
             [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
             [['description'], 'string', 'max' => 200],
             [['name'], 'string', 'max' => 50],
-            [['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id', ], 'unique', 'targetAttribute' => ['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id', ], 'message' => 'Шаблон такой операции уже существует.'],
+            [['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id',], 'unique', 'targetAttribute' => ['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id',], 'message' => 'Шаблон такой операции уже существует.'],
             [['user_id', 'name'], 'unique', 'targetAttribute' => ['user_id', 'name'], 'message' => 'Имя такого шаблона существует.']
         ];
     }
@@ -76,6 +76,19 @@ class Expensetemp extends \yii\db\ActiveRecord {
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Возвращает  Список шаблонов для бістрого создания расхолов
+     */
+    public static function getAllNamesForList($user_id) {
+
+        $sql = 'SELECT t.id as id, t.name as name
+                FROM db1_expensetemp t
+                WHERE t.user_id = ' . $user_id
+                . ' order by t.name';
+
+        return self::findBySql($sql)->all();
     }
 
 }
