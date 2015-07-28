@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 28 2015 г., 08:52
+-- Время создания: Июл 28 2015 г., 09:47
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -232,7 +232,7 @@ INSERT INTO `db1_expense` (`id`, `cost`, `categoryexp_id`, `description`, `date_
 (45, '10.00', 99, 'Хек', '2015-07-24', 2, 3),
 (46, '150.00', 89, '', '2015-07-27', 2, 3),
 (47, '350.00', 122, '23423423', '2015-07-27', 2, 1),
-(48, '40.00', 122, '', '2015-07-27', 2, 1);
+(48, '40.00', 122, 'Ява', '2015-07-27', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -254,15 +254,17 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=41 ;
 
 --
 -- Дамп данных таблицы `db1_expensetemp`
 --
 
 INSERT INTO `db1_expensetemp` (`id`, `cost`, `categoryexp_id`, `description`, `user_id`, `wallet_id`, `name`) VALUES
-(18, '40.00', 122, '', 2, 1, 'test'),
-(19, '2343.00', 72, '2', 2, 1, 'test1');
+(37, '1.00', 92, NULL, 2, 2, 'Мыло'),
+(38, '3.00', 90, '3', 2, 2, 'Зубная паста'),
+(39, '3.00', 91, '', 2, 3, 'Шампунь'),
+(40, '10.00', 99, 'Хек', 2, 3, 'Рыбные продукты');
 
 -- --------------------------------------------------------
 
