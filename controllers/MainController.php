@@ -46,7 +46,14 @@ class MainController extends Controller {
 
     public function actionIndex() {
 
-        return $this->render('index');
+
+        if (!Yii::$app->user->isGuest) {
+
+            return $this->render('index');
+        } else {
+
+            return $this->redirect('login');
+        }
     }
 
     public function actionLogin() {
