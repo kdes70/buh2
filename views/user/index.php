@@ -36,9 +36,10 @@ $this->params['menuItems'] = [
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     //'id',
-                    'created_at',
-                    'updated_at',
+                    //'created_at',
+                    //'updated_at',
                     'username',
+                    'fullname',
                     [
                         'attribute' => 'status',
                         'value' => function ($data) {

@@ -108,4 +108,22 @@ class UserController extends Controller {
         }
     }
 
+    /**
+     * Изменение пароля пользователя
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionPassword($id) {
+        $model = $this->findModel($id);
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('password', [
+                        'model' => $model,
+            ]);
+        }
+    }
+
 }
