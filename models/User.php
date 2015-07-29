@@ -50,10 +50,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
     public function rules() {
         return [
 
-            [['password', 'password_repeat'], 'required'],
-            
+            [['created_at', 'updated_at', 'username', 'password', 'password_repeat', 'email', 'status'], 'required'],
+            ['email', 'email'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password'],
-            
             [['id', 'created_at', 'updated_at', 'status'], 'integer'],
             [['username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
         ];
@@ -68,8 +67,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             'updated_at' => 'Изменен',
             'username' => 'Логин',
             'status' => 'Статус',
-            'password'=>'Пароль',
-            'password_repeat'=>'Пароль еще раз'
+            'password' => 'Пароль',
+            'password_repeat' => 'Пароль еще раз'
         ];
     }
 
@@ -79,9 +78,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
      * @param string $password
      */
     public function setPassword($password) {
-
-
-
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 
@@ -99,9 +95,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         if (parent::beforeSave($insert)) {
             if ($insert) {
 
-                //Эта строка уберется, будет поле PASSWORD
-                $this->setPassword($this->password_hash);
-                //Эта строка уберется, будет поле PASSWORD (конец)
+                //Установка пароля в $this->password_hash
+                $this->setPassword($this->password);
+                //Установка пароля в $this->password_hash (конец)
 
                 $this->generateAuthKey();
             }

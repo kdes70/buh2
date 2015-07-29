@@ -49,6 +49,10 @@ class UserController extends Controller {
     public function actionCreate() {
         $model = new User();
 
+        $model->created_at = date_timestamp_get(date_create());
+        $model->updated_at = date_timestamp_get(date_create());
+
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
@@ -66,6 +70,7 @@ class UserController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
+        $model->updated_at = date_timestamp_get(date_create());
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
