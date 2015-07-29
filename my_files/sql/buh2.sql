@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 28 2015 г., 16:14
+-- Время создания: Июл 29 2015 г., 16:04
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -411,10 +411,11 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
+  `fullname` varchar(255) DEFAULT NULL COMMENT 'Полное имя',
   `username` varchar(255) NOT NULL COMMENT 'Имя пользователя',
   `auth_key` varchar(32) DEFAULT NULL,
   `email_confirm_token` varchar(255) DEFAULT NULL,
-  `password_hash` varchar(255) NOT NULL COMMENT 'Пароль',
+  `password_hash` varchar(255) NOT NULL COMMENT 'Хеш пароля',
   `password_reset_token` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL COMMENT 'E-mail',
   `status` smallint(6) NOT NULL DEFAULT '0' COMMENT 'Состояние',
@@ -422,17 +423,18 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   KEY `idx_user_username` (`username`),
   KEY `idx_user_email` (`email`),
   KEY `idx_user_status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Дамп данных таблицы `db1_user`
 --
 
-INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
-(1, 1429777037, 1429777037, 'admin', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'admin@ukr.net', 1),
-(2, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 1),
-(3, 1429777037, 1429777037, 'beata', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'beata@ukr.net', 10),
-(8, 1429777037, 1429777037, 'dasha', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'dasha@ukr.net', 10);
+INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `fullname`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
+(1, 1429777037, 1438175197, 'Администратор системы', 'admin', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'admin@ukr.net', 0),
+(2, 1429777037, 1438175211, 'Мельников Тимур Викторович', 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 0),
+(3, 1429777037, 1438175225, 'Мельников Беатриса Леонидовна', 'beata', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'beata@ukr.net', 0),
+(8, 1429777037, 1438175252, 'Морозова Даша', 'dasha', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'dasha@ukr.net', 0),
+(9, 1438173491, 1438175294, 'Иван - "Козак Бабай"', 'ivan', '_V7GGfWna4YaGFVNJVJOK63DFtJdZXL0', NULL, '$2y$13$N45a/DsmdL9v0COdrpW1..T84Sy043B.XqrLWYH6XIbSiALqt9Uu2', NULL, 'ivan@mail.ru', 1);
 
 -- --------------------------------------------------------
 

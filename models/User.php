@@ -7,6 +7,11 @@ use Yii;
 
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
 
+    
+    const STATE_ACTIVE = 0;
+    const STATE_CLOSE = 1;
+    
+    
     public $password;
     public $password_repeat;
 
@@ -31,7 +36,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
     }
 
     public function getAuthKey() {
-        return $this->authKey;
+        return $this->auth_key; //return $this->authKey;
     }
 
     public function validateAuthKey($authKey) {
@@ -54,7 +59,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             ['email', 'email'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password'],
             [['id', 'created_at', 'updated_at', 'status'], 'integer'],
-            [['username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
+            [['fullname', 'username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
         ];
     }
 
@@ -65,10 +70,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         return [
             'created_at' => 'Создан',
             'updated_at' => 'Изменен',
+            'fullname' => 'Полное имя',
             'username' => 'Логин',
             'status' => 'Статус',
             'password' => 'Пароль',
-            'password_repeat' => 'Пароль еще раз'
+            'password_repeat' => 'Пароль еще раз',
+            'email' => 'E-mail',
         ];
     }
 
@@ -94,11 +101,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-
                 //Установка пароля в $this->password_hash
                 $this->setPassword($this->password);
                 //Установка пароля в $this->password_hash (конец)
-
                 $this->generateAuthKey();
             }
             return true;
