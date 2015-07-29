@@ -42,7 +42,7 @@ $this->params['menuItems'] = [
                     [
                         'attribute' => 'status',
                         'value' => function ($data) {
-                            return $data->status == User::STATE_ACTIVE ? "Активен" : ($data->status == User::STATE_ACTIVE ? "Закрыт" : "---");
+                            return $data->status == User::STATE_ACTIVE ? "Активен" : ($data->status == User::STATE_CLOSE ? "Закрыт" : "---");
                         },
                         'filter' => Html::activeDropDownList($searchModel, 'status', [User::STATE_ACTIVE => 'Активен', User::STATE_CLOSE => 'Закрыт'], ['class' => 'form-control', 'prompt' => '']),
                     ],
