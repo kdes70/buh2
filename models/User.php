@@ -52,11 +52,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
 
             [['password', 'password_repeat'], 'required'],
             
-            
-            //[['password', 'password_repeat',], 'compare'],
-            
-            
-            
+            ['password_repeat', 'compare', 'compareAttribute' => 'password'],
             
             [['id', 'created_at', 'updated_at', 'status'], 'integer'],
             [['username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
