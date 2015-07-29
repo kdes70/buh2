@@ -7,6 +7,9 @@ use Yii;
 
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
 
+    public $password;
+    public $password_repeat;
+
     public static function tableName() {
         return '{{%user}}';
     }
@@ -46,6 +49,15 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
      */
     public function rules() {
         return [
+
+            [['password', 'password_repeat'], 'required'],
+            
+            
+            //[['password', 'password_repeat',], 'compare'],
+            
+            
+            
+            
             [['id', 'created_at', 'updated_at', 'status'], 'integer'],
             [['username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
         ];
@@ -59,7 +71,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             'created_at' => 'Создан',
             'updated_at' => 'Изменен',
             'username' => 'Логин',
-            'status' => 'Статус'
+            'status' => 'Статус',
+            'password'=>'Пароль',
+            'password_repeat'=>'Пароль еще раз'
         ];
     }
 
@@ -69,9 +83,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
      * @param string $password
      */
     public function setPassword($password) {
-        
-        
-        
+
+
+
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 
@@ -88,11 +102,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-                
+
                 //Эта строка уберется, будет поле PASSWORD
-                $this->setPassword($this->password_hash); 
+                $this->setPassword($this->password_hash);
                 //Эта строка уберется, будет поле PASSWORD (конец)
-                
+
                 $this->generateAuthKey();
             }
             return true;
