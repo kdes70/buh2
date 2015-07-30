@@ -1,7 +1,7 @@
 Домашняя бухгалтерия на Yii2
 ================================
 
-![](https://github.com/TimurMelnikov/buh2/tree/master/my_files/images/screenshot.png)
+![](http://github.com/TimurMelnikov/buh2/tree/master/my_files/images/screenshot.png)
 
 Приложение на стадии разработки и в данный момент НЕ РАБОТОСПОСОБНО! Пишу для себя, когда есть время и вдохновение...
 
