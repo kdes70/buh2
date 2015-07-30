@@ -34,8 +34,8 @@ $this->params['menuItems'] = [
             }
         },
                 'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
                     ['class' => 'yii\grid\CheckboxColumn'],
-                   // ['class' => 'yii\grid\SerialColumn'],
                     //'id',
                     //'created_at',
                     //'updated_at',

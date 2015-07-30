@@ -31,6 +31,7 @@ $this->params['menuItems'] = [
         'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\CheckboxColumn'],
             [
                 'header' => Html::a($searchModel->getAttributeLabel('parent_id'), ['/categoryexp', 'parent_id' => $searchModel->getParentId()]) . ' / ' . Html::a('Создать в текущей', ['create', 'parent_id' => $searchModel->parent_id], []),
                 'format' => 'html',
@@ -38,6 +39,7 @@ $this->params['menuItems'] = [
                 'value' => function($data) {
             return Html::a($data->parent->name, ['/categoryexp', 'parent_id' => $data->parent->parent_id]);
         },
+            //'options' => ['width' => '400px'],
             ],
             [
                 'label' => $searchModel->getAttributeLabel('name'),
@@ -48,6 +50,7 @@ $this->params['menuItems'] = [
                 'value' => function($data) {
                     return ($data->getCountSubitems($data->id) != 0) ? Html::a($data->name, ['/categoryexp', 'parent_id' => $data->id]) . ' <small>(' . $data->getCountSubitems($data->id) . ')</small>' : Html::a($data->name, ['/categoryexp', 'parent_id' => $data->id]);
                 },
+                    //'options' => ['width' => '400px'],
                     ],
                     ['class' => \yii\grid\ActionColumn::className(),
                         'header' => 'Действия',
