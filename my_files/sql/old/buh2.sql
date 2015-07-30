@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Июл 27 2015 г., 15:09
--- Версия сервера: 5.5.36
--- Версия PHP: 5.4.27
+-- Хост: localhost
+-- Время создания: Июл 30 2015 г., 08:43
+-- Версия сервера: 5.5.44-0ubuntu0.14.04.1
+-- Версия PHP: 5.5.9-1ubuntu4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -178,27 +178,30 @@ CREATE TABLE IF NOT EXISTS `db1_exchange` (
   `official_exchange` decimal(10,6) NOT NULL COMMENT 'Официальный курс',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_exchange_uniq` (`currency_code`,`start_date`) COMMENT 'Уникальность кода валюты за дату'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=25 ;
 
 --
 -- Дамп данных таблицы `db1_exchange`
 --
 
 INSERT INTO `db1_exchange` (`id`, `start_date`, `currency_code`, `number_units`, `official_exchange`) VALUES
-(3, '2015-07-17', 'USD', 100, '2198.668700'),
-(4, '2015-07-17', 'EUR', 100, '2389.293300'),
-(6, '2015-07-17', 'RUB', 10, '3.860700'),
-(7, '2015-07-18', 'USD', 100, '2201.492400'),
-(8, '2015-07-20', 'RUB', 10, '3.876600'),
-(9, '2015-07-20', 'USD', 100, '2203.213400'),
-(10, '2015-07-20', 'EUR', 100, '2390.927200'),
-(14, '2015-07-21', 'USD', 100, '2203.213400'),
-(16, '2015-07-21', 'RUB', 10, '3.876600'),
-(17, '2015-07-21', 'EUR', 100, '2390.927200'),
-(18, '2015-07-25', 'USD', 100, '2207.352000'),
-(19, '2015-07-27', 'USD', 100, '2207.352000'),
-(20, '2015-07-27', 'EUR', 100, '2414.622400'),
-(21, '2015-07-27', 'RUB', 10, '3.803300');
+(3, '2015-07-17', 'USD', 100, 2198.668700),
+(4, '2015-07-17', 'EUR', 100, 2389.293300),
+(6, '2015-07-17', 'RUB', 10, 3.860700),
+(7, '2015-07-18', 'USD', 100, 2201.492400),
+(8, '2015-07-20', 'RUB', 10, 3.876600),
+(9, '2015-07-20', 'USD', 100, 2203.213400),
+(10, '2015-07-20', 'EUR', 100, 2390.927200),
+(14, '2015-07-21', 'USD', 100, 2203.213400),
+(16, '2015-07-21', 'RUB', 10, 3.876600),
+(17, '2015-07-21', 'EUR', 100, 2390.927200),
+(18, '2015-07-25', 'USD', 100, 2207.352000),
+(19, '2015-07-27', 'USD', 100, 2207.352000),
+(20, '2015-07-27', 'EUR', 100, 2414.622400),
+(21, '2015-07-27', 'RUB', 10, 3.803300),
+(22, '2015-07-28', 'USD', 100, 2206.227800),
+(23, '2015-07-28', 'EUR', 100, 2439.646700),
+(24, '2015-07-28', 'RUB', 10, 3.753300);
 
 -- --------------------------------------------------------
 
@@ -218,21 +221,27 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=56 ;
 
 --
 -- Дамп данных таблицы `db1_expense`
 --
 
 INSERT INTO `db1_expense` (`id`, `cost`, `categoryexp_id`, `description`, `date_oper`, `user_id`, `wallet_id`) VALUES
-(39, '1.00', 92, NULL, '2015-07-22', 2, 2),
-(40, '3.00', 90, '3', '2015-07-23', 2, 2),
-(41, '33.00', 90, '', '2015-07-23', 2, 2),
-(44, '3.00', 91, '', '2015-07-24', 2, 3),
-(45, '10.00', 99, 'Хек', '2015-07-24', 2, 3),
-(46, '150.00', 89, '', '2015-07-27', 2, 3),
-(47, '350.00', 122, '23423423', '2015-07-27', 2, 1),
-(48, '40.00', 122, '', '2015-07-27', 2, 1);
+(39, 1.00, 92, NULL, '2015-07-22', 2, 2),
+(40, 3.00, 90, '3', '2015-07-23', 2, 2),
+(41, 33.00, 90, '', '2015-07-23', 2, 2),
+(44, 3.00, 91, '', '2015-07-24', 2, 3),
+(45, 10.00, 99, 'Хек', '2015-07-24', 2, 3),
+(46, 150.00, 89, '', '2015-07-27', 2, 3),
+(47, 350.00, 122, '23423423', '2015-07-27', 2, 1),
+(48, 40.00, 122, 'Ява', '2015-07-27', 2, 1),
+(50, 10.00, 99, 'Хек', '2015-07-28', 2, 3),
+(51, 150.00, 89, '', '2015-07-28', 2, 2),
+(52, 3.00, 94, '', '2015-07-28', 2, 3),
+(53, 150.00, 89, '', '2015-07-28', 2, 3),
+(54, 3.00, 94, 'Проезд в маршрутке', '2015-07-28', 2, 3),
+(55, 12.50, 83, '', '2015-07-29', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -247,24 +256,22 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   `description` varchar(200) DEFAULT NULL COMMENT 'Описание',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
+  `name` varchar(50) NOT NULL COMMENT 'Наименование',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`user_id`,`name`),
   UNIQUE KEY `unique_temp` (`cost`,`categoryexp_id`,`description`,`user_id`,`wallet_id`),
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=42 ;
 
 --
 -- Дамп данных таблицы `db1_expensetemp`
 --
 
-INSERT INTO `db1_expensetemp` (`id`, `cost`, `categoryexp_id`, `description`, `user_id`, `wallet_id`) VALUES
-(11, '5.00', 60, 'Мороженое', 2, 1),
-(10, '10.00', 99, 'Хек', 2, 3),
-(13, '33.00', 90, '', 2, 2),
-(14, '40.00', 122, '', 2, 1),
-(9, '150.00', 89, '', 2, 3),
-(12, '350.00', 122, '23423423', 2, 1);
+INSERT INTO `db1_expensetemp` (`id`, `cost`, `categoryexp_id`, `description`, `user_id`, `wallet_id`, `name`) VALUES
+(39, 3.00, 94, 'Проезд в маршрутке', 2, 3, 'Проезд в маршрутке'),
+(41, 150.00, 89, '', 2, 3, 'Интернет');
 
 -- --------------------------------------------------------
 
@@ -283,16 +290,18 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
   KEY `category_id` (`categoryinc_id`),
   KEY `user_id` (`user_id`),
   KEY `wallet_id` (`wallet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=11 ;
 
 --
 -- Дамп данных таблицы `db1_income`
 --
 
 INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_id`, `wallet_id`) VALUES
-(3, '100.00', 3, '2015-01-01', 3, 2),
-(6, '600.00', 12, '2015-07-24', 3, 5),
-(8, '1000.00', 6, '2015-07-24', 2, 2);
+(3, 100.00, 3, '2015-01-01', 3, 2),
+(6, 600.00, 12, '2015-07-24', 3, 5),
+(8, 1000.00, 6, '2015-07-24', 2, 2),
+(9, 1500.00, 3, '2015-07-28', 2, 1),
+(10, 2000.00, 6, '2015-07-28', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -333,15 +342,16 @@ CREATE TABLE IF NOT EXISTS `db1_move` (
   UNIQUE KEY `wallet_to` (`wallet_to`),
   KEY `user_id` (`user_id`),
   KEY `wallet_from` (`wallet_from`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Перемещения' AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Перемещения' AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `db1_move`
 --
 
 INSERT INTO `db1_move` (`id`, `wallet_from`, `wallet_to`, `move_sum`, `date_oper`, `user_id`, `description`) VALUES
-(4, 1, 2, '22.00', '2015-07-25', 2, ''),
-(5, 1, 5, '100.00', '2015-07-25', 2, '');
+(4, 1, 2, 22.00, '2015-07-25', 2, ''),
+(5, 1, 5, 100.00, '2015-07-25', 2, ''),
+(6, 2, 3, 85.21, '2015-07-28', 2, '');
 
 -- --------------------------------------------------------
 
@@ -402,10 +412,11 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
+  `fullname` varchar(255) DEFAULT NULL COMMENT 'Полное имя',
   `username` varchar(255) NOT NULL COMMENT 'Имя пользователя',
   `auth_key` varchar(32) DEFAULT NULL,
   `email_confirm_token` varchar(255) DEFAULT NULL,
-  `password_hash` varchar(255) NOT NULL COMMENT 'Пароль',
+  `password_hash` varchar(255) NOT NULL COMMENT 'Хеш пароля',
   `password_reset_token` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL COMMENT 'E-mail',
   `status` smallint(6) NOT NULL DEFAULT '0' COMMENT 'Состояние',
@@ -413,17 +424,18 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   KEY `idx_user_username` (`username`),
   KEY `idx_user_email` (`email`),
   KEY `idx_user_status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Дамп данных таблицы `db1_user`
 --
 
-INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
-(1, 1429777037, 1429777037, 'admin', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'admin@ukr.net', 1),
-(2, 1429777037, 1429777037, 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 1),
-(3, 1429777037, 1429777037, 'beata', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'beata@ukr.net', 10),
-(8, 1429777037, 1429777037, 'dasha', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'dasha@ukr.net', 10);
+INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `fullname`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
+(1, 1429777037, 1438175197, 'Администратор системы', 'admin', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'admin@ukr.net', 0),
+(2, 1429777037, 1438175211, 'Мельников Тимур Викторович', 'timur', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'timur@ukr.net', 0),
+(3, 1429777037, 1438175225, 'Мельников Беатриса Леонидовна', 'beata', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'beata@ukr.net', 0),
+(8, 1429777037, 1438175252, 'Морозова Даша', 'dasha', 'lWFtF0usH_m7VwPeawuHPeTsYKhSyPtC', NULL, '$2y$13$UajfGtVXCP.eRIedu0nvw.auVDVIrEqrTVJ2ZG0xy.4yQDH.h22m2', NULL, 'dasha@ukr.net', 0),
+(9, 1438173491, 1438175294, 'Иван - "Козак Бабай"', 'ivan', '_V7GGfWna4YaGFVNJVJOK63DFtJdZXL0', NULL, '$2y$13$N45a/DsmdL9v0COdrpW1..T84Sy043B.XqrLWYH6XIbSiALqt9Uu2', NULL, 'ivan@mail.ru', 1);
 
 -- --------------------------------------------------------
 
@@ -446,11 +458,11 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
 --
 
 INSERT INTO `db1_wallet` (`id`, `name`, `current_sum`, `state`, `user_id`) VALUES
-(1, 'Карточка FidoBank', '10.00', 0, 2),
-(2, 'Карточка Приват', '235.21', 0, 2),
-(3, 'Наличные', '137.67', 0, 2),
-(4, 'Карточка Приват', '100.00', 0, 3),
-(5, 'Наличные', '700.00', 0, 3);
+(1, 'Карточка FidoBank', 1497.50, 0, 2),
+(2, 'Карточка Приват', 0.00, 1, 2),
+(3, 'Наличные', 2056.88, 0, 2),
+(4, 'Карточка Приват', 100.00, 0, 3),
+(5, 'Наличные', 700.00, 0, 3);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -485,6 +497,7 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_categoryinc`
 --
 ALTER TABLE `db1_categoryinc`
+  ADD CONSTRAINT `db1_categoryinc_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
   ADD CONSTRAINT `db1_categoryinc_ibfk_1` FOREIGN KEY (`wallet_default`) REFERENCES `db1_wallet` (`id`);
 
 --
@@ -499,9 +512,9 @@ ALTER TABLE `db1_expense`
 -- Ограничения внешнего ключа таблицы `db1_expensetemp`
 --
 ALTER TABLE `db1_expensetemp`
-  ADD CONSTRAINT `db1_expensetemp_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`),
   ADD CONSTRAINT `db1_expensetemp_ibfk_1` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
-  ADD CONSTRAINT `db1_expensetemp_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
+  ADD CONSTRAINT `db1_expensetemp_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
+  ADD CONSTRAINT `db1_expensetemp_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_income`

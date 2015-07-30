@@ -55,9 +55,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
     public function rules() {
         return [
 
-            [['created_at', 'updated_at', 'username', 'password', 'password_repeat', 'email', 'status'], 'required'],
+            [['created_at', 'updated_at', 'username', 'email', 'status'], 'required'],
+            
+            [['password', 'password_repeat'], 'required', 'on' => 'password'],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'on' => 'password'],
+            
             ['email', 'email'],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password'],
+            
             [['id', 'created_at', 'updated_at', 'status'], 'integer'],
             [['fullname', 'username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
         ];
@@ -100,7 +104,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
      */
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
-            if ($insert) {
+            if ($this->password) {
                 //Установка пароля в $this->password_hash
                 $this->setPassword($this->password);
                 //Установка пароля в $this->password_hash (конец)

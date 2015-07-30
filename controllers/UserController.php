@@ -49,6 +49,8 @@ class UserController extends Controller {
     public function actionCreate() {
         $model = new User();
 
+        $model->setScenario('password');
+
         $model->created_at = date_timestamp_get(date_create());
         $model->updated_at = date_timestamp_get(date_create());
 
@@ -115,6 +117,7 @@ class UserController extends Controller {
      */
     public function actionPassword($id) {
         $model = $this->findModel($id);
+        $model->setScenario('password');
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
