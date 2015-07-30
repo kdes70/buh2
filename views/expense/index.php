@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\widgets\Growl;
@@ -51,7 +50,7 @@ $this->params['menuItems'] = [
 <div class="expense-index">
 
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
 
     <?php Pjax::begin(['timeout' => 3000]); ?>
@@ -98,7 +97,7 @@ $this->params['menuItems'] = [
                     },
                             'save_as_template' => function ($url, $model, $key) {
                         //return Html::a('<span class="glyphicon glyphicon-save"/>', ['save-as-template', 'id' => $key], ['title' => 'Создать шаблон операции', 'data-method' => 'post', 'data-confirm' => 'Создать на основе данной записи шаблон операции?', 'data-toggle' => "modal", 'data-target' => "#win-confirm-template"]);
-                        return Html::a('<span class="glyphicon glyphicon-save"/>', ['save-as-template', 'id' => $key], ['title' => 'Создать шаблон операции', 'data-method' => 'post', 'data-confirm' => 'Создать на основе данной записи шаблон операции?', ]);
+                        return Html::a('<span class="glyphicon glyphicon-save"/>', ['save-as-template', 'id' => $key], ['title' => 'Создать шаблон операции', 'data-method' => 'post', 'data-confirm' => 'Создать на основе данной записи шаблон операции?',]);
                     },
                         ],
                         'template' => '{save_as_template} {update} {delete}'
@@ -114,9 +113,9 @@ $this->params['menuItems'] = [
 
 
 
-<!--        <div class="expense-form">-->
-            <?php
-            //Модальное окно для для имени шаблона
+        <!--        <div class="expense-form">-->
+        <?php
+        //Модальное окно для для имени шаблона
 //            Modal::begin([
 //                'header' => '<h4>Создание шаблона операции</h4>',
 //                'id' => 'win-confirm-template',
@@ -136,5 +135,5 @@ $this->params['menuItems'] = [
 //            echo '</div>';
 //            echo Html::endForm();
 //            Modal::end();
-            ?>
+        ?>
 <!--</div>-->

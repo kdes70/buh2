@@ -30,7 +30,10 @@ $this->params['menuItems'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'value' => 'user.username'
+            ],
             'name',
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
