@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 29 2015 г., 22:42
+-- Время создания: Июл 30 2015 г., 08:43
 -- Версия сервера: 5.5.44-0ubuntu0.14.04.1
 -- Версия PHP: 5.5.9-1ubuntu4.11
 
@@ -497,6 +497,7 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_categoryinc`
 --
 ALTER TABLE `db1_categoryinc`
+  ADD CONSTRAINT `db1_categoryinc_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
   ADD CONSTRAINT `db1_categoryinc_ibfk_1` FOREIGN KEY (`wallet_default`) REFERENCES `db1_wallet` (`id`);
 
 --

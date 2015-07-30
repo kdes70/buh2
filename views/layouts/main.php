@@ -50,7 +50,7 @@ AppAsset::register($this);
                             '<li class="divider"></li>',
                             ['label' => 'Перемещения', 'url' => ['/move']],
                         ],
-                    ],
+                        'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Отчеты',
                         'items' => [
                             ['label' => 'Отчет 1', 'url' => ['/report/rep1']],
@@ -60,7 +60,7 @@ AppAsset::register($this);
                             '<li class="divider"></li>',
                             ['label' => 'Отчет 4', 'url' => ['/report/rep4']],
                         ],
-                    ],
+                        'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Словари',
                         'items' => [
                             ['label' => 'Категории доходов', 'url' => ['/categoryinc']],
@@ -73,7 +73,7 @@ AppAsset::register($this);
                             //['label' => 'Шаблоны доходов', 'url' => ['#']],
                             ['label' => 'Шаблоны расходов', 'url' => ['/expensetemp']],
                         ],
-                    ],
+                        'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Управление',
                         'items' => [
                             ['label' => 'Пользователи', 'url' => ['/user']],
@@ -83,9 +83,9 @@ AppAsset::register($this);
                             ['label' => 'Прототип1', 'url' => 'http://www.drebedengi.ru/?module=v2_homeBuhPrivate'],
                             ['label' => 'Прототип2', 'url' => 'http://finance.uramaks.com/'],
                         ],
-                    ],
+                        'visible' => !Yii::$app->user->isGuest],
                     Yii::$app->user->isGuest ?
-                            ['label' => 'Войти', 'url' => ['/main/login']] :
+                            /* ['label' => 'Войти', 'url' => ['/main/login']] */'' :
                             ['label' => 'Війти (' . Yii::$app->user->identity->username . ')',
                         'url' => ['/main/logout'],
                         'linkOptions' => ['data-method' => 'post']],

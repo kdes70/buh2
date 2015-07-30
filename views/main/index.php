@@ -16,7 +16,7 @@ use app\models\Expensetemp;
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="panel-title">Контроль расходов</div>
+                <div class="panel-title">Планирование</div>
             </div>     
             <div class="panel-body">
             </div>                     
@@ -33,8 +33,6 @@ use app\models\Expensetemp;
 //        $role = Yii::$app->authManager->createRole('user');
 //        $role->description = 'Юзер';
 //        Yii::$app->authManager->add($role);
-
-
 //        $permit = Yii::$app->authManager->createPermission('deleteUser');
 //        $permit->description = 'Право удалять пользователя';
 //        Yii::$app->authManager->add($permit);
@@ -53,19 +51,19 @@ use app\models\Expensetemp;
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
                 <td class="text-right"> 
                     <div class="btn-group" role="group" style = "width:100%">
@@ -74,11 +72,11 @@ use app\models\Expensetemp;
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-<?php
-foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
-    echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
-}
-?>
+                            <?php
+                            foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
+                                echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                 </td>
@@ -86,7 +84,7 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
 
             </tr>
@@ -125,6 +123,16 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
 
 <h2>Реализовать</h2>
 
+
+<h3>Во всех разделах:</h3>
+<ul>
+    <li>Ссылки из гридов на редактирование, удаление - должны быть действием POST 'linkOptions' => ['data-method' => 'post'] + фильтры в коннтроллерах</li>
+
+
+</ul>
+
+
+
 <h3>Раздел "Главная страница":</h3>
 <ul>
     <li>Кнопкам управления присвоить - 'style' => "width:100%". В принципе слелал. Но... Криво...</li>
@@ -143,7 +151,14 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
 
 <h3>Раздел "Пользователи":</h3>
 <ul>
-    <li>Состояние называется "status", а везде "state"</li>
+    <li>Переименовать поле "status" в "state"</li>
+
+</ul>
+
+
+<h3>Раздел "Категории доходов":</h3>
+<ul>
+    <li>Переименовать поле "wallet_default" в "wallet_id"</li>
 
 </ul>
 
