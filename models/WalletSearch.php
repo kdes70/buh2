@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Wallet;
@@ -10,25 +10,23 @@ use app\models\Wallet;
 /**
  * WalletSearch represents the model behind the search form about `app\models\Wallet`.
  */
-class WalletSearch extends Wallet
-{
+class WalletSearch extends Wallet {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['id', 'state', 'user_id'], 'integer'],
+            [['id', 'state',], 'integer'],
             [['current_sum'], 'number'],
-            [['name'], 'safe'],
+            [['name', 'user_id'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,8 +38,7 @@ class WalletSearch extends Wallet
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Wallet::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -56,16 +53,24 @@ class WalletSearch extends Wallet
             return $dataProvider;
         }
 
+
+        //Для связанного поиска
+        $query->joinWith('user');
+
         $query->andFilterWhere([
             'id' => $this->id,
             'state' => $this->state,
-            'user_id' => $this->user_id,
+            //'user_id' => $this->user_id,
             'current_sum' => $this->current_sum,
-            
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+                //Для связанного поиска
+                ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
+
+
 
         return $dataProvider;
     }
+
 }

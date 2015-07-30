@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Setting;
@@ -10,24 +10,22 @@ use app\models\Setting;
 /**
  * SettingSearch represents the model behind the search form about `app\models\Setting`.
  */
-class SettingSearch extends Setting
-{
+class SettingSearch extends Setting {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['name'], 'safe'],
+            [['id',], 'integer'],
+            [['name', 'user_id'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -39,8 +37,7 @@ class SettingSearch extends Setting
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Setting::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -55,13 +52,21 @@ class SettingSearch extends Setting
             return $dataProvider;
         }
 
+
+        //Для связанного поиска
+        $query->joinWith('user');
+
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
+                //'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+                //Для связанного поиска
+                ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
 
         return $dataProvider;
     }
+
 }

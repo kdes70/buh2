@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Income;
@@ -10,25 +9,23 @@ use app\models\Income;
 /**
  * IncomeSearch represents the model behind the search form about `app\models\Income`.
  */
-class IncomeSearch extends Income
-{
+class IncomeSearch extends Income {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['id', 'categoryinc_id', 'user_id', 'wallet_id'], 'integer'],
+            [['id', 'categoryinc_id', 'wallet_id'], 'integer'],
             [['amount'], 'number'],
-            [['date_oper'], 'safe'],
+            [['date_oper', 'user_id',], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,13 +37,12 @@ class IncomeSearch extends Income
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Income::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['date_oper'  => SORT_DESC, 'id' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['date_oper' => SORT_DESC, 'id' => SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -57,15 +53,21 @@ class IncomeSearch extends Income
             return $dataProvider;
         }
 
+        //Для связанного поиска
+        $query->joinWith('user');
+
         $query->andFilterWhere([
             'id' => $this->id,
             'amount' => $this->amount,
             'categoryinc_id' => $this->categoryinc_id,
             'date_oper' => $this->date_oper,
-            'user_id' => $this->user_id,
+            //'user_id' => $this->user_id,
             'wallet_id' => $this->wallet_id,
         ]);
 
+        $query->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
+
         return $dataProvider;
     }
+
 }

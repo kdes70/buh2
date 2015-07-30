@@ -17,9 +17,9 @@ class ExpensetempSearch extends Expensetemp {
      */
     public function rules() {
         return [
-            [['id', 'categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
+            [['id', 'categoryexp_id', 'wallet_id'], 'integer'],
             [['cost'], 'number'],
-            [['description', 'name'], 'safe'],
+            [['description', 'name', 'user_id'], 'safe'],
         ];
     }
 
@@ -53,16 +53,23 @@ class ExpensetempSearch extends Expensetemp {
             return $dataProvider;
         }
 
+
+        //Для связанного поиска
+        $query->joinWith('user');
+
         $query->andFilterWhere([
             'id' => $this->id,
             'cost' => $this->cost,
             'categoryexp_id' => $this->categoryexp_id,
-            'user_id' => $this->user_id,
+            //'user_id' => $this->user_id,
             'wallet_id' => $this->wallet_id,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'description', $this->description])
+                ->andFilterWhere(['like', 'name', $this->name])
+                //Для связанного поиска
+                ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
+
 
         return $dataProvider;
     }

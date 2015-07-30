@@ -36,7 +36,7 @@ class Move extends \yii\db\ActiveRecord {
             [['move_sum'], 'checkSumInWallet'],
             [['wallet_to'], 'checkFromTo'],
             [['date_oper'], 'safe'],
-            [['wallet_to'], 'unique'],
+            //[['wallet_to'], 'unique'],
             [['description'], 'string', 'max' => 200]
         ];
     }

@@ -17,8 +17,8 @@ class CategoryincSearch extends Categoryinc {
      */
     public function rules() {
         return [
-            [['id', 'user_id', 'wallet_default'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'wallet_default'], 'integer'],
+            [['name', 'user_id',], 'safe'],
         ];
     }
 
@@ -52,13 +52,19 @@ class CategoryincSearch extends Categoryinc {
             return $dataProvider;
         }
 
+        //Для связанного поиска
+        $query->joinWith('user');
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
+            //'user_id' => $this->user_id,
             'wallet_default' => $this->wallet_default,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+                //Для связанного поиска
+                ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
+
 
         return $dataProvider;
     }
