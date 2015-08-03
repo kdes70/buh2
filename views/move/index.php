@@ -30,9 +30,15 @@ $this->params['menuItems'] = [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
             'date_oper',
-            'wallet_from',
+            [
+                'attribute' => 'wallet_from',
+                'value' => 'walletFrom.name'
+            ],
             'move_sum',
-            'wallet_to',
+                        [
+                'attribute' => 'wallet_to',
+                'value' => 'walletTo.name'
+            ],
             [
                 'attribute' => 'user_id',
                 'value' => 'user.username'
