@@ -29,8 +29,11 @@ $this->params['menuItems'] = [
         'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            //'id',
-            'date_oper',
+            [
+                'attribute' => 'date_oper',
+                // 'value' => $searchModel->date_oper,
+                'format' => ['date', 'php:d.m.Y']
+            ],
             [
                 'attribute' => 'wallet_from',
                 'value' => function($data) {
