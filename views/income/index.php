@@ -44,7 +44,7 @@ $this->params['menuItems'] = [
             [
                 'attribute' => 'amount',
                 'value' => 'amount',
-                'contentOptions' => ['style' => 'text-align: right'],
+                'contentOptions' => ['style' => 'text-align: right; font-weight:bold; color: red'],
             ],
             [
                 'attribute' => 'user_id',

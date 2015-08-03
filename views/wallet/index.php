@@ -40,7 +40,7 @@ $this->params['menuItems'] = [
                     [
                         'attribute' => 'current_sum',
                         'value' => 'current_sum',
-                        'contentOptions' => ['style' => 'text-align: right'],
+                        'contentOptions' => ['style' => 'text-align: right; font-weight:bold; color: red'],
                     ],
                     [
                         'attribute' => 'state',

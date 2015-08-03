@@ -40,7 +40,7 @@ $this->params['menuItems'] = [
             [
                 'attribute' => 'move_sum',
                 'value' => 'move_sum',
-                'contentOptions' => ['style' => 'text-align: right'],
+                'contentOptions' => ['style' => 'text-align: right; font-weight:bold; color: red'],
             ],
             [
                 'attribute' => 'wallet_to',

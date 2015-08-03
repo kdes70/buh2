@@ -44,7 +44,7 @@ $this->params['menuItems'] = [
             [
                 'attribute' => 'official_exchange',
                 'value' => 'official_exchange',
-                'contentOptions' => ['style' => 'text-align: right'],
+                'contentOptions' => ['style' => 'text-align: right; font-weight:bold; color: red'],
             ],
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',

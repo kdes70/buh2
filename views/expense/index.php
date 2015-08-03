@@ -76,15 +76,12 @@ $this->params['menuItems'] = [
             [
                 'attribute' => 'cost',
                 'value' => 'cost',
-                'contentOptions' => ['style' => 'text-align: right'],
+                'contentOptions' => ['style' => 'text-align: right; font-weight:bold; color: red'],
             ],
-            // 'name',
-            // 'date_oper',
             [
                 'attribute' => 'user_id',
                 'value' => 'user.username'
             ],
-            // 'operwallet_id',
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],

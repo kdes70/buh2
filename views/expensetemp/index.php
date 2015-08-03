@@ -27,7 +27,11 @@ $this->params['menuItems'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
-            'cost',
+            [
+                'attribute' => 'cost',
+                'value' => 'cost',
+                'contentOptions' => ['style' => 'text-align: right; font-weight:bold; color: red'],
+            ],
             [
                 'attribute' => 'categoryexp_id',
                 'value' => 'categoryexp.name'
