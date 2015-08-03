@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modelsMoveSearch */
@@ -19,7 +20,7 @@ $this->params['menuItems'] = [
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-
+    <?php Pjax::begin(['timeout' => 3000]); ?>
 
     <?=
     GridView::widget([
@@ -32,12 +33,20 @@ $this->params['menuItems'] = [
             'date_oper',
             [
                 'attribute' => 'wallet_from',
-                'value' => 'walletFrom.name'
+                'value' => function($data) {
+                    return $data->walletFrom->name . ' (' . $data->walletFrom->user->username . ')';
+                },
             ],
-            'move_sum',
-                        [
+            [
+                'attribute' => 'move_sum',
+                'value' => 'move_sum',
+                'contentOptions' => ['style' => 'text-align: right'],
+            ],
+            [
                 'attribute' => 'wallet_to',
-                'value' => 'walletTo.name'
+                'value' => function($data) {
+                    return $data->walletTo->name . ' (' . $data->walletTo->user->username . ')';
+                },
             ],
             [
                 'attribute' => 'user_id',
@@ -59,5 +68,5 @@ $this->params['menuItems'] = [
                 ],
             ]);
             ?>
-
+            <?php Pjax::end(); ?>
 </div>
