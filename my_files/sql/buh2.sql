@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 03 2015 г., 15:29
+-- Время создания: Авг 03 2015 г., 15:49
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -271,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`),
   KEY `unit_id` (`unit_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=45 ;
 
 --
 -- Дамп данных таблицы `db1_expensetemp`
@@ -373,6 +373,8 @@ CREATE TABLE IF NOT EXISTS `db1_setting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
+  `unit_code` varchar(20) NOT NULL COMMENT 'Код раздела',
+  `setting_code` varchar(25) NOT NULL COMMENT 'Код настройки',
   PRIMARY KEY (`id`),
   KEY `_idx` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Настройки' AUTO_INCREMENT=6 ;
@@ -381,11 +383,11 @@ CREATE TABLE IF NOT EXISTS `db1_setting` (
 -- Дамп данных таблицы `db1_setting`
 --
 
-INSERT INTO `db1_setting` (`id`, `user_id`, `name`) VALUES
-(2, 2, 'Кошелек по умолчанию'),
-(3, 2, 'Единица измерения по умолчанию'),
-(4, 2, 'Количество записей в гриде'),
-(5, 3, 'Настройка 1');
+INSERT INTO `db1_setting` (`id`, `user_id`, `name`, `unit_code`, `setting_code`) VALUES
+(2, 2, 'Кошелек по умолчанию', '', ''),
+(3, 2, 'Единица измерения по умолчанию', '', ''),
+(4, 2, 'Количество записей в гриде', '', ''),
+(5, 3, 'Настройка 1', '', '');
 
 -- --------------------------------------------------------
 
