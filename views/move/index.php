@@ -31,7 +31,6 @@ $this->params['menuItems'] = [
             ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'date_oper',
-                // 'value' => $searchModel->date_oper,
                 'format' => ['date', 'php:d.m.Y']
             ],
             [

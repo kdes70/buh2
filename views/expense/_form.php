@@ -8,6 +8,7 @@ use kartik\select2\Select2;
 use app\models\Wallet;
 use kartik\widgets\Growl;
 use app\models\Categoryexp;
+use app\models\Unit;
 
 //use yii\bootstrap\Modal;
 
@@ -63,13 +64,6 @@ use app\models\Categoryexp;
         'pluginOptions' => [
             'allowClear' => true,
         ],
-            // Модальное окно для перемещения средств. Пока не нужно...
-//        'addon' => [
-//            'append' => [
-//                'content' => Html::button('<span class="glyphicon glyphicon-refresh"></span>', ['class' => 'btn btn-default', 'id' => 'add-move', 'data-toggle' => "modal", 'data-target' => "#win1", 'disabled' => $model->isNewRecord ? false : true]),
-//                'asButton' => true,
-//            ]
-//        ]
     ])
     ?>
 
@@ -77,6 +71,27 @@ use app\models\Categoryexp;
     $form->field($model, 'cost')->textInput(['maxlength' => 10,
         'disabled' => $model->isNewRecord ? false : true,])
     ?>
+
+
+    <?=
+    $form->field($model, 'unit_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Unit::find()->all(), 'id', 'fullname'),
+        'language' => 'ru',
+        'options' => ['placeholder' => 'Выберите...'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ])
+    ?>
+
+
+    <?=
+    $form->field($model, 'count_unit')->textInput(['maxlength' => 10])
+    ?>
+
+
+
+
 
     <?=
     $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [
@@ -111,16 +126,6 @@ use app\models\Categoryexp;
 
 
 <?php
-// Модальное окно для перемещения средств. Пока не нужно...
-//Modal::begin([
-//    'header' => '<h4>Перемещение средств</h4>',
-//    'id' => 'win1'
-//        //'toggleButton' => ['label' => 'click me'],
-//]);
-//echo 'Окно 1';
-//Modal::end();
-
-
 $script = <<<JS
 $('#categoryexp-add-button').click(function () {
 

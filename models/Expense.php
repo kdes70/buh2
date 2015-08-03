@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\models\Wallet;
 use app\models\Categoryexp;
+use app\models\Unit;
 
 /**
  * This is the model class for table "db1_expense".
@@ -19,6 +20,7 @@ use app\models\Categoryexp;
 
  * @property string $date_oper
  * @property integer $user_id
+ * @property integer $unit_id
  * @property integer $operwallet_id
  */
 class Expense extends \yii\db\ActiveRecord {
@@ -38,9 +40,9 @@ class Expense extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cost', 'date_oper', 'user_id', 'wallet_id'], 'required'],
-            [['cost'], 'number'],
-            [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
+            [['cost', 'date_oper', 'user_id', 'wallet_id', 'unit_id', 'count_unit'], 'required'],
+            [['cost', 'count_unit'], 'number'],
+            [['categoryexp_id', 'user_id', 'wallet_id', 'unit_id'], 'integer'],
             [['cost'], 'checkSumInWallet'],
             [['categoryexp_id'], 'required', 'when' => function($model) {
             return $model->categoryexp_add == NULL;
@@ -58,10 +60,12 @@ class Expense extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'cost' => 'Сумма расхода',
+            'unit_id' => 'Единица измерения',
+            'count_unit' => 'Количество',
             'categoryexp_id' => 'Категория',
             'categoryexp_add' => 'Новая категория',
             'description' => 'Описание',
-            'date_oper' => 'Дата операции',
+            'date_oper' => 'Дата',
             'user_id' => 'Пользователь',
             'wallet_id' => 'Кошелек (счет)',
             'continue' => 'Продолжать ввод...'
@@ -87,6 +91,13 @@ class Expense extends \yii\db\ActiveRecord {
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnit() {
+        return $this->hasOne(Unit::className(), ['id' => 'unit_id']);
     }
 
     /**

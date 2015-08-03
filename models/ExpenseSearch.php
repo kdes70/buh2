@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Expense;
@@ -17,9 +16,9 @@ class ExpenseSearch extends Expense {
      */
     public function rules() {
         return [
-            [['id', 'categoryexp_id', 'wallet_id'], 'integer'],
-            [['cost',], 'number'],
-            [['description', 'date_oper', 'user_id',], 'safe'],
+            [['id', 'categoryexp_id', 'wallet_id', 'unit_id'], 'integer'],
+            [['cost', 'count_unit'], 'number'],
+            [['description', 'date_oper', 'user_id', 'unit_id', 'count_unit'], 'safe'],
         ];
     }
 
@@ -61,6 +60,8 @@ class ExpenseSearch extends Expense {
             'date_oper' => $this->date_oper,
             //'user_id' => $this->user_id,
             'wallet_id' => $this->wallet_id,
+            'unit_id' => $this->unit_id,
+            'count_unit' => $this->count_unit,
         ]);
 
 

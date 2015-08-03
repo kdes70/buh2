@@ -6,6 +6,7 @@ use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\Wallet;
 use app\models\Categoryexp;
+use app\models\Unit;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Expensetemp */
@@ -33,6 +34,23 @@ use app\models\Categoryexp;
 
 
     <?= $form->field($model, 'cost')->textInput(['maxlength' => true]) ?>
+
+    <?=
+    $form->field($model, 'unit_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Unit::find()->all(), 'id', 'fullname'),
+        'language' => 'ru',
+        'options' => ['placeholder' => 'Выберите...'],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ])
+    ?>
+
+
+    <?=
+    $form->field($model, 'count_unit')->textInput(['maxlength' => 10])
+    ?>
+
 
     <?=
     $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [

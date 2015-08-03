@@ -50,7 +50,7 @@ class Move extends \yii\db\ActiveRecord {
             'wallet_from' => 'Из кошелька (счета)',
             'wallet_to' => 'В кошелек (счет)',
             'move_sum' => 'Перемещаемая сумма',
-            'date_oper' => 'Дата операции',
+            'date_oper' => 'Дата',
             'user_id' => 'Пользователь',
             'description' => 'Описание',
         ];

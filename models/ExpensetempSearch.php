@@ -17,9 +17,9 @@ class ExpensetempSearch extends Expensetemp {
      */
     public function rules() {
         return [
-            [['id', 'categoryexp_id', 'wallet_id'], 'integer'],
-            [['cost'], 'number'],
-            [['description', 'name', 'user_id'], 'safe'],
+            [['id', 'categoryexp_id', 'wallet_id', 'unit_id'], 'integer'],
+            [['cost', 'count_unit'], 'number'],
+            [['description', 'name', 'user_id', 'unit_id', 'count_unit'], 'safe'],
         ];
     }
 
@@ -63,6 +63,10 @@ class ExpensetempSearch extends Expensetemp {
             'categoryexp_id' => $this->categoryexp_id,
             //'user_id' => $this->user_id,
             'wallet_id' => $this->wallet_id,
+            
+            'unit_id' => $this->unit_id,
+            'count_unit' => $this->count_unit,
+            
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description])

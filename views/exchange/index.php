@@ -30,7 +30,10 @@ $this->params['menuItems'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-            'start_date',
+            [
+                'attribute' => 'start_date',
+                'format' => ['date', 'php:d.m.Y']
+            ],
             [
                 'attribute' => 'currency_code',
                 'value' => 'currency_code',

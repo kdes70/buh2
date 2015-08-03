@@ -31,8 +31,10 @@ $this->params['menuItems'] = [
         'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            //'id',
-            'date_oper',
+            [
+                'attribute' => 'date_oper',
+                'format' => ['date', 'php:d.m.Y']
+            ],
             [
                 'attribute' => 'wallet_id',
                 'value' => 'wallet.name'

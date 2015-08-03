@@ -56,11 +56,15 @@ class ExpenseController extends Controller {
         if ($tmp > 0) {
            
         $model->cost = Expensetemp::findOne($tmp)->cost;
-        $model->wallet_id = Expensetemp::findOne($tmp)->wallet_id;
         
+        $model->unit_id = Expensetemp::findOne($tmp)->unit_id;
+        $model->count_unit =  Expensetemp::findOne($tmp)->count_unit;
+        
+        $model->wallet_id = Expensetemp::findOne($tmp)->wallet_id;
         $model->categoryexp_id = Expensetemp::findOne($tmp)->categoryexp_id;
-            
         $model->description = Expensetemp::findOne($tmp)->description;
+        
+        
         }
 
 
@@ -142,6 +146,9 @@ class ExpenseController extends Controller {
         $expensetemp->user_id = $expense->user_id;
         $expensetemp->wallet_id = $expense->wallet_id;
         $expensetemp->name = $expense->categoryexp->name;
+        
+        $expensetemp->unit_id = $expense->unit_id;
+        $expensetemp->count_unit = $expense->count_unit;
 
         if ($expensetemp->save()) {
             Yii::$app->getSession()->setFlash('save-as-template-ok', 'Шаблон операции "' . $expensetemp->name . '" успешно создан. <hr/>' . Html::a('Изменить шаблон', ['expensetemp/update', 'id' => $expensetemp->id], ['class' => 'btn btn-primary btn-sm']));

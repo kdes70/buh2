@@ -32,9 +32,9 @@ class Expensetemp extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cost', 'categoryexp_id', 'user_id', 'wallet_id', 'name'], 'required'],
-            [['cost'], 'number'],
-            [['categoryexp_id', 'user_id', 'wallet_id'], 'integer'],
+            [['cost', 'categoryexp_id', 'user_id', 'wallet_id', 'name', 'unit_id', 'count_unit'], 'required'],
+            [['cost', 'count_unit'], 'number'],
+            [['categoryexp_id', 'user_id', 'wallet_id', 'unit_id'], 'integer'],
             [['description'], 'string', 'max' => 200],
             [['name'], 'string', 'max' => 50],
             [['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id',], 'unique', 'targetAttribute' => ['cost', 'categoryexp_id', 'description', 'user_id', 'wallet_id',], 'message' => 'Шаблон такой операции уже существует.'],
@@ -49,6 +49,8 @@ class Expensetemp extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'cost' => 'Сумма расхода',
+            'unit_id' => 'Единица измерения',
+            'count_unit' => 'Количество',
             'categoryexp_id' => 'Категория расходов',
             'description' => 'Описание',
             'user_id' => 'Пользователь',
@@ -76,6 +78,13 @@ class Expensetemp extends \yii\db\ActiveRecord {
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnit() {
+        return $this->hasOne(Unit::className(), ['id' => 'unit_id']);
     }
 
     /**

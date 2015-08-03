@@ -47,7 +47,7 @@ class Income extends \yii\db\ActiveRecord {
             'amount' => 'Сумма дохода',
             'categoryinc_id' => 'Категория',
             'wallet_id' => 'Кошелек (счет)',
-            'date_oper' => 'Дата операции',
+            'date_oper' => 'Дата',
             'user_id' => 'Пользователь',
             'continue' => 'Продолжать ввод...'
         ];
