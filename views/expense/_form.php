@@ -150,8 +150,8 @@ $('#unit-edit-button').click(function () {
         $("#unit-edit-button span").addClass("glyphicon-minus");
     }
     //Показываем поле    
-    //$('#unit-edit').toggle('slow');
-    $('#unit-edit').toggle();    
+    $('#unit-edit').toggle('fade');
+    //$('#unit-edit').toggle();    
     $('#expense-count_unit').focus();
 
 });
@@ -165,8 +165,8 @@ $('#categoryexp-add-button').click(function () {
         $("#categoryexp-add-button span").addClass("glyphicon-minus");
     }
     //Показываем поле    
-    //$('#categoryexp-add').toggle('slow');
-    $('#categoryexp-add').toggle();    
+    $('#categoryexp-add').toggle('fade');
+    //$('#categoryexp-add').toggle();    
     $('#expense-categoryexp_add').val(null);
     $('#expense-categoryexp_add').focus();
 });
