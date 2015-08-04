@@ -12,6 +12,14 @@ use app\models\Expensetemp;
                 <div class="panel-title">Остстки на сегодня</div>
             </div>     
             <div class="panel-body">
+
+
+                Наличные - 100.55<br/>
+                Карточка Fido - 500.11
+                <hr />
+                Всего - 600.66
+
+
             </div>                     
         </div>
         <div class="panel panel-default">
@@ -112,11 +120,11 @@ use app\models\Expensetemp;
             </div>     
             <div class="panel-body">
                 <p>Выбрать период 01.01.2005 - 10.01.2015</p>
-                <ul>
-                    <li>Потрачено - 45.55</li>
-                    <li>Получено - 1232.55</li>
 
-                </ul>  
+                Потрачено - 45.55 <br />
+                Получено - 1232.55
+
+
             </div>                     
         </div>
     </div>
@@ -139,7 +147,30 @@ use app\models\Expensetemp;
 </div>
 
 
+
+
+
 <!--Памятка - что нужно реализовать-->
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+
 <hr />
 
 <h2>Реализовать</h2>

@@ -138,7 +138,7 @@ $('#unit-edit-button').click(function () {
         $("#unit-edit-button span").addClass("glyphicon-minus");
     }
     //Показываем поле    
-    $('#unit-edit').toggle();    
+    $('#unit-edit').slideToggle(150);
     $('#expense-count_unit').focus();
 
 });
@@ -152,7 +152,7 @@ $('#categoryexp-add-button').click(function () {
         $("#categoryexp-add-button span").addClass("glyphicon-minus");
     }
     //Показываем поле    
-    $('#categoryexp-add').toggle();    
+    $('#categoryexp-add').slideToggle(150);
     $('#expense-categoryexp_add').val(null);
     $('#expense-categoryexp_add').focus();
 });
