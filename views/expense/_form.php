@@ -73,7 +73,7 @@ use app\models\Unit;
     $form->field($model, 'cost', [
         'addon' => [
             'append' => [
-                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'unit-edit-button',]),
+                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'unit-edit-button', 'title' => 'Дополнительно']),
                 'asButton' => true
             ]
         ]
@@ -84,7 +84,7 @@ use app\models\Unit;
 
 
 
-    <div id="unit-edit" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
+    <div id="unit-edit" class="well well-sm" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
 
 
         <?=
@@ -117,14 +117,14 @@ use app\models\Unit;
         ],
         'addon' => [
             'append' => [
-                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'categoryexp-add-button',]),
+                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'categoryexp-add-button', 'title' => 'Новая категория']),
                 'asButton' => true
             ]
         ]
     ])
     ?>
 
-    <div id="categoryexp-add" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
+    <div id="categoryexp-add"  class="well  well-sm" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
         <?= $form->field($model, 'categoryexp_add')->textInput(['maxlength' => 20,]) ?>
     </div>
 
@@ -141,7 +141,6 @@ use app\models\Unit;
 <?php
 $script = <<<JS
 $('#unit-edit-button').click(function () {
-        
     //Изменяем значек на кнопке    
     if ($('#unit-edit').css('display') === 'block') {
         $("#unit-edit-button span").removeClass("glyphicon-minus");
@@ -150,16 +149,13 @@ $('#unit-edit-button').click(function () {
         $("#unit-edit-button span").removeClass("glyphicon-plus");
         $("#unit-edit-button span").addClass("glyphicon-minus");
     }
-
     //Показываем поле    
-    $('#unit-edit').toggle('slow');
+    //$('#unit-edit').toggle('slow');
+    $('#unit-edit').toggle();    
     $('#expense-count_unit').focus();
 
-});        
-        
-        
+});
 $('#categoryexp-add-button').click(function () {
-        
     //Изменяем значек на кнопке    
     if ($('#categoryexp-add').css('display') === 'block') {
         $("#categoryexp-add-button span").removeClass("glyphicon-minus");
@@ -168,12 +164,11 @@ $('#categoryexp-add-button').click(function () {
         $("#categoryexp-add-button span").removeClass("glyphicon-plus");
         $("#categoryexp-add-button span").addClass("glyphicon-minus");
     }
-
     //Показываем поле    
-    $('#categoryexp-add').toggle('slow');
+    //$('#categoryexp-add').toggle('slow');
+    $('#categoryexp-add').toggle();    
     $('#expense-categoryexp_add').val(null);
     $('#expense-categoryexp_add').focus();
-
 });
 JS;
 
