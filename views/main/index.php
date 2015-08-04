@@ -111,6 +111,12 @@ use app\models\Expensetemp;
                 <div class="panel-title">Журнал операций</div>
             </div>     
             <div class="panel-body">
+                <p>Выбрать период 01.01.2005 - 10.01.2015</p>
+                <ul>
+                    <li>Потрачено - 45.55</li>
+                    <li>Получено - 1232.55</li>
+
+                </ul>  
             </div>                     
         </div>
     </div>
