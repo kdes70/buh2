@@ -29,7 +29,6 @@ use app\models\Unit;
     ?>
 <?php endif; ?>
 
-
 <div class="expense-form">
     <?php
     $form = ActiveForm::begin([
@@ -67,8 +66,6 @@ use app\models\Unit;
     ])
     ?>
 
-
-
     <?=
     $form->field($model, 'cost', [
         'addon' => [
@@ -82,15 +79,10 @@ use app\models\Unit;
     ]);
     ?>
 
-
-
     <div id="unit-edit" class="well well-sm" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
-
-
         <?=
         $form->field($model, 'count_unit')->textInput(['maxlength' => 10])
         ?>
-
         <?=
         $form->field($model, 'unit_id')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(Unit::find()->all(), 'id', 'fullname'),
@@ -101,10 +93,7 @@ use app\models\Unit;
             ],
         ])
         ?>
-
     </div>
-
-
 
     <?=
     $form->field($model, 'categoryexp_id')->widget(Select2::classname(), [
@@ -137,7 +126,6 @@ use app\models\Unit;
 </div>
 
 
-
 <?php
 $script = <<<JS
 $('#unit-edit-button').click(function () {
@@ -150,8 +138,7 @@ $('#unit-edit-button').click(function () {
         $("#unit-edit-button span").addClass("glyphicon-minus");
     }
     //Показываем поле    
-    $('#unit-edit').toggle('fade');
-    //$('#unit-edit').toggle();    
+    $('#unit-edit').toggle();    
     $('#expense-count_unit').focus();
 
 });
@@ -165,8 +152,7 @@ $('#categoryexp-add-button').click(function () {
         $("#categoryexp-add-button span").addClass("glyphicon-minus");
     }
     //Показываем поле    
-    $('#categoryexp-add').toggle('fade');
-    //$('#categoryexp-add').toggle();    
+    $('#categoryexp-add').toggle();    
     $('#expense-categoryexp_add').val(null);
     $('#expense-categoryexp_add').focus();
 });

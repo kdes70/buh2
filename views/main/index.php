@@ -39,6 +39,21 @@ use app\models\Expensetemp;
         ?>
 
         <!-- Блок управления -->
+
+
+        <div class="btn-group btn-group-justified btn-group-lg" role="group">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-lg">Left</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-lg">Middle</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-lg">Right</button>
+            </div>
+        </div>
+
+
         <!-- Заголовок -->
         <table class="table table-striped custab">
             <thead>
