@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
@@ -67,29 +67,42 @@ use app\models\Unit;
     ])
     ?>
 
-    <?=
-    $form->field($model, 'cost')->textInput(['maxlength' => 10,
-        'disabled' => $model->isNewRecord ? false : true,])
-    ?>
 
 
     <?=
-    $form->field($model, 'unit_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(Unit::find()->all(), 'id', 'fullname'),
-        'language' => 'ru',
-        'options' => ['placeholder' => 'Выберите...'],
-        'pluginOptions' => [
-            'allowClear' => true,
-        ],
-    ])
+    $form->field($model, 'cost', [
+        'addon' => [
+            'append' => [
+                'content' => Html::button('<span class="glyphicon glyphicon-plus"></span>', ['class' => 'btn btn-default', 'id' => 'unit-edit-button',]),
+                'asButton' => true
+            ]
+        ]
+    ])->textInput(['maxlength' => 10,
+        'disabled' => $model->isNewRecord ? false : true,
+    ]);
     ?>
 
 
-    <?=
-    $form->field($model, 'count_unit')->textInput(['maxlength' => 10])
-    ?>
+
+    <div id="unit-edit" <?= $model->categoryexp_add ? '' : 'style="display:none"' ?> >
 
 
+        <?=
+        $form->field($model, 'count_unit')->textInput(['maxlength' => 10])
+        ?>
+
+        <?=
+        $form->field($model, 'unit_id')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(Unit::find()->all(), 'id', 'fullname'),
+            'language' => 'ru',
+            'options' => ['placeholder' => 'Выберите...'],
+            'pluginOptions' => [
+                'allowClear' => true,
+            ],
+        ])
+        ?>
+
+    </div>
 
 
 
@@ -127,8 +140,26 @@ use app\models\Unit;
 
 <?php
 $script = <<<JS
-$('#categoryexp-add-button').click(function () {
+$('#unit-edit-button').click(function () {
+        
+    //Изменяем значек на кнопке    
+    if ($('#unit-edit').css('display') === 'block') {
+        $("#unit-edit-button span").removeClass("glyphicon-minus");
+        $("#unit-edit-button span").addClass("glyphicon-plus");
+    } else {
+        $("#unit-edit-button span").removeClass("glyphicon-plus");
+        $("#unit-edit-button span").addClass("glyphicon-minus");
+    }
 
+    //Показываем поле    
+    $('#unit-edit').toggle('slow');
+    $('#expense-count_unit').focus();
+
+});        
+        
+        
+$('#categoryexp-add-button').click(function () {
+        
     //Изменяем значек на кнопке    
     if ($('#categoryexp-add').css('display') === 'block') {
         $("#categoryexp-add-button span").removeClass("glyphicon-minus");
