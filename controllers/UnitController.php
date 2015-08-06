@@ -8,6 +8,8 @@ use app\models\UnitSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+//Класс фильтра для прав
+use yii\filters\AccessControl;
 
 /**
  * UnitController implements the CRUD actions for Unit model.
@@ -22,6 +24,17 @@ class UnitController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            //Фильтр для прав
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['update', 'index', 'delete', 'create'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];
@@ -47,6 +60,9 @@ class UnitController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
+
+
+
         $model = new Unit();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

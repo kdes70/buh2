@@ -34,6 +34,10 @@ use app\models\Expensetemp;
 
 
         <?php
+        
+        
+        //Эксперименты с правами в разделе Unit
+        
 //        $role = Yii::$app->authManager->createRole('admin');
 //        $role->description = 'Админ';
 //        Yii::$app->authManager->add($role);
@@ -44,6 +48,9 @@ use app\models\Expensetemp;
 //        $permit = Yii::$app->authManager->createPermission('deleteUser');
 //        $permit->description = 'Право удалять пользователя';
 //        Yii::$app->authManager->add($permit);
+        //Назначение роли пользователю
+//        $userRole = Yii::$app->authManager->getRole('admin');
+//        Yii::$app->authManager->assign($userRole, 3);
         ?>
 
         <!-- Блок управления -->
@@ -74,19 +81,19 @@ use app\models\Expensetemp;
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
                 <td class="text-right"> 
                     <div class="btn-group" role="group" style = "width:100%">
@@ -95,11 +102,11 @@ use app\models\Expensetemp;
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <?php
-                            foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
-                                echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
-                            }
-                            ?>
+<?php
+foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
+    echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
+}
+?>
                         </ul>
                     </div>
                 </td>
@@ -107,7 +114,7 @@ use app\models\Expensetemp;
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
 
             </tr>

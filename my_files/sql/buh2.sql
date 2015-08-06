@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 03 2015 г., 15:49
+-- Время создания: Авг 06 2015 г., 09:24
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -33,6 +33,14 @@ CREATE TABLE IF NOT EXISTS `db1_auth_assignment` (
   PRIMARY KEY (`item_name`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
+--
+-- Дамп данных таблицы `db1_auth_assignment`
+--
+
+INSERT INTO `db1_auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
+('admin', '2', 1438844337),
+('admin', '3', 1438845758);
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +59,14 @@ CREATE TABLE IF NOT EXISTS `db1_auth_item` (
   KEY `rule_name` (`rule_name`),
   KEY `idx-auth_item-type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
+
+--
+-- Дамп данных таблицы `db1_auth_item`
+--
+
+INSERT INTO `db1_auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
+('admin', 1, 'Администратор', NULL, NULL, 1438842221, 1438842221),
+('user', 1, 'Пользователь', NULL, NULL, 1438842221, 1438842221);
 
 -- --------------------------------------------------------
 
@@ -271,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   KEY `wallet_id` (`wallet_id`),
   KEY `categoryexp_id` (`categoryexp_id`),
   KEY `unit_id` (`unit_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=44 ;
 
 --
 -- Дамп данных таблицы `db1_expensetemp`
@@ -401,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `db1_unit` (
   `fullname` varchar(100) NOT NULL COMMENT 'Полное наименование',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Единицы измерения' AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Единицы измерения' AUTO_INCREMENT=13 ;
 
 --
 -- Дамп данных таблицы `db1_unit`
@@ -513,26 +529,26 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_categoryinc`
 --
 ALTER TABLE `db1_categoryinc`
-  ADD CONSTRAINT `db1_categoryinc_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
-  ADD CONSTRAINT `db1_categoryinc_ibfk_1` FOREIGN KEY (`wallet_default`) REFERENCES `db1_wallet` (`id`);
+  ADD CONSTRAINT `db1_categoryinc_ibfk_1` FOREIGN KEY (`wallet_default`) REFERENCES `db1_wallet` (`id`),
+  ADD CONSTRAINT `db1_categoryinc_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_expense`
 --
 ALTER TABLE `db1_expense`
-  ADD CONSTRAINT `db1_expense_ibfk_5` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_2` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
   ADD CONSTRAINT `db1_expense_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
-  ADD CONSTRAINT `db1_expense_ibfk_4` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`);
+  ADD CONSTRAINT `db1_expense_ibfk_4` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`),
+  ADD CONSTRAINT `db1_expense_ibfk_5` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_expensetemp`
 --
 ALTER TABLE `db1_expensetemp`
-  ADD CONSTRAINT `db1_expensetemp_ibfk_4` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`),
   ADD CONSTRAINT `db1_expensetemp_ibfk_1` FOREIGN KEY (`categoryexp_id`) REFERENCES `db1_categoryexp` (`id`),
   ADD CONSTRAINT `db1_expensetemp_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`),
-  ADD CONSTRAINT `db1_expensetemp_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`);
+  ADD CONSTRAINT `db1_expensetemp_ibfk_3` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`),
+  ADD CONSTRAINT `db1_expensetemp_ibfk_4` FOREIGN KEY (`unit_id`) REFERENCES `db1_unit` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_income`
