@@ -14,8 +14,11 @@ use app\models\User;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+    <?php if ($model->isNewRecord): ?>
+        <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+    <?php endif; ?> 
+
     <?= $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'status')->dropDownList(['' => 'Выберите...', User::STATE_ACTIVE => 'Активен', User::STATE_CLOSE => 'Закрыт']) ?>

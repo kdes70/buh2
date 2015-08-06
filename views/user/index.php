@@ -50,11 +50,14 @@ $this->params['menuItems'] = [
                     ],
                     ['class' => \yii\grid\ActionColumn::className(),
                         'header' => 'Действия',
-                        'options' => ['width' => '70px'],
+                        'options' => ['width' => '90px'],
                         'buttons' => [
 
                             'password' => function ($url, $model, $key) {
                                 return Html::a('<img src=' . Yii::$app->request->baseUrl . '/images/password.png >', ['password', 'id' => $key], ['title' => 'Изменить пароль']);
+                            },
+                                    'permission' => function ($url, $model, $key) {
+                                return Html::a('<span class="glyphicon glyphicon-user"/>', ['permission', 'id' => $key], ['title' => 'Назначить роли']);
                             },
                                     'update' => function ($url, $model, $key) {
                                 return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить']);
@@ -63,7 +66,7 @@ $this->params['menuItems'] = [
                                 return Html::a('<span class="glyphicon glyphicon-trash"/>', ['delete', 'id' => $key], ['title' => 'Удалить', 'data-method' => 'post', 'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?']);
                             },
                                 ],
-                                'template' => '{password}  {update}  {delete}'
+                                'template' => '{password} {permission} {update} {delete}'
                             ],
                         ],
                     ]);

@@ -14,13 +14,13 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <head>
-        <meta charset="<?= Yii::$app->charset ?>"/>
+        <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href=<?= Yii::$app->request->baseUrl . '/images/favicon.png' ?> rel="shortcut icon" type="image/x-icon" />
+        <link href="<?= Yii::$app->request->baseUrl . '/images/favicon.png' ?>" rel="shortcut icon" type="image/x-icon" />
 
-              <?= Html::csrfMetaTags() ?>
-              <title>
-                  <?= isset($this->title) ? Yii::$app->name . ' - ' . Html::encode($this->title) : Yii::$app->name ?>
+        <?= Html::csrfMetaTags() ?>
+        <title>
+            <?= isset($this->title) ? Yii::$app->name . ' - ' . Html::encode($this->title) : Yii::$app->name ?>
         </title>
         <?php $this->head() ?>
     </head>

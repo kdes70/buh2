@@ -129,4 +129,17 @@ class UserController extends Controller {
         }
     }
 
+    /**
+     * Назначение ролей пользователям
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionPermission($id) {
+        $model = $this->findModel($id);
+        $model->setScenario('permission');
+        return $this->render('permission', [
+                    'model' => $model,
+        ]);
+    }
+
 }
