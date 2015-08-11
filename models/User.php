@@ -7,13 +7,12 @@ use Yii;
 
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
 
-    
     const STATE_ACTIVE = 0;
     const STATE_CLOSE = 1;
-    
-    
+
     public $password;
     public $password_repeat;
+    public $permissions;
 
     public static function tableName() {
         return '{{%user}}';
@@ -56,12 +55,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         return [
 
             [['created_at', 'updated_at', 'username', 'email', 'status'], 'required'],
-            
             [['password', 'password_repeat'], 'required', 'on' => 'password'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'on' => 'password'],
-            
             ['email', 'email'],
-            
             [['id', 'created_at', 'updated_at', 'status'], 'integer'],
             [['fullname', 'username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
         ];
@@ -80,6 +76,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             'password' => 'Пароль',
             'password_repeat' => 'Пароль еще раз',
             'email' => 'E-mail',
+            'permissions' => 'Назначеные роли'
         ];
     }
 
@@ -114,5 +111,22 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         }
         return false;
     }
+    
+    
+    
+    //Назначение ролей
+    /*           if ($user->save()) {
+                //Добавление прав
+                $permissionList = $_POST['SignupForm']['permissions'];
+                foreach ($permissionList as $value) {
+                    $newPermission = new AuthAssignment;
+                    $newPermission->user_id = $user->id;
+                    $newPermission->item_name = $value;
+                    $newPermission->save();
+                }
+                return $user;
+            }*/
+    
+    
 
 }

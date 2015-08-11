@@ -18,7 +18,7 @@ $this->params['menuItems'] = [
 <div class="user-password">
 
 
-    <div class="user-form">
+ 
 
         <?php $form = ActiveForm::begin(); ?>
 
@@ -33,6 +33,6 @@ $this->params['menuItems'] = [
 
         <?php ActiveForm::end(); ?>
 
-    </div>
+ 
 
 </div>

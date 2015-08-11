@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -16,23 +17,25 @@ $this->params['menuItems'] = [
 ];
 ?>
 
-<h1>Назначение ролей пользователю</h1>
-
-<div class="user-password">
+<div class="user-permission">
 
 
-    <div class="user-form">
+    <?php $form = ActiveForm::begin(); ?>
 
-        <?php $form = ActiveForm::begin(); ?>
-        <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+    <?php
+    $authItems = ArrayHelper::map($authItems, 'name', 'description');
+    ?>
 
-        <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        </div>
+    <?= $form->field($model, 'permissions')->checkboxList($authItems) ?>
 
-        <?php ActiveForm::end(); ?>
 
+ 
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
+
+    <?php ActiveForm::end(); ?>
+
+
 
 </div>
