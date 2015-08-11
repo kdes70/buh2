@@ -20,13 +20,22 @@ $this->params['menuItems'] = [
 <div class="user-permission">
 
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+    $form = ActiveForm::begin([
+                'id' => 'permission-form',
+                    //'type' => ActiveForm::TYPE_HORIZONTAL,
+                    // 'formConfig' => ['labelSpan' => 2, 'deviceSize' => ActiveForm::SIZE_SMALL]
+    ]);
+    ?>
 
     <?php
     $authItems = ArrayHelper::map($authItems, 'name', 'description');
     ?>
     <div class="form-group">
-        <?= $form->field($model, 'permissions', ['options' => ['class' => 'checkbox1']])->checkboxList($authItems) ?>
+        <?=
+                $form->field($model, 'permissions')
+                ->checkboxList($authItems, ['inline' => true])
+        ?>
 
     </div>
 
