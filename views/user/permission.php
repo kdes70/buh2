@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -25,11 +25,11 @@ $this->params['menuItems'] = [
     <?php
     $authItems = ArrayHelper::map($authItems, 'name', 'description');
     ?>
+    <div class="form-group">
+        <?= $form->field($model, 'permissions', ['options' => ['class' => 'checkbox1']])->checkboxList($authItems) ?>
 
-    <?= $form->field($model, 'permissions')->checkboxList($authItems) ?>
+    </div>
 
-
- 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
