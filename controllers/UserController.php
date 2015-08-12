@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\AuthItem;
+use yii\data\ActiveDataProvider;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -138,12 +139,17 @@ class UserController extends Controller {
     public function actionPermission($id) {
         $model = $this->findModel($id);
 
-        $authItems = AuthItem::find()->all();
+        //$authItems = AuthItem::find()->all();
+        //$model->setScenario('permission');
 
-        $model->setScenario('permission');
+        $dataProvider = new ActiveDataProvider([
+            'query' => AuthItem::find(),
+        ]);
+
         return $this->render('permission', [
                     'model' => $model,
-                    'authItems' => $authItems,
+                    //'authItems' => $authItems,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 

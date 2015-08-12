@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 06 2015 г., 09:24
+-- Время создания: Авг 12 2015 г., 16:00
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `db1_auth_item` (
 
 INSERT INTO `db1_auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
 ('admin', 1, 'Администратор', NULL, NULL, 1438842221, 1438842221),
+('show_all', 1, 'Просмотр всех', NULL, NULL, 1439294547, 1439294547),
 ('user', 1, 'Пользователь', NULL, NULL, 1438842221, 1438842221);
 
 -- --------------------------------------------------------
@@ -417,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `db1_unit` (
   `fullname` varchar(100) NOT NULL COMMENT 'Полное наименование',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Единицы измерения' AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Единицы измерения' AUTO_INCREMENT=11 ;
 
 --
 -- Дамп данных таблицы `db1_unit`

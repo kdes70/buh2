@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -20,30 +22,43 @@ $this->params['menuItems'] = [
 <div class="user-permission">
 
 
-    <?php
-    $form = ActiveForm::begin([
-                'id' => 'permission-form',
-                    //'type' => ActiveForm::TYPE_HORIZONTAL,
-                    // 'formConfig' => ['labelSpan' => 2, 'deviceSize' => ActiveForm::SIZE_SMALL]
-    ]);
-    ?>
 
-    <?php
-    $authItems = ArrayHelper::map($authItems, 'name', 'description');
-    ?>
-    <div class="form-group">
-        <?=
-                $form->field($model, 'permissions')
-                ->checkboxList($authItems, ['inline' => true])
-        ?>
 
-    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+    <?php Pjax::begin(['timeout' => 3000]); ?>
+    <?=
+    GridView::widget([
+        'dataProvider' => $dataProvider,
+        'layout' => '{items}{summary}{pager}',
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'name',
 
-    <?php ActiveForm::end(); ?>
+            'description:ntext',
+
+            ['class' => \yii\grid\ActionColumn::className(),
+                'header' => 'Действия',
+                'options' => ['width' => '90px'],
+                'buttons' => [
+
+                    'permission' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-plus"/>', ['permission', 'id' => $key], ['title' => 'Дать роль']);
+                    },
+                            'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-minus"/>', ['permission', 'id' => $key], ['title' => 'Отобрать роль']);
+                    },
+                        ],
+                        'template' => '{permission} {update}'
+                    ],
+                ],
+            ]);
+            ?>
+            <?php Pjax::end(); ?>
+
+
+
+
+
 
 
 
