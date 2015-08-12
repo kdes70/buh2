@@ -134,21 +134,19 @@ class UserController extends Controller {
     /**
      * Назначение ролей пользователям
      * @param integer $id
+     * @param string $role
+     * @param integer $action 0-remove 1-add
      * @return mixed
      */
-    public function actionPermission($id) {
+    public function actionPermission($id, $role = NULL, $action = NULL) {
         $model = $this->findModel($id);
-
-        //$authItems = AuthItem::find()->all();
-        //$model->setScenario('permission');
 
         $dataProvider = new ActiveDataProvider([
             'query' => AuthItem::find(),
         ]);
 
         return $this->render('permission', [
-                    'model' => $model,
-                    //'authItems' => $authItems,
+                    'user_model' => $model,
                     'dataProvider' => $dataProvider,
         ]);
     }
