@@ -3,6 +3,7 @@
 
 use yii\helpers\Html;
 use app\models\Expensetemp;
+use dosamigos\chartjs\ChartJs;
 ?>
 <div class="row">
     <div class="col-md-3 col-lg-3">
@@ -34,10 +35,7 @@ use app\models\Expensetemp;
 
 
         <?php
-        
-        
         //Эксперименты с правами в разделе Unit
-        
 //        $role = Yii::$app->authManager->createRole('admin');
 //        $role->description = 'Админ';
 //        Yii::$app->authManager->add($role);
@@ -58,13 +56,13 @@ use app\models\Expensetemp;
 
         <div class="btn-group btn-group-justified btn-group-lg" role="group">
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default btn-lg">Left</button>
+                <button type="button" class="btn btn-default btn-lg">Операции</button>
             </div>
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default btn-lg">Middle</button>
+                <button type="button" class="btn btn-default btn-lg">Настройки</button>
             </div>
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default btn-lg">Right</button>
+                <button type="button" class="btn btn-default btn-lg">Управление</button>
             </div>
         </div>
 
@@ -81,19 +79,19 @@ use app\models\Expensetemp;
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
                 <td class="text-right"> 
                     <div class="btn-group" role="group" style = "width:100%">
@@ -102,11 +100,11 @@ use app\models\Expensetemp;
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-<?php
-foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
-    echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
-}
-?>
+                            <?php
+                            foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
+                                echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                 </td>
@@ -114,7 +112,7 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
 
             </tr>
@@ -141,6 +139,37 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
                 <div class="panel-title">Ввод операций</div>
             </div>     
             <div class="panel-body">
+
+
+                <?=
+                ChartJs::widget([
+                    'type' => 'Bar',
+                    'options' => [
+                        'height' => 230,
+                        'width' => 230
+                    ],
+                    'data' => [
+                        'labels' => ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль"],
+                        'datasets' => [
+                            [
+                                'fillColor' => "rgba(220,220,220,0.5)",
+                                'strokeColor' => "rgba(220,220,220,1)",
+                                'pointColor' => "rgba(220,220,220,1)",
+                                'pointStrokeColor' => "#fff",
+                                'data' => [65, 59, 90, 81, 56, 55, 40]
+                            ],
+                            [
+                                'fillColor' => "rgba(151,187,205,0.5)",
+                                'strokeColor' => "rgba(151,187,205,1)",
+                                'pointColor' => "rgba(151,187,205,1)",
+                                'pointStrokeColor' => "#fff",
+                                'data' => [28, 48, 40, 19, 96, 27, 100]
+                            ]
+                        ]
+                    ]
+                ]);
+                ?>
+
             </div>                     
         </div>
         <div class="panel panel-default">
@@ -148,6 +177,35 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
                 <div class="panel-title">Информация</div>
             </div>     
             <div class="panel-body">
+                <?=
+                ChartJs::widget([
+                    'type' => 'Pie',
+                    'options' => [
+                        'height' => 230,
+                        'width' => 230,
+                    ],
+                    'data' => [
+                        [
+                            'value' => 300,
+                            'color' => "#F7464A",
+                            'highlight' => "#FF5A5E",
+                            'label' => "Red"
+                        ],
+                        [
+                            'value' => 50,
+                            'color' => "#46BFBD",
+                            'highlight' => "#5AD3D1",
+                            'label' => "Green"
+                        ],
+                        [
+                            'value' => 100,
+                            'color' => "#FDB45C",
+                            'highlight' => "#FFC870",
+                            'label' => "Yellow"
+                        ]
+                    ]
+                ]);
+                ?>
             </div>                     
         </div>
     </div>
@@ -205,7 +263,6 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
 <ul>
     <li>Переименовать поле "status" в "state"</li>
     <li>Реализовать "групповые" действия</li>
-    <li>Избавиться от этого - $dbman = new yii\rbac\DbManager; в назначениях ролей</li>
 </ul>
 
 <h3>Раздел "Категории расходов":</h3>
