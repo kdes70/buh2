@@ -23,24 +23,23 @@ $this->params['menuItems'] = [
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
-        'layout' => '{items}{summary}{pager}',
+        'layout' => '{items}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            //'name',
-            'description:ntext',
             [
-                //'attribute' => 'wallet_to',
-                //'value' => function($data) {
-                //    return $data->walletTo->name . ' (' . $data->walletTo->user->username . ')';
-                //},
+                'header' => 'Роль',
+                'value' => function ($data) {
 
-                'header' => 'Роль назначена',
+                    return $data->description;
+                }
+            ],
+            [
+                'header' => 'Назначена',
                 'value' => function($data) use ($user_model) {
-                    //return 'Будет вывод назначения...';
 
-                    if (Yii::$app->user->can($data->name)) {
-
-                        return 'ДА Пока выводит текущего ID='.$user_model->id;
+                    $dbman = new yii\rbac\DbManager;
+                    if ($dbman->checkAccess($user_model->id, $data->name)) {
+                        return 'ДА';
                     } else {
                         return 'НЕТ';
                     }

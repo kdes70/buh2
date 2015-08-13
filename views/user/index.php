@@ -57,7 +57,7 @@ $this->params['menuItems'] = [
                                 return Html::a('<img src=' . Yii::$app->request->baseUrl . '/images/password.png >', ['password', 'id' => $key], ['title' => 'Изменить пароль']);
                             },
                                     'permission' => function ($url, $model, $key) {
-                                return Html::a('<span class="glyphicon glyphicon-user"/>', ['permission', 'id' => $key], ['title' => 'Назначить роли']);
+                                return Html::a('<span class="glyphicon glyphicon-user"/>', ['permission', 'id' => $key], ['title' => 'Назначить роли', 'data-pjax' => 0]);
                             },
                                     'update' => function ($url, $model, $key) {
                                 return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить']);
