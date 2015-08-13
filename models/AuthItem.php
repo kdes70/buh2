@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-
 /**
  * This is the model class for table "db1_auth_item".
  *
@@ -19,21 +18,19 @@ namespace app\models;
  * @property AuthItemChild[] $authItemChildren
  * @property AuthItemChild[] $authItemChildren0
  */
-class AuthItem extends \yii\db\ActiveRecord
-{
+class AuthItem extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'db1_auth_item';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'type'], 'required'],
             [['type', 'created_at', 'updated_at'], 'integer'],
@@ -45,8 +42,7 @@ class AuthItem extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'name' => 'Наименование роли',
             'type' => 'Type',
@@ -61,32 +57,29 @@ class AuthItem extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuthAssignments()
-    {
+    public function getAuthAssignments() {
         return $this->hasMany(AuthAssignment::className(), ['item_name' => 'name']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRuleName()
-    {
+    public function getRuleName() {
         return $this->hasOne(AuthRule::className(), ['name' => 'rule_name']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuthItemChildren()
-    {
+    public function getAuthItemChildren() {
         return $this->hasMany(AuthItemChild::className(), ['parent' => 'name']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuthItemChildren0()
-    {
+    public function getAuthItemChildren0() {
         return $this->hasMany(AuthItemChild::className(), ['child' => 'name']);
     }
+
 }

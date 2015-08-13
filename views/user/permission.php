@@ -35,9 +35,15 @@ $this->params['menuItems'] = [
                 //},
 
                 'header' => 'Роль назначена',
-                'value' => function($data) {
-                    return 'Будет вывод назначения...';
-                    //return $data->authAssignments->user_id;
+                'value' => function($data) use ($user_model) {
+                    //return 'Будет вывод назначения...';
+
+                    if (Yii::$app->user->can($data->name)) {
+
+                        return 'ДА Пока выводит текущего ID='.$user_model->id;
+                    } else {
+                        return 'НЕТ';
+                    }
                 },
             ],
             ['class' => \yii\grid\ActionColumn::className(),
