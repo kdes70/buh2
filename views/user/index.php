@@ -51,6 +51,7 @@ $this->params['menuItems'] = [
                     ['class' => \yii\grid\ActionColumn::className(),
                         'header' => 'Действия',
                         'options' => ['width' => '90px'],
+                        'contentOptions' => ['style' => 'text-align: center'],
                         'buttons' => [
 
                             'password' => function ($url, $model, $key) {

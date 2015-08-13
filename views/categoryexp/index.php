@@ -55,6 +55,7 @@ $this->params['menuItems'] = [
                     ['class' => \yii\grid\ActionColumn::className(),
                         'header' => 'Действия',
                         'options' => ['width' => '70px'],
+                        'contentOptions' => ['style' => 'text-align: center'],
                         'buttons' => [
                             'update' => function ($url, $model, $key) {
                                 return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key, 'parent_id' => $model->parent_id], ['title' => 'Изменить']);

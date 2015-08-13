@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\base\NotSupportedException;
+use yii\rbac\DbManager;
 use Yii;
 
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
@@ -111,22 +112,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         }
         return false;
     }
-    
-    
-    
-    //Назначение ролей
-    /*           if ($user->save()) {
-                //Добавление прав
-                $permissionList = $_POST['SignupForm']['permissions'];
-                foreach ($permissionList as $value) {
-                    $newPermission = new AuthAssignment;
-                    $newPermission->user_id = $user->id;
-                    $newPermission->item_name = $value;
-                    $newPermission->save();
-                }
-                return $user;
-            }*/
-    
-    
+
+    /**
+     * Есть ли роль у пользователя ?
+     */
+    public static function hasRole($id, $role) {
+        $dbman = new DbManager;
+        if ($dbman->checkAccess($id, $role)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
 }

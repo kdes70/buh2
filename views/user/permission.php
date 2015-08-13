@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use \app\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -26,10 +27,10 @@ $this->params['menuItems'] = [
         'layout' => '{items}{pager}',
         'rowOptions' => function ($model) use ($user_model) {
 
-            $dbman = new yii\rbac\DbManager;
-            if (!$dbman->checkAccess($user_model->id, $model->name)) {
+
+            if (!User::hasRole($user_model->id, $model->name)) {
                 return ['class' => 'danger'];
-            } else if ($dbman->checkAccess($user_model->id, $model->name)) {
+            } else if (User::hasRole($user_model->id, $model->name)) {
                 return ['class' => 'success'];
             }
         },
@@ -45,8 +46,7 @@ $this->params['menuItems'] = [
                     [
                         'header' => 'Назначена',
                         'value' => function($data) use ($user_model) {
-                            $dbman = new yii\rbac\DbManager;
-                            if ($dbman->checkAccess($user_model->id, $data->name)) {
+                            if (User::hasRole($user_model->id, $data->name)) {
                                 return 'ДА';
                             } else {
                                 return 'НЕТ';
@@ -56,16 +56,24 @@ $this->params['menuItems'] = [
                     ['class' => \yii\grid\ActionColumn::className(),
                         'header' => 'Действия',
                         'options' => ['width' => '90px'],
+                        'contentOptions' => ['style' => 'text-align: center'],
                         'buttons' => [
 
-                            'permission' => function ($url, $model, $key) use ($user_model) {
-                                return Html::a('<span class="glyphicon glyphicon-plus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 1], ['title' => 'Дать роль']);
+                            'add' => function ($url, $model, $key) use ($user_model) {
+
+                                if (!User::hasRole($user_model->id, $model->name)) {
+                                    return Html::a('<span class="glyphicon glyphicon-plus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 1], ['title' => 'Дать роль']);
+                                }
                             },
-                                    'update' => function ($url, $model, $key) use ($user_model) {
-                                return Html::a('<span class="glyphicon glyphicon-minus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 0], ['title' => 'Отобрать роль']);
+                                    'rem' => function ($url, $model, $key) use ($user_model) {
+
+                                if (User::hasRole($user_model->id, $model->name)) {
+
+                                    return Html::a('<span class="glyphicon glyphicon-minus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 0], ['title' => 'Отобрать роль']);
+                                }
                             },
                                 ],
-                                'template' => '{permission} {update}'
+                                'template' => '{add} {rem}',
                             ],
                         ],
                     ]);

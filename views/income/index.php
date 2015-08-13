@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use app\models\Income;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\IncomeSearch */
@@ -55,6 +55,7 @@ $this->params['menuItems'] = [
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '70px'],
+                'contentOptions' => ['style' => 'text-align: center'],
                 'buttons' => [
                     'update' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-pencil"/>', ['update', 'id' => $key], ['title' => 'Изменить']);
