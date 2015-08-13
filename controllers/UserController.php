@@ -140,15 +140,34 @@ class UserController extends Controller {
      */
     public function actionPermission($id, $role = NULL, $action = NULL) {
         $model = $this->findModel($id);
-
         $dataProvider = new ActiveDataProvider([
             'query' => AuthItem::find(),
         ]);
 
-        return $this->render('permission', [
-                    'user_model' => $model,
-                    'dataProvider' => $dataProvider,
-        ]);
+
+        if (Yii::$app->request->isAjax) {
+
+            if ($action == 1) {
+                //Назначение роли пользователю
+                $userRole = Yii::$app->authManager->getRole($role);
+                Yii::$app->authManager->assign($userRole, $id);
+            } else {
+                //Удаление роли у пользователя
+                $userRole = Yii::$app->authManager->getRole($role);
+                Yii::$app->authManager->revoke($userRole, $id);
+            }
+
+            return $this->render('permission', [
+                        'user_model' => $model,
+                        'dataProvider' => $dataProvider,
+            ]);
+        } else {
+
+            return $this->render('permission', [
+                        'user_model' => $model,
+                        'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
 }

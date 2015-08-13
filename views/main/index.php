@@ -205,6 +205,7 @@ foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val)
 <ul>
     <li>Переименовать поле "status" в "state"</li>
     <li>Реализовать "групповые" действия</li>
+    <li>Избавиться от этого - $dbman = new yii\rbac\DbManager; в назначениях ролей</li>
 </ul>
 
 <h3>Раздел "Категории расходов":</h3>

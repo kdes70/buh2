@@ -24,45 +24,53 @@ $this->params['menuItems'] = [
     GridView::widget([
         'dataProvider' => $dataProvider,
         'layout' => '{items}{pager}',
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            [
-                'header' => 'Роль',
-                'value' => function ($data) {
+        'rowOptions' => function ($model) use ($user_model) {
 
-                    return $data->description;
-                }
-            ],
-            [
-                'header' => 'Назначена',
-                'value' => function($data) use ($user_model) {
+            $dbman = new yii\rbac\DbManager;
+            if (!$dbman->checkAccess($user_model->id, $model->name)) {
+                return ['class' => 'danger'];
+            } else if ($dbman->checkAccess($user_model->id, $model->name)) {
+                return ['class' => 'success'];
+            }
+        },
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'header' => 'Роль',
+                        'value' => function ($data) {
 
-                    $dbman = new yii\rbac\DbManager;
-                    if ($dbman->checkAccess($user_model->id, $data->name)) {
-                        return 'ДА';
-                    } else {
-                        return 'НЕТ';
-                    }
-                },
-            ],
-            ['class' => \yii\grid\ActionColumn::className(),
-                'header' => 'Действия',
-                'options' => ['width' => '90px'],
-                'buttons' => [
-
-                    'permission' => function ($url, $model, $key) use ($user_model) {
-                        return Html::a('<span class="glyphicon glyphicon-plus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 1], ['title' => 'Дать роль']);
-                    },
-                            'update' => function ($url, $model, $key) use ($user_model) {
-                        return Html::a('<span class="glyphicon glyphicon-minus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 0], ['title' => 'Отобрать роль']);
-                    },
-                        ],
-                        'template' => '{permission} {update}'
+                            return $data->description;
+                        }
                     ],
-                ],
-            ]);
-            ?>
-            <?php Pjax::end(); ?>
+                    [
+                        'header' => 'Назначена',
+                        'value' => function($data) use ($user_model) {
+                            $dbman = new yii\rbac\DbManager;
+                            if ($dbman->checkAccess($user_model->id, $data->name)) {
+                                return 'ДА';
+                            } else {
+                                return 'НЕТ';
+                            }
+                        },
+                    ],
+                    ['class' => \yii\grid\ActionColumn::className(),
+                        'header' => 'Действия',
+                        'options' => ['width' => '90px'],
+                        'buttons' => [
+
+                            'permission' => function ($url, $model, $key) use ($user_model) {
+                                return Html::a('<span class="glyphicon glyphicon-plus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 1], ['title' => 'Дать роль']);
+                            },
+                                    'update' => function ($url, $model, $key) use ($user_model) {
+                                return Html::a('<span class="glyphicon glyphicon-minus"/>', ['permission', 'id' => $user_model->id, 'role' => $model->name, 'action' => 0], ['title' => 'Отобрать роль']);
+                            },
+                                ],
+                                'template' => '{permission} {update}'
+                            ],
+                        ],
+                    ]);
+                    ?>
+                    <?php Pjax::end(); ?>
 
 
 
