@@ -26,8 +26,20 @@ $this->params['menuItems'] = [
         'layout' => '{items}{summary}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
+            //'name',
             'description:ntext',
+            [
+                //'attribute' => 'wallet_to',
+                //'value' => function($data) {
+                //    return $data->walletTo->name . ' (' . $data->walletTo->user->username . ')';
+                //},
+
+                'header' => 'Роль назначена',
+                'value' => function($data) {
+                    return 'Будет вывод назначения...';
+                    //return $data->authAssignments->user_id;
+                },
+            ],
             ['class' => \yii\grid\ActionColumn::className(),
                 'header' => 'Действия',
                 'options' => ['width' => '90px'],
