@@ -8,9 +8,7 @@ use \app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = 'Назначение ролей пользователю: ' . ' ' . $user_model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => 'Назначение ролей пользователю: ' . $user_model->username];
+
 
 
 $this->params['menuItems'] = [
@@ -20,7 +18,17 @@ $this->params['menuItems'] = [
 
 <div class="user-permission">
 
-    <?php Pjax::begin(['timeout' => 3000]); ?>
+    <?php
+    Pjax::begin(['timeout' => 3000]);
+
+    //Чтобы обрабатывать заголовок через AJAX
+    $this->title = 'Назначение ролей пользователю: ' . ' ' . $user_model->username;
+    $this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
+    $this->params['breadcrumbs'][] = ['label' => 'Назначение ролей пользователю: ' . $user_model->username];
+    ?>
+
+
+
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,

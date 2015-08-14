@@ -20,7 +20,7 @@ AppAsset::register($this);
 
         <?= Html::csrfMetaTags() ?>
         <title>
-            <?= isset($this->title) ? Yii::$app->name . ' - ' . Html::encode($this->title) : Yii::$app->name ?>
+            <?= isset($this->title) ? Yii::$app->name . ' - ' . Html::encode($this->title) : Yii::$app->name; ?>
         </title>
         <?php $this->head() ?>
     </head>

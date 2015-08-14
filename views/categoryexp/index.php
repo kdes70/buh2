@@ -8,18 +8,20 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\CategoryexpSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Категории расходов';
-$this->params['breadcrumbs'][] = $this->title;
-
 
 $this->params['menuItems'] = [
-
     ['label' => 'Создать', 'url' => ['create', 'parent_id' => 0]],
 ];
 ?>
 <div class="categoryexp-index">
 
-    <?php Pjax::begin(['timeout' => 3000,]); ?>
+    <?php
+    Pjax::begin(['timeout' => 3000,]);
+
+    //Чтобы обрабатывать заголовок через AJAX
+    $this->title = 'Категории расходов';
+    $this->params['breadcrumbs'][] = $this->title;
+    ?>
 
 
 
@@ -33,7 +35,7 @@ $this->params['menuItems'] = [
             ['class' => 'yii\grid\SerialColumn'],
             ['class' => 'yii\grid\CheckboxColumn'],
             [
-                'header' => Html::a($searchModel->getAttributeLabel('parent_id'), ['/categoryexp', 'parent_id' => $searchModel->getParentId()]) . ' / ' . Html::a('Создать в текущей', ['create', 'parent_id' => $searchModel->parent_id], []),
+                'header' => Html::a($searchModel->getAttributeLabel('parent_id'), ['/categoryexp', 'parent_id' => $searchModel->getParentId()]) . ' / ' . Html::a('Создать в текущей', ['create', 'parent_id' => $searchModel->parent_id], ['title' => 'Создать в текущей категории', 'data-pjax' => 0]),
                 'format' => 'html',
                 //'filter' => Html::a($searchModel->getAttributeLabel('parent_id'), ['create', 'parent_id' => $searchModel->parent_id]),
                 'value' => function($data) {
