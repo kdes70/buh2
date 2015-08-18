@@ -9,8 +9,6 @@ use \app\models\User;
 /* @var $model app\models\User */
 
 
-
-
 $this->params['menuItems'] = [
     ['label' => 'Назад', 'url' => ['/user']],
 ];
@@ -26,8 +24,6 @@ $this->params['menuItems'] = [
     $this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
     $this->params['breadcrumbs'][] = ['label' => 'Назначение ролей пользователю: ' . $user_model->username];
     ?>
-
-
 
     <?=
     GridView::widget([
@@ -87,12 +83,6 @@ $this->params['menuItems'] = [
                     ]);
                     ?>
                     <?php Pjax::end(); ?>
-
-
-
-
-
-
 
 
 </div>

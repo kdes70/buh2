@@ -24,8 +24,6 @@ $this->params['menuItems'] = [
     ?>
 
 
-
-
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,

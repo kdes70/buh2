@@ -77,7 +77,3 @@ $this->params['menuItems'] = [
                     <?php Pjax::end(); ?>
 
 </div>
-
-
-<!--<a href="#" onclick="bulkAction('p');">Групповое действие</a>-->
-<!--http://stackoverflow.com/questions/28992972/yii2-how-to-properly-create-checkbox-column-in-gridview-for-bulk-actions-->

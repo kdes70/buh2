@@ -6,7 +6,6 @@ use kartik\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use timurmelnikov\widgets\ShowLoading;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Exchange */
 /* @var $form yii\widgets\ActiveForm */
@@ -33,10 +32,7 @@ use timurmelnikov\widgets\ShowLoading;
 
     <?= $form->field($model, 'currency_code')->dropDownList(['' => 'Выберите валюту...', 'USD' => 'USD', 'EUR' => 'EUR', 'RUB' => 'RUB']) ?>
 
-
-
     <?= $form->field($model, 'number_units')->textInput([]) ?>
-
 
     <?=
     $form->field($model, 'official_exchange', [
@@ -55,10 +51,7 @@ use timurmelnikov\widgets\ShowLoading;
 
 </div>
 
-
 <?php
-
-
 echo ShowLoading::widget(['loadingType' => 1]);
 $url = Url::toRoute('/exchange/get-exchange');
 $script = <<<JS

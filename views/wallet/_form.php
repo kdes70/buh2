@@ -14,11 +14,8 @@ use app\models\Wallet;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'current_sum')->textInput() ?>
-
     <?= $form->field($model, 'state')->dropDownList(['' => 'Выберите...', Wallet::STATE_ACTIVE => 'Активен', Wallet::STATE_CLOSE => 'Закрыт']) ?>
-
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Изменить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

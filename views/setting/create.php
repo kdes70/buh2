@@ -1,8 +1,4 @@
 <?php
-
-use yii\helpers\Html;
-
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Setting */
 
@@ -16,9 +12,10 @@ $this->params['menuItems'] = [
 ?>
 <div class="setting-create">
 
-    
-    <?= $this->render('_form', [
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ])
+    ?>
 
 </div>

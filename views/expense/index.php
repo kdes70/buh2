@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\widgets\Growl;
-use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExpenseSearch */
@@ -108,32 +107,4 @@ $this->params['menuItems'] = [
             <?php Pjax::end(); ?>
 
 
-        </div>
-
-
-
-
-        <!--        <div class="expense-form">-->
-        <?php
-        //Модальное окно для для имени шаблона
-//            Modal::begin([
-//                'header' => '<h4>Создание шаблона операции</h4>',
-//                'id' => 'win-confirm-template',
-//            ]);
-//
-//            echo Html::beginForm(
-//                    ['save-as-template', 'id' => 39], 'post', ['class' => 'form']);
-//
-//            echo '<div class="form-group">';
-//            echo Html::textInput('id', '39', ['class' => 'form-control']);
-//            echo '</div>';
-//            echo '<div class="form-group">';
-//            echo Html::textInput('name', '', ['class' => 'form-control']);
-//            echo '</div>';
-//            echo '<div class="form-group">';
-//            echo Html::submitButton('Создать шаблон', ['class' => 'btn btn-primary']);
-//            echo '</div>';
-//            echo Html::endForm();
-//            Modal::end();
-        ?>
-<!--</div>-->
+</div>

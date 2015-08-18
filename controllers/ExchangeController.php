@@ -8,7 +8,6 @@ use app\models\ExchangeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Json;
 
 /**
  * ExchangeController implements the CRUD actions for Exchange model.
@@ -111,7 +110,6 @@ class ExchangeController extends Controller {
         $xml = simplexml_load_file('http://bank-ua.com/export/currrate.xml');
         foreach ($xml->children() as $item) {
             if ($item->char3 == $char3) {
-
                 echo json_encode(['rate' => $item->rate, 'size' => $item->size]);
             }
         }

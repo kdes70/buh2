@@ -1,8 +1,4 @@
 <?php
-
-use yii\helpers\Html;
-
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Move */
 
@@ -15,10 +11,10 @@ $this->params['menuItems'] = [
 ?>
 <div class="move-create">
 
-    
-
-    <?= $this->render('_form', [
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ])
+    ?>
 
 </div>

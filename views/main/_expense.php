@@ -5,17 +5,14 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-
 use yii\widgets\ActiveForm;
-
 use kartik\select2\Select2;
-
 ?>
 
 
 <div class="expense-form">
-    <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'cost')->textInput(['maxlength' => 10]) ?>
+<?php $form = ActiveForm::begin(); ?>
+<?= $form->field($model, 'cost')->textInput(['maxlength' => 10]) ?>
     <?= $form->field($model, 'amount')->textInput(['maxlength' => 10]) ?>
     <?=
     $form->field($model, 'unit_id')->widget(Select2::classname(), [
@@ -56,9 +53,9 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'user_id')->textInput() ?>
     <?= $form->field($model, 'operwallet_id')->textInput() ?>
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 </div>
 
 

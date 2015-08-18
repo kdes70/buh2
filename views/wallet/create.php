@@ -1,7 +1,4 @@
 <?php
-
-use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Wallet */
 
@@ -14,7 +11,6 @@ $this->params['menuItems'] = [
 ];
 ?>
 <div class="wallet-create">
-
 
     <?=
     $this->render('_form', [

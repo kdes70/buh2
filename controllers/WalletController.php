@@ -52,7 +52,6 @@ class WalletController extends Controller {
         //Получаем ID пользователя
         $model->user_id = Yii::$app->user->getId();
 
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
@@ -88,7 +87,6 @@ class WalletController extends Controller {
      */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

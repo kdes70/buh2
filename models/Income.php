@@ -95,13 +95,10 @@ class Income extends \yii\db\ActiveRecord {
     public function beforeDelete() {
         if (parent::beforeDelete()) {
 
-
             $wallet = Wallet::findOne($this->wallet_id);
             $wallet->current_sum = $wallet->current_sum - $this->amount;
 
             $wallet->update();
-
-
 
             return true;
         } else {

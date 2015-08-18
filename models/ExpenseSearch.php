@@ -64,13 +64,9 @@ class ExpenseSearch extends Expense {
             'count_unit' => $this->count_unit,
         ]);
 
-
         $query->andFilterWhere(['like', 'description', $this->description])
                 //Для связанного поиска
                 ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
-
-
-
 
         return $dataProvider;
     }

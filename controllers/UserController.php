@@ -121,7 +121,6 @@ class UserController extends Controller {
         $model = $this->findModel($id);
         $model->setScenario('password');
 
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
@@ -143,10 +142,7 @@ class UserController extends Controller {
         $dataProvider = new ActiveDataProvider([
             'query' => AuthItem::find(),
         ]);
-
-
         if (Yii::$app->request->isAjax) {
-
             if ($action == 1) {
                 //Назначение роли пользователю
                 $userRole = Yii::$app->authManager->getRole($role);
@@ -156,7 +152,6 @@ class UserController extends Controller {
                 $userRole = Yii::$app->authManager->getRole($role);
                 Yii::$app->authManager->revoke($userRole, $id);
             }
-
             return $this->render('permission', [
                         'user_model' => $model,
                         'dataProvider' => $dataProvider,

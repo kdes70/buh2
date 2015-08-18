@@ -57,39 +57,9 @@ class CategoryexpController extends Controller {
         } else {
             return $this->render('create', [
                         'model' => $model,
-       
             ]);
         }
     }
-    
-        
-    /* Создание Аяксом (пример взять из уроков yii2lessonadv)...
-public function actionCreate() {
-
-        if (Yii::$app->user->can('create-branch')) {
-
-            $model = new Branches();
-
-            if ($model->load(Yii::$app->request->post())) {
-
-
-                $model->branch_created_date = date('Y-m-d h:m:s');
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->branch_id]);
-            } else {
-                return $this->renderAjax('create', [
-                            'model' => $model,
-                ]);
-            }
-        } else {
-
-            throw new ForbiddenHttpException('У Вас нет прав добавлять!!!');
-        }
-    }     */
-    
-    
-    
-    
 
     /**
      * Updates an existing Categoryexp model.

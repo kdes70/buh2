@@ -12,12 +12,10 @@ $this->params['menuItems'] = [
 ?>
 <div class="exchange-update">
 
-
-
-<?=
-$this->render('_form', [
-    'model' => $model,
-])
-?>
+    <?=
+    $this->render('_form', [
+        'model' => $model,
+    ])
+    ?>
 
 </div>

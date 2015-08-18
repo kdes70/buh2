@@ -1,7 +1,4 @@
 <?php
-
-use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Expensetemp */
 
@@ -12,7 +9,6 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['menuItems'] = [
     ['label' => 'Назад', 'url' => ['/expensetemp']],
 ];
-
 ?>
 <div class="expensetemp-create">
 

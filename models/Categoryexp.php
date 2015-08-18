@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-
 /**
  * This is the model class for table "{{%categoryexp}}".
  *
@@ -99,7 +98,7 @@ class Categoryexp extends \yii\db\ActiveRecord {
         }
         $categoryDataTree = self::dbResultToForest($categoryData, 'id', 'parent_id', 'name');
         $categoryDataSelect = self::converTreeArrayToSelect($categoryDataTree, 0);
-        
+
         //return ArrayHelper::map($categoryDataSelect, 'id', 'name');
         return $categoryDataSelect;
     }

@@ -13,11 +13,10 @@ $this->params['menuItems'] = [
 ?>
 <div class="expense-update">
 
-
-<?=
-$this->render('_form', [
-    'model' => $model,
-])
-?>
+    <?=
+    $this->render('_form', [
+        'model' => $model,
+    ])
+    ?>
 
 </div>

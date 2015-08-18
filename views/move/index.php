@@ -17,7 +17,6 @@ $this->params['menuItems'] = [
 ?>
 <div class="move-index">
 
-
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php Pjax::begin(['timeout' => 3000]); ?>

@@ -15,12 +15,9 @@ $this->params['menuItems'] = [
 ?>
 <div class="rep1-index">
 
-
-
     <?=
     ChartJs::widget([
         'type' => 'Line',
-        
         'options' => [
             'height' => 400,
             'width' => 800

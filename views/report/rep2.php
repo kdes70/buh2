@@ -20,7 +20,6 @@ $this->params['menuItems'] = [
     <?=
     ChartJs::widget([
         'type' => 'Bar',
-        
         'options' => [
             'height' => 400,
             'width' => 800

@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\IncomeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -20,7 +19,7 @@ $this->params['menuItems'] = [
 <div class="income-index">
 
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
 
     <?php Pjax::begin(['timeout' => 3000]); ?>

@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Wallet;
@@ -67,8 +66,6 @@ class WalletSearch extends Wallet {
         $query->andFilterWhere(['like', 'name', $this->name])
                 //Для связанного поиска
                 ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
-
-
 
         return $dataProvider;
     }

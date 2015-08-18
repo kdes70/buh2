@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Unit;
@@ -10,13 +9,12 @@ use app\models\Unit;
 /**
  * UnitSearch represents the model behind the search form about `app\models\Unit`.
  */
-class UnitSearch extends Unit
-{
+class UnitSearch extends Unit {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id'], 'integer'],
             [['name', 'fullname'], 'safe'],
@@ -26,8 +24,7 @@ class UnitSearch extends Unit
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -39,8 +36,7 @@ class UnitSearch extends Unit
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Unit::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -60,8 +56,9 @@ class UnitSearch extends Unit
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'fullname', $this->fullname]);
+                ->andFilterWhere(['like', 'fullname', $this->fullname]);
 
         return $dataProvider;
     }
+
 }

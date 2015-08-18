@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Categoryinc;
@@ -64,7 +63,6 @@ class CategoryincSearch extends Categoryinc {
         $query->andFilterWhere(['like', 'name', $this->name])
                 //Для связанного поиска
                 ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
-
 
         return $dataProvider;
     }

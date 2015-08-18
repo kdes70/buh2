@@ -54,21 +54,13 @@ class ExpenseController extends Controller {
         $model->user_id = Yii::$app->user->identity->id;
 
         if ($tmp > 0) {
-           
-        $model->cost = Expensetemp::findOne($tmp)->cost;
-        
-        $model->unit_id = Expensetemp::findOne($tmp)->unit_id;
-        $model->count_unit =  Expensetemp::findOne($tmp)->count_unit;
-        
-        $model->wallet_id = Expensetemp::findOne($tmp)->wallet_id;
-        $model->categoryexp_id = Expensetemp::findOne($tmp)->categoryexp_id;
-        $model->description = Expensetemp::findOne($tmp)->description;
-        
-        
+            $model->cost = Expensetemp::findOne($tmp)->cost;
+            $model->unit_id = Expensetemp::findOne($tmp)->unit_id;
+            $model->count_unit = Expensetemp::findOne($tmp)->count_unit;
+            $model->wallet_id = Expensetemp::findOne($tmp)->wallet_id;
+            $model->categoryexp_id = Expensetemp::findOne($tmp)->categoryexp_id;
+            $model->description = Expensetemp::findOne($tmp)->description;
         }
-
-
-
 
         //Для Ajax валидации       
         if (Yii::$app->request->isAjax && $model->load($_POST)) {
@@ -103,14 +95,12 @@ class ExpenseController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-
         //Для Ajax валидации       
         if (Yii::$app->request->isAjax && $model->load($_POST)) {
             Yii::$app->response->format = 'json';
             return \yii\widgets\ActiveForm::validate($model);
         }
         //Для Ajax валидации (конец)
-
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -129,7 +119,6 @@ class ExpenseController extends Controller {
      */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
@@ -146,7 +135,6 @@ class ExpenseController extends Controller {
         $expensetemp->user_id = $expense->user_id;
         $expensetemp->wallet_id = $expense->wallet_id;
         $expensetemp->name = $expense->categoryexp->name;
-        
         $expensetemp->unit_id = $expense->unit_id;
         $expensetemp->count_unit = $expense->count_unit;
 

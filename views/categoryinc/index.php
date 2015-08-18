@@ -32,13 +32,10 @@ $this->params['menuItems'] = [
                 'value' => 'user.username'
             ],
             'name',
-        
-            
-                        [
+            [
                 'attribute' => 'wallet_default',
                 'value' => 'wallet.name'
             ],
-            
             [
                 'attribute' => 'user_id',
                 'value' => 'user.username'

@@ -60,9 +60,6 @@ class UnitController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-
-
-
         $model = new Unit();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

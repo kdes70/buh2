@@ -68,6 +68,4 @@ $this->params['menuItems'] = [
             ?>
             <?php Pjax::end(); ?>
 
-
-
 </div>

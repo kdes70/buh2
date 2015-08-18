@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "{{%move}}".
  *
@@ -108,7 +106,6 @@ class Move extends \yii\db\ActiveRecord {
             $wallet_to = Wallet::findOne($this->wallet_to);
             $wallet_to->current_sum = $wallet_to->current_sum - $this->move_sum;
             $wallet_to->update();
-
 
             return true;
         } else {

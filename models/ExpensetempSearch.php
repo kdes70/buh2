@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Expensetemp;
@@ -63,17 +62,14 @@ class ExpensetempSearch extends Expensetemp {
             'categoryexp_id' => $this->categoryexp_id,
             //'user_id' => $this->user_id,
             'wallet_id' => $this->wallet_id,
-            
             'unit_id' => $this->unit_id,
             'count_unit' => $this->count_unit,
-            
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
                 ->andFilterWhere(['like', 'name', $this->name])
                 //Для связанного поиска
                 ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
-
 
         return $dataProvider;
     }

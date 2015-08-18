@@ -56,8 +56,6 @@ class UserSearch extends User {
         }
 //Управление "видимостьтью" пользователей для ролей (конец)
 
-
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -84,10 +82,6 @@ class UserSearch extends User {
                 ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
                 ->andFilterWhere(['like', 'email', $this->email])
                 ->andFilterWhere(['like', 'fullname', $this->fullname]);
-
-
-
-
 
         return $dataProvider;
     }

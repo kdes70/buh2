@@ -41,8 +41,6 @@ class ExpensetempController extends Controller {
         ]);
     }
 
-
-
     /**
      * Creates a new Expensetemp model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -87,7 +85,6 @@ class ExpensetempController extends Controller {
      */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
