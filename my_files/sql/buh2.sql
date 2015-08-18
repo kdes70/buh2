@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 18 2015 г., 11:33
+-- Время создания: Авг 18 2015 г., 11:51
 -- Версия сервера: 5.5.36
 -- Версия PHP: 5.4.27
 
@@ -467,7 +467,7 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
 --
 
 INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `fullname`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
-(1, 1429777037, 1438175197, 'Администратор системы', 'root', '0ZIG7OZCKEOR7JyE20g0Rh-R_NVlipex', NULL, '$2y$13$NVfh/naxh8QWQtMeTeumjOzcqGaGm6uNHwXpbzyjj5rWJejqyI4I.', NULL, 'admin@ukr.net', 0),
+(1, 1429777037, 1438175197, 'Супер пользователь системы', 'root', '0ZIG7OZCKEOR7JyE20g0Rh-R_NVlipex', NULL, '$2y$13$NVfh/naxh8QWQtMeTeumjOzcqGaGm6uNHwXpbzyjj5rWJejqyI4I.', NULL, 'admin@ukr.net', 0),
 (2, 1429777037, 1438175211, 'Мельников Тимур Викторович', 'timur', 'b8HKw5Lt3NqQQxw1Ly1L2jkH2N7B1ZR4', NULL, '$2y$13$KFS/bKU0RZjBDv49ePch2OlepQqDGlEPmRhxZEoSYwGwBEHRXl0pu', NULL, 'timur@ukr.net', 0),
 (3, 1429777037, 1438238903, 'Мельников Беатриса Леонидовна', 'beata', 'xotK69FcZqF5LKRrK4bNGawddzqAzSSQ', NULL, '$2y$13$vXZ2pkOxCm4xL9u27Uks9eaWHtzDgqMW144lmgVOgDjXk3w3utK0m', NULL, 'beata@ukr.net', 0),
 (8, 1429777037, 1438175252, 'Морозова Даша', 'dasha', 'd4-Xo9XcUIptBQZz4aw4KNphHOgk0YV6', NULL, '$2y$13$hwH2t9ZTVz3WjzPth08LAuw1KIk/0wEGCnZzhwCu2DZmwWSQ8fDce', NULL, 'dasha@ukr.net', 0),

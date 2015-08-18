@@ -27,11 +27,13 @@ $this->params['menuItems'] = [
         'filterModel' => $searchModel,
         'layout' => '{items}{summary}{pager}',
         'rowOptions' => function ($model) {
-            if ($model->status == User::STATE_CLOSE) {
+            if ($model->id == Yii::$app->user->id) {
+                return ['class' => 'info'];
+            } else if ($model->status == User::STATE_CLOSE) {
                 return ['class' => 'danger'];
             } else if ($model->status == User::STATE_ACTIVE) {
                 return ['class' => 'success'];
-            }
+            };
         },
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
