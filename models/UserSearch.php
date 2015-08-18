@@ -38,7 +38,24 @@ class UserSearch extends User {
      * @return ActiveDataProvider
      */
     public function search($params) {
-        $query = User::find();
+
+//Управление "видимостьтью" пользователей для ролей
+        //Если зашел пользователь с ролью "Администратор"
+        if (Yii::$app->user->can('admin')) {
+            //Если защел суперпользователь
+            if (Yii::$app->user->identity->username == 'root') {
+                //Покажем всех и его тоже
+                $query = User::find();
+            } else {
+                //Покажем всех, кроме Суперпользователя
+                $query = User::find()->where(['<>', 'username', 'root']);
+            }
+        } else {
+            $query = User::find()->where(['id' => Yii::$app->user->id]);
+        }
+//Управление "видимостьтью" пользователей для ролей (конец)
+
+
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -66,6 +83,10 @@ class UserSearch extends User {
                 ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
                 ->andFilterWhere(['like', 'email', $this->email])
                 ->andFilterWhere(['like', 'fullname', $this->fullname]);
+
+
+
+
 
         return $dataProvider;
     }
