@@ -42,7 +42,7 @@ class UserSearch extends User {
 //Управление "видимостьтью" пользователей для ролей
         //Если зашел пользователь с ролью "Администратор"
         if (Yii::$app->user->can('admin')) {
-            //Если защел суперпользователь
+            //Если защел Суперпользователь
             if (Yii::$app->user->identity->username == 'root') {
                 //Покажем всех и его тоже
                 $query = User::find();
@@ -50,6 +50,7 @@ class UserSearch extends User {
                 //Покажем всех, кроме Суперпользователя
                 $query = User::find()->where(['<>', 'username', 'root']);
             }
+            //Если защел Суперпользователь (конец)
         } else {
             $query = User::find()->where(['id' => Yii::$app->user->id]);
         }
