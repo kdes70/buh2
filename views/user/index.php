@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use app\models\User;
+use kartik\widgets\Growl;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
@@ -16,6 +17,23 @@ $this->params['menuItems'] = [
     ['label' => 'Создать', 'url' => ['create']],
 ];
 ?>
+
+
+
+<?php if (Yii::$app->session->getFlash('delete-user-root-error')): ?>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_DANGER,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => 'Пользователи',
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('delete-user-root-error')
+    ]);
+    ?>
+<?php endif; ?>
+
+
+
 <div class="user-index">
 
 

@@ -13,7 +13,7 @@ use app\models\User;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'disabled' => $model->isNewRecord ? false : true,]) ?>
     <?php if ($model->isNewRecord): ?>
         <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
