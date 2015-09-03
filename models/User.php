@@ -119,9 +119,18 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         parent::beforeDelete();
 //Запрещаем удаление пользователя "root"
         if ($this->username == 'root') {
-            Yii::$app->getSession()->setFlash('delete-user-root-error', 'Пользователя "root" нельзя удалить!');
+            Yii::$app->getSession()->setFlash('delete-user-error', 'Пользователя "root" нельзя удалить!');
             return false;
         }
+        
+     //Запрещаем удаление пользователем самого себя
+        if ($this->id == Yii::$app->user->id) {
+            Yii::$app->getSession()->setFlash('delete-user-error', 'Пользователь не может удалить самого себя!');
+            return false;
+        }   
+        
+        
+        
 
         return true;
     }

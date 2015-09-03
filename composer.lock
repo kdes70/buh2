@@ -492,16 +492,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.2.5",
+            "version": "v4.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "e8a712d4840ba9abe7c1302808e86e55e91aab7f"
+                "reference": "e4906dd5ee852a5333d3ce4d19f69ee855efe844"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/e8a712d4840ba9abe7c1302808e86e55e91aab7f",
-                "reference": "e8a712d4840ba9abe7c1302808e86e55e91aab7f",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/e4906dd5ee852a5333d3ce4d19f69ee855efe844",
+                "reference": "e4906dd5ee852a5333d3ce4d19f69ee855efe844",
                 "shasum": ""
             },
             "type": "library",
@@ -536,7 +536,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2015-07-26 20:29:14"
+            "time": "2015-08-26 18:42:44"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -1709,16 +1709,16 @@
         },
         {
             "name": "timurmelnikov/yii2-showloading",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TimurMelnikov/yii2-showloading.git",
-                "reference": "737c85cff4b68b33bf5755ae0b1992ad8c953df5"
+                "reference": "0ef59359c62437abd5cbb38f1e35a6bd807a2b44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TimurMelnikov/yii2-showloading/zipball/737c85cff4b68b33bf5755ae0b1992ad8c953df5",
-                "reference": "737c85cff4b68b33bf5755ae0b1992ad8c953df5",
+                "url": "https://api.github.com/repos/TimurMelnikov/yii2-showloading/zipball/0ef59359c62437abd5cbb38f1e35a6bd807a2b44",
+                "reference": "0ef59359c62437abd5cbb38f1e35a6bd807a2b44",
                 "shasum": ""
             },
             "require": {
@@ -1748,7 +1748,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-05-30 08:07:59"
+            "time": "2015-08-30 08:09:50"
         },
         {
             "name": "yiisoft/yii2",

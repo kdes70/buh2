@@ -20,14 +20,14 @@ $this->params['menuItems'] = [
 
 
 
-<?php if (Yii::$app->session->getFlash('delete-user-root-error')): ?>
+<?php if (Yii::$app->session->getFlash('delete-user-error')): ?>
     <?php
     echo Growl::widget([
         'type' => Growl::TYPE_DANGER,
         'icon' => 'glyphicon glyphicon-ok-sign',
         'title' => 'Пользователи',
         'showSeparator' => true,
-        'body' => Yii::$app->session->getFlash('delete-user-root-error')
+        'body' => Yii::$app->session->getFlash('delete-user-error')
     ]);
     ?>
 <?php endif; ?>

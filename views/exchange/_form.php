@@ -1,11 +1,9 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use timurmelnikov\widgets\ShowLoading;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Exchange */
 /* @var $form yii\widgets\ActiveForm */
