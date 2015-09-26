@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\NotSupportedException;
 use yii\rbac\DbManager;
 use Yii;
+use app\classes\Messages;
 
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
 
@@ -121,14 +122,26 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             Yii::$app->getSession()->setFlash('delete-user-error', 'Пользователя "root" нельзя удалить!');
             return false;
         }
-
         //Запрещаем удаление пользователем самого себя
         if ($this->id == Yii::$app->user->id) {
             Yii::$app->getSession()->setFlash('delete-user-error', 'Пользователь не может удалить самого себя!');
             return false;
         }
+        //Запрет удаления связей
+        if (Expense::findOne(['user_id' => $this->id]) ||
+                Expense::findOne(['user_id' => $this->id]) ||
+                Income::findOne(['user_id' => $this->id]) ||
+                Wallet::findOne(['user_id' => $this->id]) ||
+                Setting::findOne(['user_id' => $this->id]) ||
+                Move::findOne(['user_id' => $this->id]) ||
+                Expensetemp::findOne(['user_id' => $this->id]) ||
+                Categoryinc::findOne(['user_id' => $this->id])) {
+            Yii::$app->getSession()->setFlash('delete-error', Messages::DELETE_ERROR_RELATION);
+            return FALSE;
+        }
 
-        return true;
+        Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+        return TRUE;
     }
 
     /**

@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use Yii;
+use app\classes\Messages;
+
 /**
  * This is the model class for table "{{%categoryinc}}".
  *
@@ -66,7 +69,15 @@ class Categoryinc extends \yii\db\ActiveRecord {
     public function getWallet() {
         return $this->hasOne(Wallet::className(), ['id' => 'wallet_default']);
     }
-    
-    
+
+    public function beforeDelete() {
+        //Запрет удаления связей
+        if (Income::findOne(['categoryinc_id' => $this->id])) {
+            Yii::$app->getSession()->setFlash('delete-error', Messages::DELETE_ERROR_RELATION);
+            return FALSE;
+        }
+        Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+        return TRUE;
+    }
 
 }

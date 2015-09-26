@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use kartik\widgets\Growl;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CategoryexpSearch */
@@ -13,6 +14,32 @@ $this->params['menuItems'] = [
     ['label' => 'Создать', 'url' => ['create', 'parent_id' => 0]],
 ];
 ?>
+
+<?php if (Yii::$app->session->getFlash('delete-success')): ?>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_SUCCESS,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => $this->title,
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('delete-success')
+    ]);
+    ?>
+<?php endif; ?>
+
+<?php if (Yii::$app->session->getFlash('delete-error')): ?>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_DANGER,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => $this->title,
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('delete-error')
+    ]);
+    ?>
+<?php endif; ?>
+
+
 <div class="categoryexp-index">
 
     <?php

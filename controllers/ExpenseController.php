@@ -143,7 +143,7 @@ class ExpenseController extends Controller {
         $expensetemp->count_unit = $expense->count_unit;
 
         if ($expensetemp->save()) {
-            Yii::$app->getSession()->setFlash('save-as-template-ok', 'Шаблон операции "' . $expensetemp->name . '" успешно создан.<hr/>' . Html::a('Изменить шаблон', ['expensetemp/update', 'id' => $expensetemp->id], ['class' => 'btn btn-primary btn-sm']));
+            Yii::$app->getSession()->setFlash('save-as-template-success', 'Шаблон операции "' . $expensetemp->name . '" успешно создан.<hr/>' . Html::a('Изменить шаблон', ['expensetemp/update', 'id' => $expensetemp->id], ['class' => 'btn btn-primary btn-sm']));
         } else {
             Yii::$app->getSession()->setFlash('save-as-template-error', 'Шаблон такой операции уже существует.<hr/>' . Html::a('Перейти к шаблонам', ['/expensetemp'], ['class' => 'btn btn-primary btn-sm']));
         }

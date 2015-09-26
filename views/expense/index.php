@@ -19,14 +19,14 @@ $this->params['menuItems'] = [
 ?>
 
 
-<?php if (Yii::$app->session->getFlash('save-as-template-ok')): ?>
+<?php if (Yii::$app->session->getFlash('save-as-template-success')): ?>
     <?php
     echo Growl::widget([
         'type' => Growl::TYPE_SUCCESS,
         'icon' => 'glyphicon glyphicon-ok-sign',
-        'title' => 'Расходы',
+        'title' => $this->title,
         'showSeparator' => true,
-        'body' => Yii::$app->session->getFlash('save-as-template-ok')
+        'body' => Yii::$app->session->getFlash('save-as-template-success')
     ]);
     ?>
 <?php endif; ?>
@@ -37,7 +37,7 @@ $this->params['menuItems'] = [
     echo Growl::widget([
         'type' => Growl::TYPE_DANGER,
         'icon' => 'glyphicon glyphicon-ok-sign',
-        'title' => 'Расходы',
+        'title' => $this->title,
         'showSeparator' => true,
         'body' => Yii::$app->session->getFlash('save-as-template-error')
     ]);

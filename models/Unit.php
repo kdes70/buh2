@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use Yii;
+use app\classes\Messages;
+
 /**
  * This is the model class for table "{{%unit}}".
  *
@@ -49,25 +52,13 @@ class Unit extends \yii\db\ActiveRecord {
     }
 
     public function beforeDelete() {
-
         //Запрет удаления связей
         if (Expense::findOne(['unit_id' => $this->id])) {
+            Yii::$app->getSession()->setFlash('delete-error', Messages::DELETE_ERROR_RELATION);
             return FALSE;
-        } else {
-            return TRUE;
         }
-
-        /*    public function beforeDelete() {
-          $test = Expense::model()->countByAttributes(array('category_id' => $this->id));
-          $test1 = self::model()->countByAttributes(array('parent_id' => $this->id));
-          if (($test > 0) or ( $test1 > 0)) {
-          echo 1;
-          return FALSE;
-          }
-          echo 0;
-          return TRUE;
-          } */
-        //Запрет удаления связей (конец)  
+        Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+        return TRUE;
     }
 
 }
