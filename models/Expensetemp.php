@@ -86,7 +86,7 @@ class Expensetemp extends \yii\db\ActiveRecord {
     }
 
     /**
-     * Возвращает  Список шаблонов для бістрого создания расхолов
+     * Возвращает  Список шаблонов для быстрого создания расхолов
      */
     public static function getAllNamesForList($user_id) {
 

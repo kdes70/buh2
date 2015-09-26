@@ -51,7 +51,11 @@ class ExpenseController extends Controller {
     public function actionCreate($tmp = 0) {
         $model = new Expense();
         $model->date_oper = date('Y-m-d');
+        $model->unit_id = 1;
+        $model->count_unit = 1;
+
         $model->user_id = Yii::$app->user->identity->id;
+
 
         if ($tmp > 0) {
             $model->cost = Expensetemp::findOne($tmp)->cost;
@@ -139,9 +143,9 @@ class ExpenseController extends Controller {
         $expensetemp->count_unit = $expense->count_unit;
 
         if ($expensetemp->save()) {
-            Yii::$app->getSession()->setFlash('save-as-template-ok', 'Шаблон операции "' . $expensetemp->name . '" успешно создан. <hr/>' . Html::a('Изменить шаблон', ['expensetemp/update', 'id' => $expensetemp->id], ['class' => 'btn btn-primary btn-sm']));
+            Yii::$app->getSession()->setFlash('save-as-template-ok', 'Шаблон операции "' . $expensetemp->name . '" успешно создан.<hr/>' . Html::a('Изменить шаблон', ['expensetemp/update', 'id' => $expensetemp->id], ['class' => 'btn btn-primary btn-sm']));
         } else {
-            Yii::$app->getSession()->setFlash('save-as-template-error', 'Шаблон такой операции уже существует.');
+            Yii::$app->getSession()->setFlash('save-as-template-error', 'Шаблон такой операции уже существует.<hr/>' . Html::a('Перейти к шаблонам', ['/expensetemp'], ['class' => 'btn btn-primary btn-sm']));
         }
         return $this->redirect(['index']);
     }
