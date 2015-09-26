@@ -147,7 +147,7 @@ class UserController extends Controller {
                 //Назначение роли пользователю
                 $userRole = Yii::$app->authManager->getRole($role);
                 Yii::$app->authManager->assign($userRole, $id);
-            } else {
+            } else if ($action == 0 && $model->username !== 'root') {
                 //Удаление роли у пользователя
                 $userRole = Yii::$app->authManager->getRole($role);
                 Yii::$app->authManager->revoke($userRole, $id);
@@ -157,11 +157,7 @@ class UserController extends Controller {
                         'dataProvider' => $dataProvider,
             ]);
         } else {
-
-            return $this->render('permission', [
-                        'user_model' => $model,
-                        'dataProvider' => $dataProvider,
-            ]);
+            return $this->render('permission', ['user_model' => $model, 'dataProvider' => $dataProvider,]);
         }
     }
 
