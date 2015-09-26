@@ -111,7 +111,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             return true;
         }
 
-
         return false;
     }
 
@@ -122,15 +121,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             Yii::$app->getSession()->setFlash('delete-user-error', 'Пользователя "root" нельзя удалить!');
             return false;
         }
-        
-     //Запрещаем удаление пользователем самого себя
+
+        //Запрещаем удаление пользователем самого себя
         if ($this->id == Yii::$app->user->id) {
             Yii::$app->getSession()->setFlash('delete-user-error', 'Пользователь не может удалить самого себя!');
             return false;
-        }   
-        
-        
-        
+        }
 
         return true;
     }
@@ -145,6 +141,34 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
         } else {
             return FALSE;
         }
+    }
+
+    public function getExpenses() {
+        return $this->hasMany(Expense::className(), ['user_id' => 'id']);
+    }
+
+    public function getIncomes() {
+        return $this->hasMany(Income::className(), ['user_id' => 'id']);
+    }
+
+    public function getWallets() {
+        return $this->hasMany(Wallet::className(), ['user_id' => 'id']);
+    }
+
+    public function getSettings() {
+        return $this->hasMany(Setting::className(), ['user_id' => 'id']);
+    }
+
+    public function getMoves() {
+        return $this->hasMany(Move::className(), ['user_id' => 'id']);
+    }
+
+    public function getExpensetemps() {
+        return $this->hasMany(Expensetemp::className(), ['user_id' => 'id']);
+    }
+
+    public function getCategoryincs() {
+        return $this->hasMany(Categoryinc::className(), ['user_id' => 'id']);
     }
 
 }

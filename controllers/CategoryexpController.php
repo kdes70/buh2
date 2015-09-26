@@ -22,6 +22,8 @@ class CategoryexpController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                //'update' => ['post'],
+                //'index' => ['post'],
                 ],
             ],
         ];

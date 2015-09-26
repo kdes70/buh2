@@ -64,7 +64,7 @@ AppAsset::register($this);
                     ['label' => 'Словари',
                         'items' => [
                             ['label' => 'Категории доходов', 'url' => ['/categoryinc']],
-                            ['label' => 'Категории расходов', 'url' => ['/categoryexp']],
+                            ['label' => 'Категории расходов', 'url' => ['/categoryexp'],],
                             '<li class="divider"></li>',
                             ['label' => 'Курсы валют', 'url' => ['/exchange']],
                             '<li class="divider"></li>',

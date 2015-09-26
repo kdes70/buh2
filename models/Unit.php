@@ -41,4 +41,33 @@ class Unit extends \yii\db\ActiveRecord {
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getExpenses() {
+        return $this->hasMany(Expense::className(), ['unit_id' => 'id']);
+    }
+
+    public function beforeDelete() {
+
+        //Запрет удаления связей
+        if (Expense::findOne(['unit_id' => $this->id])) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+
+        /*    public function beforeDelete() {
+          $test = Expense::model()->countByAttributes(array('category_id' => $this->id));
+          $test1 = self::model()->countByAttributes(array('parent_id' => $this->id));
+          if (($test > 0) or ( $test1 > 0)) {
+          echo 1;
+          return FALSE;
+          }
+          echo 0;
+          return TRUE;
+          } */
+        //Запрет удаления связей (конец)  
+    }
+
 }

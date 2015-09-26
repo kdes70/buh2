@@ -66,5 +66,7 @@ class Categoryinc extends \yii\db\ActiveRecord {
     public function getWallet() {
         return $this->hasOne(Wallet::className(), ['id' => 'wallet_default']);
     }
+    
+    
 
 }

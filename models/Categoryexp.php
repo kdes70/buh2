@@ -47,6 +47,13 @@ class Categoryexp extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getExpenses() {
+        return $this->hasMany(Expense::className(), ['categoryexp_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getParent() {
         return $this->hasOne(Categoryexp::className(), ['id' => 'parent_id']);
     }
@@ -182,5 +189,6 @@ class Categoryexp extends \yii\db\ActiveRecord {
         }
         return $returnArray;
     }
+
 
 }

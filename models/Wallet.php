@@ -56,6 +56,30 @@ class Wallet extends \yii\db\ActiveRecord {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getMovesTo() {
+        return $this->hasMany(Move::className(), ['wallet_to' => 'id']);
+    }
+
+    public function getMovesFrom() {
+        return $this->hasMany(Move::className(), ['wallet_from' => 'id']);
+    }
+
+    public function getCategoryincs() {
+        return $this->hasMany(Categoryinc::className(), ['wallet_id' => 'id']);
+    }
+
+    public function getExpenses() {
+        return $this->hasMany(Expense::className(), ['wallet_id' => 'id']);
+    }
+
+    public function getExpensetemps() {
+        return $this->hasMany(Expensetemp::className(), ['wallet_id' => 'id']);
+    }
+
+    public function getIncomes() {
+        return $this->hasMany(Income::className(), ['wallet_id' => 'id']);
+    }
+
     //Мои статические методы для списков
 
     /**
