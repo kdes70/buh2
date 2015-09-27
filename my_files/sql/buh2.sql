@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 18 2015 г., 11:51
--- Версия сервера: 5.5.36
--- Версия PHP: 5.4.27
+-- Время создания: Сен 27 2015 г., 19:09
+-- Версия сервера: 5.6.16
+-- Версия PHP: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -60,8 +60,8 @@ CREATE TABLE IF NOT EXISTS `db1_auth_item` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`),
-  KEY `rule_name` (`rule_name`),
-  KEY `idx-auth_item-type` (`type`)
+  KEY `idx-auth_item-type` (`type`),
+  KEY `idx_rule_name` (`rule_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `db1_auth_item_child` (
   `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`)
+  KEY `idx_child` (`child`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 -- --------------------------------------------------------
@@ -111,8 +111,8 @@ CREATE TABLE IF NOT EXISTS `db1_categoryexp` (
   `parent_id` int(11) DEFAULT NULL COMMENT 'Родительская категория',
   `name` varchar(20) NOT NULL COMMENT 'Наименование',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  KEY `parent_id` (`parent_id`)
+  UNIQUE KEY `idx_name` (`name`),
+  KEY `idx_parent_id` (`parent_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=123 ;
 
 --
@@ -168,9 +168,9 @@ CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   `wallet_default` int(11) NOT NULL COMMENT 'Кошелек по умолчанию',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`,`user_id`),
-  KEY `user_id` (`user_id`),
-  KEY `wallet_default` (`wallet_default`)
+  UNIQUE KEY `idx_categoryinc_uniq` (`name`,`user_id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_wallet_default` (`wallet_default`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
 
 --
@@ -241,10 +241,10 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `wallet_id` (`wallet_id`),
-  KEY `categoryexp_id` (`categoryexp_id`),
-  KEY `unit_id` (`unit_id`)
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_wallet_id` (`wallet_id`),
+  KEY `idx_unit_id` (`unit_id`),
+  KEY `idx_categoryexp_id` (`categoryexp_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=58 ;
 
 --
@@ -286,12 +286,12 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_name` (`user_id`,`name`),
-  UNIQUE KEY `unique_temp` (`cost`,`categoryexp_id`,`description`,`user_id`,`wallet_id`),
-  KEY `user_id` (`user_id`),
-  KEY `wallet_id` (`wallet_id`),
-  KEY `categoryexp_id` (`categoryexp_id`),
-  KEY `unit_id` (`unit_id`)
+  UNIQUE KEY `idx_expensetemp_uniq` (`user_id`,`name`),
+  UNIQUE KEY `idx_expensetemp_uniq1` (`cost`,`categoryexp_id`,`description`,`user_id`,`wallet_id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_wallet_id` (`wallet_id`),
+  KEY `idx_unit_id` (`unit_id`),
+  KEY `idx_categoryexp_id` (`categoryexp_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=44 ;
 
 --
@@ -317,9 +317,9 @@ CREATE TABLE IF NOT EXISTS `db1_income` (
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
   PRIMARY KEY (`id`),
-  KEY `category_id` (`categoryinc_id`),
-  KEY `user_id` (`user_id`),
-  KEY `wallet_id` (`wallet_id`)
+  KEY `idx_category_id` (`categoryinc_id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_wallet_id` (`wallet_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=11 ;
 
 --
@@ -369,9 +369,9 @@ CREATE TABLE IF NOT EXISTS `db1_move` (
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `description` varchar(200) DEFAULT NULL COMMENT 'Описание',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `wallet_from` (`wallet_from`),
-  KEY `wallet_to` (`wallet_to`)
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_wallet_from` (`wallet_from`),
+  KEY `idx_wallet_to` (`wallet_to`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Перемещения' AUTO_INCREMENT=8 ;
 
 --
@@ -393,22 +393,45 @@ INSERT INTO `db1_move` (`id`, `wallet_from`, `wallet_to`, `move_sum`, `date_oper
 CREATE TABLE IF NOT EXISTS `db1_setting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  `settingparam_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   `unit_code` varchar(20) NOT NULL COMMENT 'Код раздела',
   `setting_code` varchar(25) NOT NULL COMMENT 'Код настройки',
   PRIMARY KEY (`id`),
-  KEY `_idx` (`user_id`)
+  UNIQUE KEY `idx_setting_uniq` (`user_id`,`settingparam_id`),
+  KEY `idx_settingparam_id` (`settingparam_id`),
+  KEY `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Настройки' AUTO_INCREMENT=6 ;
 
 --
 -- Дамп данных таблицы `db1_setting`
 --
 
-INSERT INTO `db1_setting` (`id`, `user_id`, `name`, `unit_code`, `setting_code`) VALUES
-(2, 2, 'Кошелек по умолчанию', '', ''),
-(3, 2, 'Единица измерения по умолчанию', '', ''),
-(4, 2, 'Количество записей в гриде', '', ''),
-(5, 3, 'Настройка 1', '', '');
+INSERT INTO `db1_setting` (`id`, `user_id`, `settingparam_id`, `name`, `unit_code`, `setting_code`) VALUES
+(2, 2, 1, 'Кошелек по умолчанию', '', ''),
+(3, 2, 2, 'Единица измерения по умолчанию', '', ''),
+(4, 3, 1, 'Количество записей в гриде', '', ''),
+(5, 3, 2, 'Настройка 1', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `db1_settingparam`
+--
+
+CREATE TABLE IF NOT EXISTS `db1_settingparam` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT 'Наименование',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Параметры настроек' AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `db1_settingparam`
+--
+
+INSERT INTO `db1_settingparam` (`id`, `name`) VALUES
+(1, 'Количество записей в гриде'),
+(2, 'Кошелек по умолчанию');
 
 -- --------------------------------------------------------
 
@@ -421,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `db1_unit` (
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   `fullname` varchar(100) NOT NULL COMMENT 'Полное наименование',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `idx_name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Единицы измерения' AUTO_INCREMENT=11 ;
 
 --
@@ -487,7 +510,7 @@ CREATE TABLE IF NOT EXISTS `db1_wallet` (
   `state` tinyint(1) NOT NULL COMMENT 'Состояние (0-действуюший, 1-Закрытый)',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  KEY `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=6 ;
 
 --
@@ -575,7 +598,8 @@ ALTER TABLE `db1_move`
 -- Ограничения внешнего ключа таблицы `db1_setting`
 --
 ALTER TABLE `db1_setting`
-  ADD CONSTRAINT `` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
+  ADD CONSTRAINT `db1_setting_ibfk_1` FOREIGN KEY (`settingparam_id`) REFERENCES `db1_settingparam` (`id`),
+  ADD CONSTRAINT `db1_setting_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `db1_wallet`

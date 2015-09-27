@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Setting;
@@ -9,22 +10,24 @@ use app\models\Setting;
 /**
  * SettingSearch represents the model behind the search form about `app\models\Setting`.
  */
-class SettingSearch extends Setting {
-
+class SettingSearch extends Setting
+{
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            [['id',], 'integer'],
-            [['name', 'user_id'], 'safe'],
+            [['id', 'user_id', 'settingparam_id'], 'integer'],
+            [['name', 'unit_code', 'setting_code'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -36,7 +39,8 @@ class SettingSearch extends Setting {
      *
      * @return ActiveDataProvider
      */
-    public function search($params) {
+    public function search($params)
+    {
         $query = Setting::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -51,21 +55,16 @@ class SettingSearch extends Setting {
             return $dataProvider;
         }
 
-
-        //Для связанного поиска
-        $query->joinWith('user');
-
-
         $query->andFilterWhere([
             'id' => $this->id,
-                //'user_id' => $this->user_id,
+            'user_id' => $this->user_id,
+            'settingparam_id' => $this->settingparam_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-                //Для связанного поиска
-                ->andFilterWhere(['like', '{{%user}}.username', $this->user_id]);
+            ->andFilterWhere(['like', 'unit_code', $this->unit_code])
+            ->andFilterWhere(['like', 'setting_code', $this->setting_code]);
 
         return $dataProvider;
     }
-
 }
