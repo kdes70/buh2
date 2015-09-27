@@ -8,6 +8,7 @@ use app\models\CategoryincSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\classes\Messages;
 
 /**
  * CategoryincController implements the CRUD actions for Categoryinc model.
@@ -84,9 +85,16 @@ class CategoryincController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+         try {
+            $this->findModel($id)->delete();
+            Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+            return $this->redirect(['index']);
+        } catch (\Exception $ex) {
+            if ($ex->getCode() == 23000) {
+                Yii::$app->getSession()->setFlash('delete-error', Messages::DELETE_ERROR_RELATION);
+            }
+            return $this->redirect(['index']);
+        }
     }
 
     /**

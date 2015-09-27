@@ -8,6 +8,7 @@ use app\models\CategoryexpSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\classes\Messages;
 
 /**
  * CategoryexpController implements the CRUD actions for Categoryexp model.
@@ -89,10 +90,19 @@ class CategoryexpController extends Controller {
      * @return mixed
      */
     public function actionDelete($id, $parent_id = 0) {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index', 'parent_id' => $parent_id
-        ]);
+        
+                 try {
+            $this->findModel($id)->delete();
+            Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+            return $this->redirect(['index', 'parent_id' => $parent_id]);
+        } catch (\Exception $ex) {
+            if ($ex->getCode() == 23000) {
+                Yii::$app->getSession()->setFlash('delete-error', Messages::DELETE_ERROR_RELATION);
+            }
+            return $this->redirect(['index', 'parent_id' => $parent_id]);
+        }
+        
+           
     }
 
     /**

@@ -2,9 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-use app\classes\Messages;
-
 /**
  * This is the model class for table "{{%wallet}}".
  *
@@ -113,22 +110,6 @@ class Wallet extends \yii\db\ActiveRecord {
                 . ' ORDER BY us.username, wa.name';
 
         return self::findBySql($sql)->all();
-    }
-
-    public function beforeDelete() {
-        //Запрет удаления связей
-        if (Move::findOne(['wallet_to' => $this->id]) ||
-                Move::findOne(['wallet_from' => $this->id]) ||
-                Categoryinc::findOne(['wallet_default' => $this->id]) ||
-                Expense::findOne(['wallet_id' => $this->id]) ||
-                Expensetemp::findOne(['wallet_id' => $this->id]) ||
-                Income::findOne(['wallet_id' => $this->id])
-        ) {
-            Yii::$app->getSession()->setFlash('delete-error', Messages::DELETE_ERROR_RELATION);
-            return FALSE;
-        }
-        Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
-        return TRUE;
     }
 
 }

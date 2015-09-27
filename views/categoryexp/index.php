@@ -20,7 +20,7 @@ $this->params['menuItems'] = [
     echo Growl::widget([
         'type' => Growl::TYPE_SUCCESS,
         'icon' => 'glyphicon glyphicon-ok-sign',
-        'title' => $this->title,
+        'title' => 'Категории расходов',
         'showSeparator' => true,
         'body' => Yii::$app->session->getFlash('delete-success')
     ]);
@@ -32,7 +32,7 @@ $this->params['menuItems'] = [
     echo Growl::widget([
         'type' => Growl::TYPE_DANGER,
         'icon' => 'glyphicon glyphicon-ok-sign',
-        'title' => $this->title,
+        'title' => 'Категории расходов',
         'showSeparator' => true,
         'body' => Yii::$app->session->getFlash('delete-error')
     ]);

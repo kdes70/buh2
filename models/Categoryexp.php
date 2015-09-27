@@ -2,9 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-use app\classes\Messages;
-
 /**
  * This is the model class for table "{{%categoryexp}}".
  *
@@ -191,16 +188,6 @@ class Categoryexp extends \yii\db\ActiveRecord {
             }
         }
         return $returnArray;
-    }
-
-    public function beforeDelete() {
-        //Запрет удаления связей
-        if (Categoryexp::findOne(['parent_id' => $this->id]) || Expense::findOne(['categoryexp_id' => $this->id])) {
-            Yii::$app->getSession()->setFlash('delete-error', Messages::DELETE_ERROR_RELATION);
-            return FALSE;
-        }
-        Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
-        return TRUE;
     }
 
 }
