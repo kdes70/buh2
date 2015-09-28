@@ -90,8 +90,8 @@ class CategoryexpController extends Controller {
      * @return mixed
      */
     public function actionDelete($id, $parent_id = 0) {
-        
-                 try {
+
+        try {
             $this->findModel($id)->delete();
             Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
             return $this->redirect(['index', 'parent_id' => $parent_id]);
@@ -101,8 +101,6 @@ class CategoryexpController extends Controller {
             }
             return $this->redirect(['index', 'parent_id' => $parent_id]);
         }
-        
-           
     }
 
     /**

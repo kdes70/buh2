@@ -18,6 +18,17 @@ $this->params['menuItems'] = [
 ];
 ?>
 
+<?php if (Yii::$app->session->getFlash('delete-success')): ?>
+    <?php
+    echo Growl::widget([
+        'type' => Growl::TYPE_SUCCESS,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => $this->title,
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('delete-success')
+    ]);
+    ?>
+<?php endif; ?>
 
 <?php if (Yii::$app->session->getFlash('save-as-template-success')): ?>
     <?php

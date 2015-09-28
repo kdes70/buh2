@@ -8,6 +8,7 @@ use app\models\IncomeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\classes\Messages;
 
 /**
  * IncomeController implements the CRUD actions for Income model.
@@ -95,7 +96,9 @@ class IncomeController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->getSession()->setFlash('delete-success', Messages::ROLLBACK_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }

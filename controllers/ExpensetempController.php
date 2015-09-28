@@ -8,6 +8,7 @@ use app\models\ExpensetempSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\classes\Messages;
 
 /**
  * ExpensetempController implements the CRUD actions for Expensetemp model.
@@ -84,7 +85,9 @@ class ExpensetempController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+        }
         return $this->redirect(['index']);
     }
 

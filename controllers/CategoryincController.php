@@ -85,7 +85,7 @@ class CategoryincController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-         try {
+        try {
             $this->findModel($id)->delete();
             Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
             return $this->redirect(['index']);

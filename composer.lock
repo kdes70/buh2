@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "dcf938e61c396d696c50e75821875648",
+    "content-hash": "6924b1672fcb38bd762128c8459fe134",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",

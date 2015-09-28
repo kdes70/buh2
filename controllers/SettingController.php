@@ -8,6 +8,7 @@ use app\models\SettingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\classes\Messages;
 
 /**
  * SettingController implements the CRUD actions for Setting model.
@@ -84,7 +85,10 @@ class SettingController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }

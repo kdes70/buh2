@@ -8,6 +8,7 @@ use app\models\ExchangeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\classes\Messages;
 
 /**
  * ExchangeController implements the CRUD actions for Exchange model.
@@ -85,7 +86,9 @@ class ExchangeController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->getSession()->setFlash('delete-success', Messages::DELETE_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }
