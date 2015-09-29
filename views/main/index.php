@@ -2,8 +2,12 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use app\models\Expensetemp;
 use dosamigos\chartjs\ChartJs;
+use yii\bootstrap\ButtonDropdown;
+use yii\bootstrap\ButtonGroup;
+use yii\bootstrap\Button;
 ?>
 <div class="row">
     <div class="col-md-3 col-lg-3">
@@ -49,22 +53,54 @@ use dosamigos\chartjs\ChartJs;
         //Назначение роли пользователю
 //        $userRole = Yii::$app->authManager->getRole('admin');
 //        Yii::$app->authManager->assign($userRole, 3);
+
+
+
+        print_r(ArrayHelper::map(Expensetemp::getAllNamesForList(Yii::$app->user->identity->id), 'id', 'name'));
         ?>
 
         <!-- Блок управления -->
 
 
-        <div class="btn-group btn-group-justified btn-group-lg" role="group">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default btn-lg">Операции</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default btn-lg">Настройки</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default btn-lg">Управление</button>
-            </div>
-        </div>
+        <!-- Управление по новому TEST (конец)-->
+        <?php
+        echo ButtonGroup::widget([
+            'buttons' => [
+
+
+                Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']
+                ),
+                Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], [
+                    'class' => 'btn btn-primary',
+                    'title' => 'Создать',
+                    'options' => [
+                    //'style' => "width:100%"
+                    ]
+                        ]
+                ),
+                ButtonDropdown::widget([
+                    'label' => '',
+                    'dropdown' => [
+                        'items' => ArrayHelper::map(Expensetemp::getAllNamesForList(Yii::$app->user->identity->id), 'id', 'name'),
+                    /* [
+                      ['label' => 'DropdownA', 'url' => '/'],
+                      ['label' => 'DropdownB', 'url' => '#'],
+                      ],
+                     */
+                    ],
+                    'options' => [
+                        //'style' => "width:100%",
+                        'class' => 'btn-primary',
+                        'title' => 'Создать из шаблона...']
+                ]),
+            ],
+            'options' => [
+                'class' => 'btn-group-justified',
+            ]
+        ]);
+        ?>
+        <!-- TEST (конец)-->
+
 
 
         <!-- Заголовок -->
@@ -76,6 +112,10 @@ use dosamigos\chartjs\ChartJs;
                 </tr>
             </thead>
             <!-- Заголовок (конец) -->
+
+
+
+
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
