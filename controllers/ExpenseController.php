@@ -77,9 +77,11 @@ class ExpenseController extends Controller {
             if ($_POST['Expense']['continue'] == 1) {
                 $model = new Expense();
                 $model->continue = 1;
+                $model->date_oper = date('Y-m-d');
+                
                 $model->unit_id = 1;
                 $model->count_unit = 1;
-                $model->date_oper = date('Y-m-d');
+                
                 $model->user_id = Yii::$app->user->identity->id;
                 Yii::$app->getSession()->setFlash('created', 'Расход успешно создан...');
                 return $this->render('create', ['model' => $model,]);
