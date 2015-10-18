@@ -5,7 +5,6 @@
         "This file is @generated automatically"
     ],
     "hash": "dcf938e61c396d696c50e75821875648",
-    "content-hash": "6924b1672fcb38bd762128c8459fe134",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -2199,12 +2198,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-faker.git",
-                "reference": "091bc3c5db9e53031817c6e155c0bd518f3606de"
+                "reference": "6968c97fd2e951e8260d1ccc6f5e2109407290eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/091bc3c5db9e53031817c6e155c0bd518f3606de",
-                "reference": "091bc3c5db9e53031817c6e155c0bd518f3606de",
+                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/6968c97fd2e951e8260d1ccc6f5e2109407290eb",
+                "reference": "6968c97fd2e951e8260d1ccc6f5e2109407290eb",
                 "shasum": ""
             },
             "require": {
@@ -2238,7 +2237,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2015-07-28 06:25:23"
+            "time": "2015-09-29 10:49:25"
         },
         {
             "name": "yiisoft/yii2-gii",
