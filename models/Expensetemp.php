@@ -85,17 +85,4 @@ class Expensetemp extends \yii\db\ActiveRecord {
         return $this->hasOne(Unit::className(), ['id' => 'unit_id']);
     }
 
-    /**
-     * Возвращает  Список шаблонов для быстрого создания расхолов
-     */
- /*   public static function getAllNamesForList($user_id) {
-
-        $sql = 'SELECT t.id as id, t.name as name
-                FROM db1_expensetemp t
-                WHERE t.user_id = ' . $user_id
-                . ' order by t.name';
-
-        return self::findBySql($sql)->all();
-    }/**/
-
-}
+  }
