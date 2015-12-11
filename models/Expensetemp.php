@@ -88,7 +88,7 @@ class Expensetemp extends \yii\db\ActiveRecord {
     /**
      * Возвращает  Список шаблонов для быстрого создания расхолов
      */
-    public static function getAllNamesForList($user_id) {
+ /*   public static function getAllNamesForList($user_id) {
 
         $sql = 'SELECT t.id as id, t.name as name
                 FROM db1_expensetemp t
@@ -96,6 +96,6 @@ class Expensetemp extends \yii\db\ActiveRecord {
                 . ' order by t.name';
 
         return self::findBySql($sql)->all();
-    }
+    }/**/
 
 }

@@ -7,7 +7,6 @@ use app\models\Expensetemp;
 use dosamigos\chartjs\ChartJs;
 use yii\bootstrap\ButtonDropdown;
 use yii\bootstrap\ButtonGroup;
-use yii\bootstrap\Button;
 ?>
 <div class="row">
     <div class="col-md-3 col-lg-3">
@@ -56,7 +55,7 @@ use yii\bootstrap\Button;
 
 
 
-        print_r(ArrayHelper::map(Expensetemp::getAllNamesForList(Yii::$app->user->identity->id), 'id', 'name'));
+        print_r(ArrayHelper::map(Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'));
         ?>
 
         <!-- Блок управления -->
@@ -81,12 +80,13 @@ use yii\bootstrap\Button;
                 ButtonDropdown::widget([
                     'label' => '',
                     'dropdown' => [
-                        'items' => ArrayHelper::map(Expensetemp::getAllNamesForList(Yii::$app->user->identity->id), 'id', 'name'),
+                        //'items' => ArrayHelper::map(Expensetemp::getAllNamesForList(Yii::$app->user->identity->id), 'id', 'name'),
+                        'items' => ArrayHelper::map(Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
                     /* [
                       ['label' => 'DropdownA', 'url' => '/'],
                       ['label' => 'DropdownB', 'url' => '#'],
                       ],
-                     */
+                      /* */
                     ],
                     'options' => [
                         //'style' => "width:100%",
@@ -141,7 +141,7 @@ use yii\bootstrap\Button;
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <?php
-                            foreach (Expensetemp::getAllNamesForList(Yii::$app->user->identity->id) as $val) {
+                            foreach (Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all() as $val) {
                                 echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
                             }
                             ?>
