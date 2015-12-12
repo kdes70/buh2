@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
+//use yii\helpers\ArrayHelper;
 use app\models\Expensetemp;
 use dosamigos\chartjs\ChartJs;
 use yii\bootstrap\ButtonDropdown;
@@ -52,10 +52,6 @@ use yii\bootstrap\ButtonGroup;
         //Назначение роли пользователю
 //        $userRole = Yii::$app->authManager->getRole('admin');
 //        Yii::$app->authManager->assign($userRole, 3);
-
-
-
-        print_r(ArrayHelper::map(Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'));
         ?>
 
         <!-- Блок управления -->
@@ -80,13 +76,8 @@ use yii\bootstrap\ButtonGroup;
                 ButtonDropdown::widget([
                     'label' => '',
                     'dropdown' => [
-                        //'items' => ArrayHelper::map(Expensetemp::getAllNamesForList(Yii::$app->user->identity->id), 'id', 'name'),
-                        'items' => ArrayHelper::map(Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all(), 'id', 'name'),
-                    /* [
-                      ['label' => 'DropdownA', 'url' => '/'],
-                      ['label' => 'DropdownB', 'url' => '#'],
-                      ],
-                      /* */
+
+                        'items' => Expensetemp::getItems(),
                     ],
                     'options' => [
                         //'style' => "width:100%",
@@ -99,6 +90,7 @@ use yii\bootstrap\ButtonGroup;
             ]
         ]);
         ?>
+        
         <!-- TEST (конец)-->
 
 

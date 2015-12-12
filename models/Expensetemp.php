@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "db1_expensetemp".
  *
@@ -85,4 +87,16 @@ class Expensetemp extends \yii\db\ActiveRecord {
         return $this->hasOne(Unit::className(), ['id' => 'unit_id']);
     }
 
-  }
+    /**
+     * формирование пунктов меню для команды "Создать из шаблона..."
+     */
+    public static function getItems() {
+        //$items = [];
+        $models = Self::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
+        foreach ($models as $model) {
+            $item[] = ['label' => $model->name, 'url' => 'expense/create?tmp=' . $model->id];
+        }
+        return $item;
+    }
+
+}
