@@ -1,8 +1,6 @@
 <?php
-/* @var $this yii\web\View */
 
 use yii\helpers\Html;
-//use yii\helpers\ArrayHelper;
 use app\models\Expensetemp;
 use dosamigos\chartjs\ChartJs;
 use yii\bootstrap\ButtonDropdown;
@@ -37,33 +35,21 @@ use yii\bootstrap\ButtonGroup;
     <div class="col-md-6 col-lg-6">
 
 
-        <?php
-        //Эксперименты с правами в разделе Unit
-//        $role = Yii::$app->authManager->createRole('admin');
-//        $role->description = 'Админ';
-//        Yii::$app->authManager->add($role);
-//
-//        $role = Yii::$app->authManager->createRole('user');
-//        $role->description = 'Юзер';
-//        Yii::$app->authManager->add($role);
-//        $permit = Yii::$app->authManager->createPermission('deleteUser');
-//        $permit->description = 'Право удалять пользователя';
-//        Yii::$app->authManager->add($permit);
-        //Назначение роли пользователю
-//        $userRole = Yii::$app->authManager->getRole('admin');
-//        Yii::$app->authManager->assign($userRole, 3);
-        ?>
+
 
         <!-- Блок управления -->
-
-
-        <!-- Управление по новому TEST (конец)-->
+        <!-- Блок управления новый-->
         <?php
         echo ButtonGroup::widget([
             'buttons' => [
 
-
-                Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']
+                Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], [
+                    'class' => 'btn btn-success btn-block',
+                    'title' => 'Расходы',
+                    'options' => [
+                    //'style' => "width:100%"
+                    ]
+                        ]
                 ),
                 Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], [
                     'class' => 'btn btn-primary',
@@ -90,8 +76,7 @@ use yii\bootstrap\ButtonGroup;
             ]
         ]);
         ?>
-        
-        <!-- TEST (конец)-->
+        <!-- Блок управления новый (конец)-->
 
 
 
@@ -111,19 +96,19 @@ use yii\bootstrap\ButtonGroup;
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
             </tr>
             <tr>
                 <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
                 <td class="text-right"> 
                     <div class="btn-group" role="group" style = "width:100%">
@@ -144,12 +129,25 @@ use yii\bootstrap\ButtonGroup;
             <tr>
                 <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
                 <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+<?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
                 </td>
 
             </tr>
         </table>
         <!-- Блок управления (конец) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="panel panel-default">
             <div class="panel-heading">
