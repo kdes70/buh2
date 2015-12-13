@@ -16,7 +16,7 @@ class CategoryincSearch extends Categoryinc {
      */
     public function rules() {
         return [
-            [['id', 'wallet_default'], 'integer'],
+            [['id', 'wallet_id'], 'integer'],
             [['name', 'user_id',], 'safe'],
         ];
     }
@@ -57,7 +57,7 @@ class CategoryincSearch extends Categoryinc {
         $query->andFilterWhere([
             'id' => $this->id,
             //'user_id' => $this->user_id,
-            'wallet_default' => $this->wallet_default,
+            'wallet_id' => $this->wallet_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

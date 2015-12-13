@@ -9,7 +9,7 @@ namespace app\models;
  * @property integer $parent_id
  * @property integer $user_id
  * @property string $name
- * @property integer $wallet_default
+ * @property integer $wallet_id
  *
  * @property Income[] $incomes
  */
@@ -27,8 +27,8 @@ class Categoryinc extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['user_id', 'wallet_default'], 'integer'],
-            [['name', 'wallet_default'], 'required'],
+            [['user_id', 'wallet_id'], 'integer'],
+            [['name', 'wallet_id'], 'required'],
             [['name'], 'string', 'max' => 50],
             [['name', 'user_id'], 'unique', 'targetAttribute' => ['name', 'user_id'], 'message' => 'У текущего пользователя, такая категория дохода уже существует!']
         ];
@@ -42,7 +42,7 @@ class Categoryinc extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'user_id' => 'Пользователь',
             'name' => 'Наименование',
-            'wallet_default' => 'Кошелек по умолчанию',
+            'wallet_id' => 'Кошелек по умолчанию',
         ];
     }
 
@@ -64,7 +64,7 @@ class Categoryinc extends \yii\db\ActiveRecord {
      * @return \yii\db\ActiveQuery
      */
     public function getWallet() {
-        return $this->hasOne(Wallet::className(), ['id' => 'wallet_default']);
+        return $this->hasOne(Wallet::className(), ['id' => 'wallet_id']);
     }
 
 }

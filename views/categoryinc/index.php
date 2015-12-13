@@ -61,7 +61,7 @@ $this->params['menuItems'] = [
             ],
             'name',
             [
-                'attribute' => 'wallet_default',
+                'attribute' => 'wallet_id',
                 'value' => 'wallet.name'
             ],
             [
