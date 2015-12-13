@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 27 2015 г., 19:09
--- Версия сервера: 5.6.16
--- Версия PHP: 5.5.9
+-- Время создания: Дек 13 2015 г., 19:20
+-- Версия сервера: 10.1.8-MariaDB
+-- Версия PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- База данных: `buh2`
@@ -26,11 +26,10 @@ SET time_zone = "+00:00";
 -- Структура таблицы `db1_auth_assignment`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_auth_assignment` (
+CREATE TABLE `db1_auth_assignment` (
   `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`item_name`,`user_id`)
+  `created_at` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 --
@@ -51,17 +50,14 @@ INSERT INTO `db1_auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 -- Структура таблицы `db1_auth_item`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_auth_item` (
+CREATE TABLE `db1_auth_item` (
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `rule_name` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `data` text COLLATE utf8_unicode_ci,
   `created_at` int(11) DEFAULT NULL,
-  `updated_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`name`),
-  KEY `idx-auth_item-type` (`type`),
-  KEY `idx_rule_name` (`rule_name`)
+  `updated_at` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 --
@@ -79,11 +75,9 @@ INSERT INTO `db1_auth_item` (`name`, `type`, `description`, `rule_name`, `data`,
 -- Структура таблицы `db1_auth_item_child`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_auth_item_child` (
+CREATE TABLE `db1_auth_item_child` (
   `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`parent`,`child`),
-  KEY `idx_child` (`child`)
+  `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 -- --------------------------------------------------------
@@ -92,12 +86,11 @@ CREATE TABLE IF NOT EXISTS `db1_auth_item_child` (
 -- Структура таблицы `db1_auth_rule`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_auth_rule` (
+CREATE TABLE `db1_auth_rule` (
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `data` text COLLATE utf8_unicode_ci,
   `created_at` int(11) DEFAULT NULL,
-  `updated_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`name`)
+  `updated_at` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Таблица для RBAC';
 
 -- --------------------------------------------------------
@@ -106,14 +99,11 @@ CREATE TABLE IF NOT EXISTS `db1_auth_rule` (
 -- Структура таблицы `db1_categoryexp`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_categoryexp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_categoryexp` (
+  `id` int(11) NOT NULL,
   `parent_id` int(11) DEFAULT NULL COMMENT 'Родительская категория',
-  `name` varchar(20) NOT NULL COMMENT 'Наименование',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_name` (`name`),
-  KEY `idx_parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории расходов' AUTO_INCREMENT=123 ;
+  `name` varchar(20) NOT NULL COMMENT 'Наименование'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Категории расходов';
 
 --
 -- Дамп данных таблицы `db1_categoryexp`
@@ -162,22 +152,18 @@ INSERT INTO `db1_categoryexp` (`id`, `parent_id`, `name`) VALUES
 -- Структура таблицы `db1_categoryinc`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_categoryinc` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_categoryinc` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL COMMENT 'Пользователь',
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
-  `wallet_default` int(11) NOT NULL COMMENT 'Кошелек по умолчанию',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_categoryinc_uniq` (`name`,`user_id`),
-  KEY `idx_user_id` (`user_id`),
-  KEY `idx_wallet_default` (`wallet_default`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Категории доходов' AUTO_INCREMENT=13 ;
+  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек по умолчанию'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Категории доходов';
 
 --
 -- Дамп данных таблицы `db1_categoryinc`
 --
 
-INSERT INTO `db1_categoryinc` (`id`, `user_id`, `name`, `wallet_default`) VALUES
+INSERT INTO `db1_categoryinc` (`id`, `user_id`, `name`, `wallet_id`) VALUES
 (3, 2, 'Зарплата', 1),
 (4, 2, 'Аванс', 1),
 (5, 2, 'Конверт', 2),
@@ -191,15 +177,13 @@ INSERT INTO `db1_categoryinc` (`id`, `user_id`, `name`, `wallet_default`) VALUES
 -- Структура таблицы `db1_exchange`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_exchange` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_exchange` (
+  `id` int(11) NOT NULL,
   `start_date` date NOT NULL COMMENT 'Дата начала',
   `currency_code` varchar(3) NOT NULL COMMENT 'Код валюты',
   `number_units` int(11) NOT NULL COMMENT 'Количество единиц',
-  `official_exchange` decimal(10,6) NOT NULL COMMENT 'Официальный курс',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_exchange_uniq` (`currency_code`,`start_date`) COMMENT 'Уникальность кода валюты за дату'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Курсы валют' AUTO_INCREMENT=25 ;
+  `official_exchange` decimal(10,6) NOT NULL COMMENT 'Официальный курс'
+) COMMENT='Уникальность кода валюты за дату';
 
 --
 -- Дамп данных таблицы `db1_exchange`
@@ -222,7 +206,9 @@ INSERT INTO `db1_exchange` (`id`, `start_date`, `currency_code`, `number_units`,
 (21, '2015-07-27', 'RUB', 10, '3.803300'),
 (22, '2015-07-28', 'USD', 100, '2206.227800'),
 (23, '2015-07-28', 'EUR', 100, '2439.646700'),
-(24, '2015-07-28', 'RUB', 10, '3.753300');
+(24, '2015-07-28', 'RUB', 10, '3.753300'),
+(25, '2015-12-11', 'USD', 100, '2386.009400'),
+(26, '2015-12-13', 'USD', 100, '2386.009400');
 
 -- --------------------------------------------------------
 
@@ -230,8 +216,8 @@ INSERT INTO `db1_exchange` (`id`, `start_date`, `currency_code`, `number_units`,
 -- Структура таблицы `db1_expense`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_expense` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_expense` (
+  `id` int(11) NOT NULL,
   `cost` decimal(10,2) NOT NULL COMMENT 'Сумма расхода',
   `unit_id` int(11) NOT NULL COMMENT 'Единица измерения',
   `count_unit` decimal(10,2) NOT NULL COMMENT 'Количество',
@@ -239,13 +225,8 @@ CREATE TABLE IF NOT EXISTS `db1_expense` (
   `description` varchar(200) DEFAULT NULL COMMENT 'Описание',
   `date_oper` date NOT NULL COMMENT 'Дата операции',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
-  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
-  PRIMARY KEY (`id`),
-  KEY `idx_user_id` (`user_id`),
-  KEY `idx_wallet_id` (`wallet_id`),
-  KEY `idx_unit_id` (`unit_id`),
-  KEY `idx_categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Расходы' AUTO_INCREMENT=58 ;
+  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Расходы';
 
 --
 -- Дамп данных таблицы `db1_expense`
@@ -275,8 +256,8 @@ INSERT INTO `db1_expense` (`id`, `cost`, `unit_id`, `count_unit`, `categoryexp_i
 -- Структура таблицы `db1_expensetemp`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_expensetemp` (
+  `id` int(11) NOT NULL,
   `cost` decimal(10,2) NOT NULL COMMENT 'Сумма расхода',
   `unit_id` int(11) NOT NULL COMMENT 'Единица измерения',
   `count_unit` decimal(10,2) NOT NULL COMMENT 'Количество',
@@ -284,15 +265,8 @@ CREATE TABLE IF NOT EXISTS `db1_expensetemp` (
   `description` varchar(200) DEFAULT NULL COMMENT 'Описание',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
-  `name` varchar(50) NOT NULL COMMENT 'Наименование',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_expensetemp_uniq` (`user_id`,`name`),
-  UNIQUE KEY `idx_expensetemp_uniq1` (`cost`,`categoryexp_id`,`description`,`user_id`,`wallet_id`),
-  KEY `idx_user_id` (`user_id`),
-  KEY `idx_wallet_id` (`wallet_id`),
-  KEY `idx_unit_id` (`unit_id`),
-  KEY `idx_categoryexp_id` (`categoryexp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов' AUTO_INCREMENT=44 ;
+  `name` varchar(50) NOT NULL COMMENT 'Наименование'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Шаблоны расходов';
 
 --
 -- Дамп данных таблицы `db1_expensetemp`
@@ -309,18 +283,14 @@ INSERT INTO `db1_expensetemp` (`id`, `cost`, `unit_id`, `count_unit`, `categorye
 -- Структура таблицы `db1_income`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_income` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_income` (
+  `id` int(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL COMMENT 'Сумма дохода',
   `categoryinc_id` int(11) NOT NULL COMMENT 'Категория доходов',
   `date_oper` date NOT NULL COMMENT 'Дата операции',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
-  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)',
-  PRIMARY KEY (`id`),
-  KEY `idx_category_id` (`categoryinc_id`),
-  KEY `idx_user_id` (`user_id`),
-  KEY `idx_wallet_id` (`wallet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Доходы' AUTO_INCREMENT=11 ;
+  `wallet_id` int(11) NOT NULL COMMENT 'Кошелек (счет)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Доходы';
 
 --
 -- Дамп данных таблицы `db1_income`
@@ -331,7 +301,8 @@ INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_i
 (6, '600.00', 12, '2015-07-24', 3, 5),
 (8, '1000.00', 6, '2015-07-24', 2, 2),
 (9, '1500.00', 3, '2015-07-28', 2, 1),
-(10, '2000.00', 6, '2015-07-28', 2, 3);
+(10, '2000.00', 6, '2015-07-28', 2, 3),
+(11, '300.00', 6, '2015-12-13', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -339,10 +310,9 @@ INSERT INTO `db1_income` (`id`, `amount`, `categoryinc_id`, `date_oper`, `user_i
 -- Структура таблицы `db1_migration`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_migration` (
+CREATE TABLE `db1_migration` (
   `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`version`)
+  `apply_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица для Migration';
 
 --
@@ -360,19 +330,15 @@ INSERT INTO `db1_migration` (`version`, `apply_time`) VALUES
 -- Структура таблицы `db1_move`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_move` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_move` (
+  `id` int(11) NOT NULL,
   `wallet_from` int(11) NOT NULL COMMENT 'Из кошелька',
   `wallet_to` int(11) NOT NULL COMMENT 'В кошелек',
   `move_sum` decimal(10,2) NOT NULL COMMENT 'Перемещаемая сумма',
   `date_oper` date NOT NULL COMMENT 'Дата операции',
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
-  `description` varchar(200) DEFAULT NULL COMMENT 'Описание',
-  PRIMARY KEY (`id`),
-  KEY `idx_user_id` (`user_id`),
-  KEY `idx_wallet_from` (`wallet_from`),
-  KEY `idx_wallet_to` (`wallet_to`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Перемещения' AUTO_INCREMENT=8 ;
+  `description` varchar(200) DEFAULT NULL COMMENT 'Описание'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Перемещения';
 
 --
 -- Дамп данных таблицы `db1_move`
@@ -390,18 +356,14 @@ INSERT INTO `db1_move` (`id`, `wallet_from`, `wallet_to`, `move_sum`, `date_oper
 -- Структура таблицы `db1_setting`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_setting` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL COMMENT 'Пользователь',
   `settingparam_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   `unit_code` varchar(20) NOT NULL COMMENT 'Код раздела',
-  `setting_code` varchar(25) NOT NULL COMMENT 'Код настройки',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_setting_uniq` (`user_id`,`settingparam_id`),
-  KEY `idx_settingparam_id` (`settingparam_id`),
-  KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Настройки' AUTO_INCREMENT=6 ;
+  `setting_code` varchar(25) NOT NULL COMMENT 'Код настройки'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Настройки';
 
 --
 -- Дамп данных таблицы `db1_setting`
@@ -419,11 +381,10 @@ INSERT INTO `db1_setting` (`id`, `user_id`, `settingparam_id`, `name`, `unit_cod
 -- Структура таблицы `db1_settingparam`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_settingparam` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL COMMENT 'Наименование',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Параметры настроек' AUTO_INCREMENT=3 ;
+CREATE TABLE `db1_settingparam` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL COMMENT 'Наименование'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Параметры настроек';
 
 --
 -- Дамп данных таблицы `db1_settingparam`
@@ -439,13 +400,11 @@ INSERT INTO `db1_settingparam` (`id`, `name`) VALUES
 -- Структура таблицы `db1_unit`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_unit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_unit` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
-  `fullname` varchar(100) NOT NULL COMMENT 'Полное наименование',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Единицы измерения' AUTO_INCREMENT=11 ;
+  `fullname` varchar(100) NOT NULL COMMENT 'Полное наименование'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Единицы измерения';
 
 --
 -- Дамп данных таблицы `db1_unit`
@@ -467,8 +426,8 @@ INSERT INTO `db1_unit` (`id`, `name`, `fullname`) VALUES
 -- Структура таблицы `db1_user`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_user` (
+  `id` int(11) NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   `fullname` varchar(255) DEFAULT NULL COMMENT 'Полное имя',
@@ -478,23 +437,19 @@ CREATE TABLE IF NOT EXISTS `db1_user` (
   `password_hash` varchar(255) NOT NULL COMMENT 'Хеш пароля',
   `password_reset_token` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL COMMENT 'E-mail',
-  `status` smallint(6) NOT NULL DEFAULT '0' COMMENT 'Состояние',
-  PRIMARY KEY (`id`),
-  KEY `idx_user_username` (`username`),
-  KEY `idx_user_email` (`email`),
-  KEY `idx_user_status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `state` smallint(6) NOT NULL DEFAULT '0' COMMENT 'Состояние'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `db1_user`
 --
 
-INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `fullname`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `status`) VALUES
+INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `fullname`, `username`, `auth_key`, `email_confirm_token`, `password_hash`, `password_reset_token`, `email`, `state`) VALUES
 (1, 1429777037, 1438175197, 'Супер пользователь системы', 'root', '0ZIG7OZCKEOR7JyE20g0Rh-R_NVlipex', NULL, '$2y$13$NVfh/naxh8QWQtMeTeumjOzcqGaGm6uNHwXpbzyjj5rWJejqyI4I.', NULL, 'admin@ukr.net', 0),
 (2, 1429777037, 1438175211, 'Мельников Тимур Викторович', 'timur', 'b8HKw5Lt3NqQQxw1Ly1L2jkH2N7B1ZR4', NULL, '$2y$13$KFS/bKU0RZjBDv49ePch2OlepQqDGlEPmRhxZEoSYwGwBEHRXl0pu', NULL, 'timur@ukr.net', 0),
 (3, 1429777037, 1438238903, 'Мельников Беатриса Леонидовна', 'beata', 'xotK69FcZqF5LKRrK4bNGawddzqAzSSQ', NULL, '$2y$13$vXZ2pkOxCm4xL9u27Uks9eaWHtzDgqMW144lmgVOgDjXk3w3utK0m', NULL, 'beata@ukr.net', 0),
 (8, 1429777037, 1438175252, 'Морозова Даша', 'dasha', 'd4-Xo9XcUIptBQZz4aw4KNphHOgk0YV6', NULL, '$2y$13$hwH2t9ZTVz3WjzPth08LAuw1KIk/0wEGCnZzhwCu2DZmwWSQ8fDce', NULL, 'dasha@ukr.net', 0),
-(9, 1438173491, 1438238997, 'Иванов Иван Иванович', 'ivan', 'wvuR4DneyhggRSb1_WRWBaIdcr8r2N3l', NULL, '$2y$13$UvDYiOOGTkoJsos4Cz6c4Oa82Kn18uYWGm.qWkD8xMBfnunAjQYyi', NULL, 'ivan@mail.ru', 1),
+(9, 1438173491, 1450030695, 'Иванов Иван Иванович', 'ivan', 'wvuR4DneyhggRSb1_WRWBaIdcr8r2N3l', NULL, '$2y$13$UvDYiOOGTkoJsos4Cz6c4Oa82Kn18uYWGm.qWkD8xMBfnunAjQYyi', NULL, 'ivan@mail.ru', 1),
 (10, 1438238946, 1438239355, 'Тестовый пользователь', 'test', 'JmbK41cLCKzHgXWAwbVRFSH9Y2mpMrLg', NULL, '$2y$13$d8Tf2E09pyIxj7z.PFtSuOm/v3q5T7TaMaq/Vx7P4wfcXSguspJu6', NULL, 'test@test.ua', 1);
 
 -- --------------------------------------------------------
@@ -503,27 +458,228 @@ INSERT INTO `db1_user` (`id`, `created_at`, `updated_at`, `fullname`, `username`
 -- Структура таблицы `db1_wallet`
 --
 
-CREATE TABLE IF NOT EXISTS `db1_wallet` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `db1_wallet` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL COMMENT 'Наименование',
   `current_sum` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'Текущая сумма',
   `state` tinyint(1) NOT NULL COMMENT 'Состояние (0-действуюший, 1-Закрытый)',
-  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
-  PRIMARY KEY (`id`),
-  KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Кошельки' AUTO_INCREMENT=6 ;
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Кошельки';
 
 --
 -- Дамп данных таблицы `db1_wallet`
 --
 
 INSERT INTO `db1_wallet` (`id`, `name`, `current_sum`, `state`, `user_id`) VALUES
-(1, 'Карточка FidoBank', '1497.50', 0, 2),
+(1, 'Карточка FidoBank', '1797.50', 0, 2),
 (2, 'Карточка Приват', '0.00', 1, 2),
 (3, 'Наличные', '2063.88', 0, 2),
 (4, 'Карточка Приват', '80.00', 0, 3),
 (5, 'Наличные', '700.00', 0, 3);
 
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `db1_auth_assignment`
+--
+ALTER TABLE `db1_auth_assignment`
+  ADD PRIMARY KEY (`item_name`,`user_id`);
+
+--
+-- Индексы таблицы `db1_auth_item`
+--
+ALTER TABLE `db1_auth_item`
+  ADD PRIMARY KEY (`name`),
+  ADD KEY `idx-auth_item-type` (`type`),
+  ADD KEY `idx_rule_name` (`rule_name`);
+
+--
+-- Индексы таблицы `db1_auth_item_child`
+--
+ALTER TABLE `db1_auth_item_child`
+  ADD PRIMARY KEY (`parent`,`child`),
+  ADD KEY `idx_child` (`child`);
+
+--
+-- Индексы таблицы `db1_auth_rule`
+--
+ALTER TABLE `db1_auth_rule`
+  ADD PRIMARY KEY (`name`);
+
+--
+-- Индексы таблицы `db1_categoryexp`
+--
+ALTER TABLE `db1_categoryexp`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_name` (`name`),
+  ADD KEY `idx_parent_id` (`parent_id`);
+
+--
+-- Индексы таблицы `db1_categoryinc`
+--
+ALTER TABLE `db1_categoryinc`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_categoryinc_uniq` (`name`,`user_id`),
+  ADD KEY `idx_user_id` (`user_id`),
+  ADD KEY `idx_wallet_default` (`wallet_id`);
+
+--
+-- Индексы таблицы `db1_exchange`
+--
+ALTER TABLE `db1_exchange`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_exchange_uniq` (`currency_code`,`start_date`);
+
+--
+-- Индексы таблицы `db1_expense`
+--
+ALTER TABLE `db1_expense`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_id` (`user_id`),
+  ADD KEY `idx_wallet_id` (`wallet_id`),
+  ADD KEY `idx_unit_id` (`unit_id`),
+  ADD KEY `idx_categoryexp_id` (`categoryexp_id`);
+
+--
+-- Индексы таблицы `db1_expensetemp`
+--
+ALTER TABLE `db1_expensetemp`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_expensetemp_uniq` (`user_id`,`name`),
+  ADD UNIQUE KEY `idx_expensetemp_uniq1` (`cost`,`categoryexp_id`,`description`,`user_id`,`wallet_id`),
+  ADD KEY `idx_user_id` (`user_id`),
+  ADD KEY `idx_wallet_id` (`wallet_id`),
+  ADD KEY `idx_unit_id` (`unit_id`),
+  ADD KEY `idx_categoryexp_id` (`categoryexp_id`);
+
+--
+-- Индексы таблицы `db1_income`
+--
+ALTER TABLE `db1_income`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_category_id` (`categoryinc_id`),
+  ADD KEY `idx_user_id` (`user_id`),
+  ADD KEY `idx_wallet_id` (`wallet_id`);
+
+--
+-- Индексы таблицы `db1_migration`
+--
+ALTER TABLE `db1_migration`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Индексы таблицы `db1_move`
+--
+ALTER TABLE `db1_move`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_id` (`user_id`),
+  ADD KEY `idx_wallet_from` (`wallet_from`),
+  ADD KEY `idx_wallet_to` (`wallet_to`);
+
+--
+-- Индексы таблицы `db1_setting`
+--
+ALTER TABLE `db1_setting`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_setting_uniq` (`user_id`,`settingparam_id`),
+  ADD KEY `idx_settingparam_id` (`settingparam_id`),
+  ADD KEY `idx_user_id` (`user_id`);
+
+--
+-- Индексы таблицы `db1_settingparam`
+--
+ALTER TABLE `db1_settingparam`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `db1_unit`
+--
+ALTER TABLE `db1_unit`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_name` (`name`);
+
+--
+-- Индексы таблицы `db1_user`
+--
+ALTER TABLE `db1_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_username` (`username`),
+  ADD KEY `idx_user_email` (`email`),
+  ADD KEY `idx_user_status` (`state`);
+
+--
+-- Индексы таблицы `db1_wallet`
+--
+ALTER TABLE `db1_wallet`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `db1_categoryexp`
+--
+ALTER TABLE `db1_categoryexp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+--
+-- AUTO_INCREMENT для таблицы `db1_categoryinc`
+--
+ALTER TABLE `db1_categoryinc`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT для таблицы `db1_exchange`
+--
+ALTER TABLE `db1_exchange`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблицы `db1_expense`
+--
+ALTER TABLE `db1_expense`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+--
+-- AUTO_INCREMENT для таблицы `db1_expensetemp`
+--
+ALTER TABLE `db1_expensetemp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT для таблицы `db1_income`
+--
+ALTER TABLE `db1_income`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT для таблицы `db1_move`
+--
+ALTER TABLE `db1_move`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT для таблицы `db1_setting`
+--
+ALTER TABLE `db1_setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT для таблицы `db1_settingparam`
+--
+ALTER TABLE `db1_settingparam`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT для таблицы `db1_unit`
+--
+ALTER TABLE `db1_unit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT для таблицы `db1_user`
+--
+ALTER TABLE `db1_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT для таблицы `db1_wallet`
+--
+ALTER TABLE `db1_wallet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -557,7 +713,7 @@ ALTER TABLE `db1_categoryexp`
 -- Ограничения внешнего ключа таблицы `db1_categoryinc`
 --
 ALTER TABLE `db1_categoryinc`
-  ADD CONSTRAINT `db1_categoryinc_ibfk_1` FOREIGN KEY (`wallet_default`) REFERENCES `db1_wallet` (`id`),
+  ADD CONSTRAINT `db1_categoryinc_ibfk_1` FOREIGN KEY (`wallet_id`) REFERENCES `db1_wallet` (`id`),
   ADD CONSTRAINT `db1_categoryinc_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `db1_user` (`id`);
 
 --

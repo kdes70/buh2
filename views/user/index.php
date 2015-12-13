@@ -70,9 +70,9 @@ $this->params['menuItems'] = [
         'rowOptions' => function ($model) {
             if ($model->id == Yii::$app->user->id) {
                 return ['class' => 'info'];
-            } else if ($model->status == User::STATE_CLOSE) {
+            } else if ($model->state == User::STATE_CLOSE) {
                 return ['class' => 'danger'];
-            } else if ($model->status == User::STATE_ACTIVE) {
+            } else if ($model->state == User::STATE_ACTIVE) {
                 return ['class' => 'success'];
             };
         },
@@ -85,11 +85,11 @@ $this->params['menuItems'] = [
                     'username',
                     'fullname',
                     [
-                        'attribute' => 'status',
+                        'attribute' => 'state',
                         'value' => function ($data) {
-                            return $data->status == User::STATE_ACTIVE ? "Активен" : ($data->status == User::STATE_CLOSE ? "Закрыт" : "---");
+                            return $data->state == User::STATE_ACTIVE ? "Активен" : ($data->state == User::STATE_CLOSE ? "Закрыт" : "---");
                         },
-                        'filter' => Html::activeDropDownList($searchModel, 'status', [User::STATE_ACTIVE => 'Активен', User::STATE_CLOSE => 'Закрыт'], ['class' => 'form-control', 'prompt' => '']),
+                        'filter' => Html::activeDropDownList($searchModel, 'state', [User::STATE_ACTIVE => 'Активен', User::STATE_CLOSE => 'Закрыт'], ['class' => 'form-control', 'prompt' => '']),
                     ],
                     ['class' => \yii\grid\ActionColumn::className(),
                         'header' => 'Действия',

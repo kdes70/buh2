@@ -20,7 +20,7 @@ use app\models\User;
 
     <?= $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'status')->dropDownList(['' => 'Выберите...', User::STATE_ACTIVE => 'Активен', User::STATE_CLOSE => 'Закрыт']) ?>
+    <?= $form->field($model, 'state')->dropDownList(['' => 'Выберите...', User::STATE_ACTIVE => 'Активен', User::STATE_CLOSE => 'Закрыт']) ?>
 
 
     <div class="form-group">

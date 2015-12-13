@@ -55,11 +55,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
     public function rules() {
         return [
 
-            [['created_at', 'updated_at', 'username', 'email', 'status'], 'required'],
+            [['created_at', 'updated_at', 'username', 'email', 'state'], 'required'],
             [['password', 'password_repeat'], 'required', 'on' => 'password'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'on' => 'password'],
             ['email', 'email'],
-            [['id', 'created_at', 'updated_at', 'status'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'state'], 'integer'],
             [['fullname', 'username', 'auth_key', 'email_confirm_token', 'password_hash', 'password_reset_token', 'email'], 'string'],
         ];
     }
@@ -73,7 +73,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface {
             'updated_at' => 'Изменен',
             'fullname' => 'Полное имя',
             'username' => 'Логин',
-            'status' => 'Статус',
+            'state' => 'Состояние',
             'password' => 'Пароль',
             'password_repeat' => 'Пароль еще раз',
             'email' => 'E-mail',
