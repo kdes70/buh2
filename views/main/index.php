@@ -38,102 +38,112 @@ use yii\bootstrap\ButtonGroup;
 
 
         <!-- Блок управления -->
-        <!-- Блок управления новый-->
-        <?php
-        echo ButtonGroup::widget([
-            'buttons' => [
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Управление</div>
+            </div>     
+            <div class="panel-body">
+                <!-- Блок управления новый-->
+                <?php
+                echo ButtonGroup::widget([
+                    'buttons' => [
 
-                Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], [
-                    'class' => 'btn btn-success btn-block',
-                    'title' => 'Расходы',
-                    'options' => [
-                    //'style' => "width:100%"
-                    ]
-                        ]
-                ),
-                Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], [
-                    'class' => 'btn btn-primary',
-                    'title' => 'Создать',
-                    'options' => [
-                    //'style' => "width:100%"
-                    ]
-                        ]
-                ),
-                ButtonDropdown::widget([
-                    'label' => '',
-                    //'split' => true,
-                    'dropdown' => [
-                        'items' => Expensetemp::getItems(),
+                        Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], [
+                            'class' => 'btn btn-success btn-block',
+                            'title' => 'Расходы',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                        Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], [
+                            'class' => 'btn btn-primary',
+                            'title' => 'Создать',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                        ButtonDropdown::widget([
+                            'label' => '',
+                            //'split' => true,
+                            'dropdown' => [
+                                'items' => Expensetemp::getItems(),
+                            ],
+                            'options' => [
+                                //'style' => "width:100%",
+                                'class' => 'btn-primary',
+                                'title' => 'Создать из шаблона...']
+                        ]),
                     ],
                     'options' => [
-                        //'style' => "width:100%",
-                        'class' => 'btn-primary',
-                        'title' => 'Создать из шаблона...']
-                ]),
-            ],
-            'options' => [
-                'class' => 'btn-group-justified',
-            ]
-        ]);
-        ?>
-        <!-- Блок управления новый (конец)-->
+                        'class' => 'btn-group-justified',
+                    ]
+                ]);
+                ?>
+                <!-- Блок управления новый (конец)-->
 
 
 
-        <!-- Заголовок -->
-        <table class="table table-striped custab">
-            <thead>
-                <tr>
-                    <th colspan="1">Раздел</th>
-                    <th colspan="2" class="text-center">Действие</th>
-                </tr>
-            </thead>
-            <!-- Заголовок (конец) -->
+                <!-- Заголовок -->
+                <table class="table table-striped custab">
+                    <thead>
+                        <tr>
+                            <th colspan="1">Раздел</th>
+                            <th colspan="2" class="text-center">Действие</th>
+                        </tr>
+                    </thead>
+                    <!-- Заголовок (конец) -->
 
 
 
 
-            <tr>
-                <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
-                <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
-                <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                </td>
-            </tr>
-            <tr>
-                <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
-                <td class="text-right">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                </td>
-                <td class="text-right"> 
-                    <div class="btn-group" role="group" style = "width:100%">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="Создать из шаблона" style = "width:100%">
-                            <span class="glyphicon glyphicon-edit"></span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <?php
-                            foreach (Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all() as $val) {
-                                echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
-                <td class="text-right" colspan="2">
-                    <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                </td>
+                    <tr>
+                        <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
+                        <td class="text-right" colspan="2">
+                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
+                        <td class="text-right" colspan="2">
+                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
+                        <td class="text-right">
+                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                        </td>
+                        <td class="text-right"> 
+                            <div class="btn-group" role="group" style = "width:100%">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="Создать из шаблона" style = "width:100%">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php
+                                    foreach (Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all() as $val) {
+                                        echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
+                        <td class="text-right" colspan="2">
+                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
+                        </td>
 
-            </tr>
-        </table>
+                    </tr>
+                </table>
+
+
+            </div>                     
+        </div>
+
         <!-- Блок управления (конец) -->
 
 
