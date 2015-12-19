@@ -5,6 +5,7 @@ use app\models\Expensetemp;
 use dosamigos\chartjs\ChartJs;
 use yii\bootstrap\ButtonDropdown;
 use yii\bootstrap\ButtonGroup;
+use yii\bootstrap\Collapse;
 ?>
 <div class="row">
     <div class="col-md-3 col-lg-3">
@@ -38,34 +39,29 @@ use yii\bootstrap\ButtonGroup;
 
 
         <!-- Блок управления -->
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title">Управление</div>
-            </div>     
-            <div class="panel-body">
-                <!-- Блок управления новый-->
-                <?php
-                echo ButtonGroup::widget([
+        <?php
+        //Расходы
+        $expense = ButtonGroup::widget([
                     'buttons' => [
 
-                        Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], [
+                        Html::a('<span class="glyphicon glyphicon-eye-open"></span> В раздел...', ['/expense'], [
                             'class' => 'btn btn-success btn-block',
-                            'title' => 'Расходы',
+                            'title' => 'В раздел...',
                             'options' => [
                             //'style' => "width:100%"
                             ]
                                 ]
                         ),
-                        Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], [
+                        Html::a('<span class="glyphicon glyphicon-plus-sign"></span> Создать...', ['/expense/create'], [
                             'class' => 'btn btn-primary',
-                            'title' => 'Создать',
+                            'title' => 'Создать...',
                             'options' => [
                             //'style' => "width:100%"
                             ]
                                 ]
                         ),
                         ButtonDropdown::widget([
-                            'label' => '',
+                            'label' => 'Из шаблона...',
                             //'split' => true,
                             'dropdown' => [
                                 'items' => Expensetemp::getItems(),
@@ -79,85 +75,118 @@ use yii\bootstrap\ButtonGroup;
                     'options' => [
                         'class' => 'btn-group-justified',
                     ]
-                ]);
-                ?>
-                <!-- Блок управления новый (конец)-->
+        ]);
 
 
 
-                <!-- Заголовок -->
-                <table class="table table-striped custab">
-                    <thead>
-                        <tr>
-                            <th colspan="1">Раздел</th>
-                            <th colspan="2" class="text-center">Действие</th>
-                        </tr>
-                    </thead>
-                    <!-- Заголовок (конец) -->
+        //Доходы
+        $income = ButtonGroup::widget([
+                    'buttons' => [
+
+                        Html::a('<span class="glyphicon glyphicon-eye-open"></span> В раздел...', ['/income'], [
+                            'class' => 'btn btn-success btn-block',
+                            'title' => 'В раздел...',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                        Html::a('<span class="glyphicon glyphicon-plus-sign"></span> Создать...', ['/income/create'], [
+                            'class' => 'btn btn-primary',
+                            'title' => 'Создать...',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                    ],
+                    'options' => [
+                        'class' => 'btn-group-justified',
+                    ]
+        ]);
 
 
+        //Кошельки
+        $wallet = ButtonGroup::widget([
+                    'buttons' => [
+
+                        Html::a('<span class="glyphicon glyphicon-eye-open"></span> В раздел...', ['/wallet'], [
+                            'class' => 'btn btn-success btn-block',
+                            'title' => 'В раздел...',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                        Html::a('<span class="glyphicon glyphicon-plus-sign"></span> Создать...', ['/wallet/create'], [
+                            'class' => 'btn btn-primary',
+                            'title' => 'Создать...',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                    ],
+                    'options' => [
+                        'class' => 'btn-group-justified',
+                    ]
+        ]);
 
 
-                    <tr>
-                        <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Кошельки', ['/wallet'], ['class' => 'btn btn-success btn-block']) ?></td>
-                        <td class="text-right" colspan="2">
-                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/wallet/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Доходы', ['/income'], ['class' => 'btn btn-success btn-block']) ?></td>
-                        <td class="text-right" colspan="2">
-                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/income/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Расходы', ['/expense'], ['class' => 'btn btn-success btn-block']) ?></td>
-                        <td class="text-right">
-                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/expense/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                        </td>
-                        <td class="text-right"> 
-                            <div class="btn-group" role="group" style = "width:100%">
-                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" title="Создать из шаблона" style = "width:100%">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <?php
-                                    foreach (Expensetemp::find()->where(['user_id' => Yii::$app->user->identity->id])->all() as $val) {
-                                        echo '<li>' . Html::a($val['name'], ['expense/create', 'tmp' => $val['id']], ['class' => '']) . '</li>';
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"><?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Перемещения', ['/move'], ['class' => 'btn btn-success btn-block']) ?></td>
-                        <td class="text-right" colspan="2">
-                            <?= Html::a('<span class="glyphicon glyphicon-plus-sign"></span>', ['/move/create'], ['class' => 'btn btn-primary', 'title' => 'Создать', 'style' => "width:100%"]) ?>         
-                        </td>
+        //Перемещения
+        $move = ButtonGroup::widget([
+                    'buttons' => [
 
-                    </tr>
-                </table>
+                        Html::a('<span class="glyphicon glyphicon-eye-open"></span> В раздел...', ['/move'], [
+                            'class' => 'btn btn-success btn-block',
+                            'title' => 'В раздел...',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                        Html::a('<span class="glyphicon glyphicon-plus-sign"></span> Создать...', ['/move/create'], [
+                            'class' => 'btn btn-primary',
+                            'title' => 'Создать...',
+                            'options' => [
+                            //'style' => "width:100%"
+                            ]
+                                ]
+                        ),
+                    ],
+                    'options' => [
+                        'class' => 'btn-group-justified',
+                    ]
+        ]);
 
 
-            </div>                     
-        </div>
-
+        //Виджет блока управления главной страницы
+        echo Collapse::widget([
+            'encodeLabels' => FALSE,
+            'items' => [
+                // equivalent to the above
+                [
+                    'label' => '<img src="' . Yii::$app->request->baseUrl . '/images/section/expense.png' . ' "width="80" "alt="альтернативный текст" > Расходы',
+                    'content' => $expense,
+                    // open its content by default
+                    'contentOptions' => ['class' => 'in']
+                ],
+                [
+                    'label' => '<img src="' . Yii::$app->request->baseUrl . '/images/section/income.png' . ' "width="80" "alt="альтернативный текст" > Доходы',
+                    'content' => $income,
+                ],
+                [
+                    'label' => '<img src="' . Yii::$app->request->baseUrl . '/images/section/wallet.png' . ' "width="80" "alt="альтернативный текст" > Кошельки',
+                    'content' => $wallet,
+                ],
+                [
+                    'label' => '<img src="' . Yii::$app->request->baseUrl . '/images/section/move.png' . ' "width="80" "alt="альтернативный текст" > Перемещения',
+                    'content' => $move,
+                ],
+            ]
+        ]);
+        ?>
         <!-- Блок управления (конец) -->
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -165,11 +194,8 @@ use yii\bootstrap\ButtonGroup;
             </div>     
             <div class="panel-body">
                 <p>Выбрать период 01.01.2005 - 10.01.2015</p>
-
                 Потрачено - 45.55 <br />
                 Получено - 1232.55
-
-
             </div>                     
         </div>
     </div>
@@ -179,8 +205,6 @@ use yii\bootstrap\ButtonGroup;
                 <div class="panel-title">Ввод операций</div>
             </div>     
             <div class="panel-body">
-
-
                 <?=
                 ChartJs::widget([
                     'type' => 'Bar',
