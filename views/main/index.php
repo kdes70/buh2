@@ -69,7 +69,7 @@ use yii\bootstrap\Collapse;
                                 ]
                         ),
                         ButtonDropdown::widget([
-                            'label' => 'Из шаблона',
+                            'label' => 'Шаблоны',
                             //'split' => true,
                             'dropdown' => [
                                 'items' => Expensetemp::getItems(),
@@ -77,7 +77,7 @@ use yii\bootstrap\Collapse;
                             'options' => [
                                 //'style' => "width:100%",
                                 'class' => 'btn-primary',
-                                'title' => 'Создать из шаблона']
+                                'title' => 'Шаблоны']
                         ]),
                     ],
                     'options' => [
@@ -277,3 +277,15 @@ use yii\bootstrap\Collapse;
         </div>
     </div>
 </div>
+
+
+<?php
+//Открытие панелей при наведении мыши
+$script = <<<JS
+$(document).ready(function(){
+   $( ".collapse-toggle" ).mouseover(function(){
+      $(this).click();
+   });
+});   
+JS;
+$this->registerJs($script);
