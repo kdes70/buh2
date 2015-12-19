@@ -8,6 +8,7 @@ namespace app\models;
  * @property integer $id
  * @property integer $parent_id
  * @property string $name
+ * @property string $path
  *
  * @property Categoryexp $parent
  * @property Categoryexp[] $categoryexps
@@ -29,7 +30,8 @@ class Categoryexp extends \yii\db\ActiveRecord {
             [['parent_id'], 'integer'],
             [['name'], 'required'],
             [['name'], 'unique'],
-            [['name'], 'string', 'max' => 20]
+            [['name'], 'string', 'max' => 20],
+            [['path'], 'string', 'max' => 60]
         ];
     }
 
@@ -80,16 +82,35 @@ class Categoryexp extends \yii\db\ActiveRecord {
         }
     }
 
-    //Мои методы*********************************************************
+    /**
+     * Устанавливает значение поля path
+     * @param type $id
+     * @return string
+     */
+    public function setPath($id) {
+
+        $path = $id;
+
+        while (Self::findOne($id)['parent_id'] > 0) {
+            $path = Self::findOne($id)['parent_id'] . '.' . $path;
+            $id = Self::findOne($id)['parent_id'];
+        }
+        $this->path = '0' . '.' . $path;
+        $this->save();
+    }
 
     public function getCountSubitems($id) {
 
+
         $result = Categoryexp::find()
-                ->where(['parent_id' => $id])
+                ->Where(['LIKE', 'path', Self::findOne($id)['path'] . '.'])
+                //->where(['parent_id' => $id])
                 ->count();
 
         return $result;
     }
+
+    //Методы дерева*********************************************************
 
     /**
      * Get All categories data prepared for insert into $form->dropDownList (Возаращает иерархию категорий НОВЫЙ ВАРИАНТ)
@@ -190,4 +211,5 @@ class Categoryexp extends \yii\db\ActiveRecord {
         return $returnArray;
     }
 
+    //Методы дерева (конец) *********************************************************
 }
