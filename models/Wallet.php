@@ -103,7 +103,7 @@ class Wallet extends \yii\db\ActiveRecord {
     public static function getAllAndCurrentSum($user_id) {
 
         $sql = 'SELECT wa.id AS id, CONCAT( wa.name,  " - ", wa.current_sum ) AS name
-                FROM db1_wallet wa, db1_user us
+                FROM {{%wallet}} wa, db1_user us
                 WHERE wa.user_id = us.id
                 AND wa.state =0
                 AND us.id = ' . $user_id

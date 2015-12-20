@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "{{%categoryexp}}".
  *
@@ -87,16 +89,25 @@ class Categoryexp extends \yii\db\ActiveRecord {
      * @param type $id
      * @return string
      */
-    public function setPath($id) {
+    public function updatePath($id) {
 
-        $path = $id;
+        $old_path = $this->path;
 
+        //Обновляем поле текещей записи
+        $new_path = $id;
         while (Self::findOne($id)['parent_id'] > 0) {
-            $path = Self::findOne($id)['parent_id'] . '.' . $path;
+            $new_path = Self::findOne($id)['parent_id'] . '.' . $new_path;
             $id = Self::findOne($id)['parent_id'];
         }
-        $this->path = '0' . '.' . $path;
+        $new_path = '0' . '.' . $new_path;
+        $this->path = $new_path;
         $this->save();
+
+        //Обновляем поля дочерних записей
+        $sql = 'update {{%categoryexp}} ce '
+                . 'set ce.path = concat("' . $new_path . '",  replace(ce.path,"' . $old_path . '","")) '
+                . 'where ce.path like "' . $old_path . '.%"';
+        Yii::$app->db->createCommand($sql)->execute();
     }
 
     public function getCountSubitems($id) {

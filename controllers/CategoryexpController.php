@@ -57,7 +57,7 @@ class CategoryexpController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //Обновляем поле path
-            $model->setPath($model->id);
+            $model->updatePath($model->id);
 
             return $this->redirect(['index', 'parent_id' => $model->parent_id]);
         } else {
@@ -80,7 +80,7 @@ class CategoryexpController extends Controller {
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             //Обновляем поле path
-            $model->setPath($model->id);
+            $model->updatePath($model->id);
             return $this->redirect(['index', 'parent_id' => $model->parent_id]);
         } else {
             return $this->render('update', [
