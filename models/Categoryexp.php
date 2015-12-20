@@ -111,13 +111,9 @@ class Categoryexp extends \yii\db\ActiveRecord {
     }
 
     public function getCountSubitems($id) {
-
-
         $result = Categoryexp::find()
-                ->Where(['LIKE', 'path', Self::findOne($id)['path'] . '.'])
-                //->where(['parent_id' => $id])
+                ->Where(['LIKE', 'path', trim(Self::findOne($id)['path']) == '' ? 'не ищи ничего...' : Self::findOne($id)['path'] . '.'])
                 ->count();
-
         return $result;
     }
 

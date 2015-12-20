@@ -111,6 +111,8 @@ class Expense extends \yii\db\ActiveRecord {
             $categoryexp->parent_id = $this->categoryexp_id ? $this->categoryexp_id : 0;
             $categoryexp->name = $this->categoryexp_add;
             $categoryexp->save();
+            //Обновляем поле path
+            $categoryexp->updatePath($categoryexp->id);
             //Присваиваем расходу ID новой категории
             $this->categoryexp_id = $categoryexp->id;
         }
