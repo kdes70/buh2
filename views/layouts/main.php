@@ -51,7 +51,7 @@ AppAsset::register($this);
                             ['label' => 'Перемещения', 'url' => ['/move']],
                             '<li class="divider"></li>',
                             ['label' => 'Долги', 'url' => ['#']],
-                             '<li class="divider"></li>',
+                            '<li class="divider"></li>',
                             ['label' => 'Планировщик', 'url' => ['#']],
                         ],
                         'visible' => !Yii::$app->user->isGuest],
@@ -86,6 +86,7 @@ AppAsset::register($this);
                             '<li class="divider"></li>',
                             ['label' => 'Прототип1', 'url' => 'http://www.drebedengi.ru/?module=v2_homeBuhPrivate'],
                             ['label' => 'Прототип2', 'url' => 'http://finance.uramaks.com/'],
+                            ['label' => 'Прототип3', 'url' => 'http://www.cashorganizer.com/rus/'],
                         ],
                         'visible' => !Yii::$app->user->isGuest],
                     Yii::$app->user->isGuest ?
