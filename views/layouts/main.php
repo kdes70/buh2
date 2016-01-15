@@ -91,7 +91,7 @@ AppAsset::register($this);
                         'visible' => !Yii::$app->user->isGuest],
                     Yii::$app->user->isGuest ?
                             /* ['label' => 'Войти', 'url' => ['/main/login']] */'' :
-                            ['label' => 'Війти (' . Yii::$app->user->identity->username . ')',
+                            ['label' => 'Выйти (' . Yii::$app->user->identity->username . ')',
                         'url' => ['/main/logout'],
                         'linkOptions' => ['data-method' => 'post']],
                 ],
