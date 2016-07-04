@@ -35,6 +35,10 @@ class CategoryexpController extends Controller {
      * @return mixed
      */
     public function actionIndex($parent_id = 0) {
+        
+        
+        
+        //echo '543534534';
         $searchModel = new CategoryexpSearch();
         $searchModel->setParent($parent_id);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
